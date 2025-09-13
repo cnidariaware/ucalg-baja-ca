@@ -1,0 +1,26 @@
+:root {
+	/* --BajaBlack: #1f1f1f; */
+	--BajaBlack: #1c1c1c;
+
+	/* --BajaRed: rgb(100, 0, 0); */
+	/* --BajaRed: #c1011c; */
+	--BajaRed: #a80029;
+
+	--BajaHover: rgba(128, 128, 128, 0.4);
+}
+body {
+	margin: 0px;
+	font-family:
+		Basel Grotesk,
+		-apple-system,
+		BlinkMacSystemFont,
+		Segoe UI,
+		Roboto,
+		Oxygen,
+		Ubuntu,
+		Cantarell,
+		Fira Sans,
+		Droid Sans,
+		Helvetica Neue,
+		sans-serif;
+}
