@@ -139,7 +139,7 @@
 
 <style>
 	* {
-		background-color: black;
+		background-color: var(--BajaBlack);
 		color: white;
 	}
 	/*  {
@@ -208,7 +208,7 @@
 		margin: 0px;
 		padding: 0px;
 		font-size: 22px;
-		color: inherit;
+		/* color: inherit; */
 	}
 
 	@media only screen and (max-width: 800px) {
