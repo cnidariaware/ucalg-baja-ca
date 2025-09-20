@@ -7,6 +7,8 @@
 	--BajaRed: #a80029;
 
 	--BajaHover: rgba(128, 128, 128, 0.4);
+
+	--BajaWhite: #fff;
 }
 body {
 	margin: 0px;
@@ -23,4 +25,9 @@ body {
 		Droid Sans,
 		Helvetica Neue,
 		sans-serif;
+}
+
+img {
+	object-fit: cover;
+	object-position: center;
 }
