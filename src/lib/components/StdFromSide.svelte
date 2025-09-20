@@ -1,10 +1,9 @@
 <script>
-	let { children, backgroundColour, columnGap } = $props();
-	$inspect(backgroundColour);
+	let { children, backgroundColour, rowGap, paddingTopBottom } = $props();
 </script>
 
-<div style:background-color={`var(${backgroundColour})`} style:column-gap={columnGap}>
-	<div>
+<div style:background-color={`var(${backgroundColour})`} style="padding: {paddingTopBottom} 0svw;">
+	<div style:row-gap={rowGap}>
 		{@render children?.()}
 	</div>
 </div>
@@ -14,9 +13,9 @@
 		display: flex;
 		align-items: center;
 		flex-direction: column;
-		padding: 1svb 0svw;
 	}
 	div > div {
-		max-width: 80svw;
+		max-width: 96svw;
+		padding: 1svb 0svw;
 	}
 </style>

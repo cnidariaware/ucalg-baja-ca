@@ -1,14 +1,13 @@
 <script>
 	import logo from '$lib/assets/logo.png';
-	import favicon from '$lib/assets/favicon.ico';
 	let { children } = $props();
 	const date = new Date();
 	import '$lib/assets/global.css';
 </script>
 
-<svelte:head>
+<!-- <svelte:head>
 	<link rel="icon" href={favicon} />
-</svelte:head>
+</svelte:head> -->
 
 <header>
 	<a href="/"> <img id="logo" src={logo} alt="UCalgary Baja's Logo" /></a>

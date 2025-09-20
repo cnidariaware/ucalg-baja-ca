@@ -4,7 +4,7 @@
 
 <h2>SUBTEAMS</h2>
 
-<StdFromSide backgroundColour="--BajaBlack" columnGap="2svh">
+<StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="8svh">
 	<div>
 		<div>
 			<h3>Suspension</h3>
@@ -33,19 +33,126 @@
 			</p>
 		</div>
 	</div>
+	<div>
+		<div>
+			<h3>Ergonomics</h3>
+			<p>
+				Our subteam works to ensure driver comfort, increase the number of eligible drivers that can
+				drive the car, and decrease driver fatigue by optimizing the seat, head rest, pedals, and
+				pedal foot resets.
+			</p>
+		</div>
+		<img
+			alt="brakes and gas pedal CAD"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/18HASpcxac4zjPwWZSpbQs94v0ooAX-3hmw4emI_0zO4qfnSYTO5XBMXSH7dow2E_xkngmq.png"
+		/>
+	</div>
+	<div>
+		<img
+			alt="Suspensions arms and steering"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/19yTuNKZMp1QCQoaBz86d-zpvATvP6Rx1SaVjynMSV6RQFROM2d7anw3zAD4_nabmkg.png"
+		/>
+		<div>
+			<h3>Steering</h3>
+			<p>
+				Our subteam designs the steering behaviors of the car, including turning radius, pinion and
+				rack ratio. We use FEA analysis to professional CNC machining to optimize driving dynamics.
+			</p>
+		</div>
+	</div>
+	<div>
+		<div>
+			<h3>Powertrain</h3>
+			<p>
+				Our subteam transfers power to the rear wheels and driveshaft using gearbox, bevel gearbox,
+				CVT, propshaft, rear axles, rear brakes, and rear hubs.
+			</p>
+		</div>
+		<img
+			alt="cvt"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915331/cvt_zz0rgl.png"
+		/>
+	</div>
+	<div>
+		<img
+			alt="top down shot of our brake system"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754168541/brakes-min_bgmnyc.jpg"
+		/>
+		<div>
+			<h3>Final Drive</h3>
+			<p>
+				Our subteam designs, tests and manufactures the 4WD system, including the differential,
+				axles, hubs and brakes.
+			</p>
+		</div>
+	</div>
+	<div>
+		<div>
+			<h3>Telemetry</h3>
+			<p>
+				Our subteam is responsible for wiring sensors and transmitting real-time data from the
+				vehicle, letting the team to monitor performance and diagnose issues during testing.
+			</p>
+		</div>
+		<img
+			alt="strain gauge"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/12ZRS9P9XwyNLusJ59EfL98Yc_ZMpbdoYvATMAQKqnf0atoxj0ZUA2vtgQYh09a8_quphim.png"
+		/>
+	</div>
+	<div>
+		<img
+			alt="weight scale"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915330/scale_ccg4wg.png"
+		/>
+		<div>
+			<h3>Data Acquisition</h3>
+			<p>
+				Our subteam focuses on integrating sensors and managing the vehicle's wiring system to
+				accurately collect, store, and analyze performance data for post-test evaluation.
+			</p>
+		</div>
+	</div>
+	<div>
+		<div>
+			<h3>Software</h3>
+			<p>
+				We design and built this site, handle simulation and gather data through the onboard data
+				collection system and run our in club storage system.
+			</p>
+		</div>
+		<img
+			alt="jsx code from our sponsors"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png"
+		/>
+	</div>
+	<div>
+		<img
+			alt="member wearing ucalgary baja t-shirt"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
+		/>
+		<div>
+			<h3>Business</h3>
+			<p>
+				Our subteam develops sponsorship relationships, creates content to post on social media,
+				develop marketing campaigns, arrange travel bookings, handles payments, and manages team
+				merch.
+			</p>
+		</div>
+	</div>
 </StdFromSide>
 
 <style>
 	* {
 		background-color: var(--BajaBlack);
-		color: #fff;
+		color: var(--BajaWhite);
 	}
 
 	h2 {
 		font-size: 80px;
 		text-align: center;
 		margin: 0;
-		border-top: 1px solid whitesmoke;
+		/* border-top: 1px solid whitesmoke; */
+		padding: 66px 0svw;
 	}
 
 	h3 {
@@ -61,9 +168,20 @@
 		padding: 0;
 	}
 
+	img {
+		border-radius: 1rem;
+		display: flex;
+		height: 400px;
+		width: 700px;
+		object-fit: initial;
+	}
+
 	div {
 		display: flex;
-		column-gap: 2svw;
+		flex-wrap: wrap;
+		column-gap: 4svw;
+		justify-content: space-between;
+		width: 100%;
 	}
 
 	div > div {
@@ -71,5 +189,10 @@
 		justify-content: flex-start;
 		max-width: 48ch;
 		row-gap: 0;
+		padding: 0svh 25px;
+	}
+
+	div > div:nth-child(2) {
+		text-align: end;
 	}
 </style>
