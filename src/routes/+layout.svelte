@@ -1,7 +1,7 @@
 <script>
 	import '$lib/assets/global.css';
-	import Top from '$lib/components/Top.svelte';
-	import Bottom from '$lib/components/Bottom.svelte';
+	import Top from '$lib/components/Layout/Top.svelte';
+	import Bottom from '$lib/components/Layout/Bottom.svelte';
 
 	let { children } = $props();
 </script>
