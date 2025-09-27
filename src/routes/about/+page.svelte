@@ -1,9 +1,13 @@
 <script>
   import Stats from '$lib/components/About/Stats.svelte';
   import StdFromSide from '$lib/components/StdFromSide.svelte';
+  import TopBanner from '$lib/components/TopBanner.svelte';
 </script>
 <title>UCalgary Baja - About</title>
-
+<TopBanner
+	titleText="About Us"
+	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914208/IMG20240517082914_vuhtt1.jpg"
+/>
 <Stats/>
 <StdFromSide backgroundColour="--BajaBlack">
 <section class="about-section">

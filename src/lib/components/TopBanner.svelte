@@ -1,94 +1,71 @@
 <script>
-	let { titleText, imgUrl, subtitleText } = $props();
+  let { titleText, imgUrl, subtitleText } = $props();
 </script>
 
-<div style="background-image: url({imgUrl})">
-	<div>
-		<h1>{titleText}</h1>
+<div style="--img:url({imgUrl})">
+  <div>
+    <h1>{titleText}</h1>
+	{#if subtitleText !== null}
 		<h2>{subtitleText}</h2>
-	</div>
+
+	{/if}
+</div>
 </div>
 
 <style>
-	:root {
-		--fade-starts-at-bottom: 90%;
-		--fade-starts-at-top: 96%;
-		--banner-text-background: rgba(31, 31, 31, 0.8);
-		--banner-text-padding: 2svh 2svw;
-		--banner-text-rounding: 1rem;
-	}
+  :root{
+    --fade-starts-at-bottom: 90%;
+    --fade-starts-at-top: 96%;
+    --banner-text-background: rgba(31,31,31,.8);
+    --banner-text-padding: 2svh 2svw;
+    --banner-text-rounding: 1rem;
+  }
 
-	div {
-		height: 100svh;
-		width: 100%;
-		display: flex;
-		justify-content: flex-end;
+  div {
+    position: relative;           /* anchor for children if needed */
+    height: 100svh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    background:
+      /* top layer: the fade */
+      linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) var(--fade-starts-at-bottom, 70%),
+        #1f1f1f 100%
+      ),
+      /* bottom layer: the image */
+      var(--img) no-repeat center / cover;
+    /* (equivalent to background-image + size/pos/repeat for both layers) */
+  }
 
-		z-index: 0;
-		top: 0;
-		left: 0;
-		background-repeat: no-repeat;
-		background-size: cover;
-		background-position: center;
-	}
+  /* title/subtitle wrapper */
+  div > div{
+    height: fit-content;
+    margin-top: 35svh;
+    width: fit-content;
+    margin-right: 4svw;
+	border-radius: 1rem;
+    background: initial;
+	background-color: rgba(0,0,0,0.3);
+	flex-direction: column;
+  }
 
-	/* Fix later */
-	/* div::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			to bottom,
-			rgba(0, 0, 0, 0) var(--fade-starts-at-bottom, 70%),
-			#1f1f1f 100%
-		);
-		pointer-events: none; 
-		z-index: 1;
-	} */
+  h1{
+    font-size: 100px;
+    font-weight: bolder;
+    text-align: end;
+    color: var(--BajaWhite);
+    margin: var(--banner-text-padding);
+    border-radius: var(--banner-text-rounding);
+  }
 
-	/* used to postiion title and sub title */
-	div > div {
-		height: fit-content;
-		padding-top: 35svh;
-		margin-left: auto;
-		margin-right: 4svw;
-		/* padding-left: 60svw; */
-		/* text-align: end; */
-		background: initial;
-	}
-
-	div > div::after {
-		content: initial;
-		pointer-events: initial;
-		z-index: initial;
-		position: initial;
-		inset: initial;
-		background: initial;
-	}
-
-	h1 {
-		font-size: 100px; /* todo make larger */
-		font-weight: normal;
-		text-align: end;
-		width: 11ch;
-		height: initial;
-		color: var(--BajaWhite);
-		/* background-color: var(--banner-text-background); */
-		padding: var(--banner-text-padding);
-		margin: 0px;
-		border-radius: var(--banner-text-rounding);
-		font-weight: bolder;
-	}
-
-	h2 {
-		width: fit-content;
-
-		font-size: xx-large;
-		font-weight: normal;
-
-		color: var(--BajaWhite);
-		/* background-color: var(--banner-text-background); */
-		padding: var(--banner-text-padding);
-		border-radius: var(--banner-text-rounding);
-	}
+  h2{
+    width: fit-content;
+    font-size: xx-large;
+    font-weight: normal;
+    color: var(--BajaWhite);
+	margin: var(--banner-text-padding);
+    border-radius: var(--banner-text-rounding);
+  }
 </style>
