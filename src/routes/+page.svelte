@@ -1,11 +1,16 @@
 <script>
 	import Sponsors from '$lib/components/Home/Sponsors.svelte';
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
+	import TopBanner from '$lib/components/TopBanner.svelte';
 </script>
 
-<!-- <h1>Welcome home</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p> -->
 <title>UCalgary Baja - Home</title>
+
+<TopBanner
+	titleText="UCalgary 
+	Baja"
+	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754170619/DSC_0766-min-2_j7sxoz.jpg"
+/>
 <StdFromSide backgroundColour="--BajaBlack" rowGap="2svh" paddingTopBottom="4svh">
 	<div>
 		<img

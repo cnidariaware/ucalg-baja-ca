@@ -1,6 +1,7 @@
 <script>
 	import CompetitionInfo from '$lib/components/History/CompetitionInfo.svelte';
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
+	import TopBanner from '$lib/components/TopBanner.svelte';
 
 	let historyTimeLineInfo = [
 		{
@@ -54,6 +55,10 @@
 	];
 </script>
 
+<TopBanner
+	titleText="History"
+	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754760952/DSCN7263_map0j4.jpg"
+/>
 <title>UCalgary Baja - History</title>
 <StdFromSide backgroundColour="--BajaBlack" rowGap="2svb" paddingTopBottom="2svb">
 	<div>

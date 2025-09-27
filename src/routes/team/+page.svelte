@@ -1,8 +1,15 @@
 <script>
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
+	import TopBanner from '$lib/components/TopBanner.svelte';
 </script>
 
 <title>UCalgary Baja - Sub-teams</title>
+
+<TopBanner
+	titleText="Our Team"
+	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754767548/DSC05631-min_rxx8km.jpg"
+/>
+
 <h2>SUBTEAMS</h2>
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="8svh">
