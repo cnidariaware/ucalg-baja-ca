@@ -5,6 +5,7 @@
 
 <!-- <h1>Welcome home</h1>
 <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p> -->
+<title>UCalgary Baja - Home</title>
 <StdFromSide backgroundColour="--BajaBlack" rowGap="2svh" paddingTopBottom="4svh">
 	<div>
 		<img
