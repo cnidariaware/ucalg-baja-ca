@@ -9,6 +9,8 @@
 	--BajaHover: rgba(128, 128, 128, 0.4);
 
 	--BajaWhite: #fff;
+
+	--BajaRadius: 1rem;
 }
 body {
 	margin: 0px;
