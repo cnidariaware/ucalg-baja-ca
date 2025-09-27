@@ -7,7 +7,7 @@
 		<p>&#169; {date.getFullYear()} UCalgary Baja</p>
 	</div>
 	<div>
-		<a href="https://www.linkedin.com/company/schulich-off-road/">
+		<a href="https://www.linkedin.com/company/ucalgarybaja/">
 			<img src="https://www.svgrepo.com/show/521725/linkedin.svg" alt="Linkedin Logo" />
 		</a>
 		<a href="https://www.instagram.com/ucalgarybaja/">
