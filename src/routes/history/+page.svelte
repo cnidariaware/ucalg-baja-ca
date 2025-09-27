@@ -13,6 +13,15 @@
 			]
 		},
 		{
+			year: '2023-2024',
+			competitionCarImg:
+				'https://res.cloudinary.com/dpgrgsh7g/image/upload/ar_1:1,c_fill,g_auto,w_400/v1758999837/tan_car_mqpwq8.jpg',
+			competitions: [
+				{ location: 'Gorman', placement: '38th' },
+				{ location: 'Williamsport', placement: '62nd' }
+			]
+		},
+		{
 			year: '2020-2022',
 			competitionCarImg:
 				'https://static.wixstatic.com/media/5824fc_128f7d18ed2f44c6883cc5b86cc1b2c2~mv2.jpg/v1/fill/w_732,h_675,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20230504_084347041.jpg',
@@ -46,7 +55,7 @@
 </script>
 
 <title>UCalgary Baja - History</title>
-<StdFromSide backgroundColour="--BajaBlack" rowGap="2svb">
+<StdFromSide backgroundColour="--BajaBlack" rowGap="2svb" paddingTopBottom="2svb">
 	<div>
 		<h2>A look at our past vehicles and competition results.</h2>
 		<p>
@@ -134,7 +143,7 @@
 		border-radius: 15px;
 		font-size: large;
 		margin-top: 4svh;
-		padding: 1.5svb 14svw;
+		padding: 2svb 14svw;
 		text-decoration: none;
 		color: inherit;
 	}
@@ -256,5 +265,7 @@
 		width: fit-content;
 		margin: 0svh auto;
 		margin-bottom: 4svh;
+		border-radius: var(--BajaRadius);
+		font-size: 19.2px;
 	}
 </style>
