@@ -2,6 +2,7 @@
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 </script>
 
+<title>UCalgary Baja - Sub-teams</title>
 <h2>SUBTEAMS</h2>
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="8svh">
