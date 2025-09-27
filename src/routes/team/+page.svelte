@@ -1,5 +1,10 @@
+<script>
+	import StdFromSide from '$lib/components/StdFromSide.svelte';
+</script>
+
 <h2>SUBTEAMS</h2>
-<div>
+
+<StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="8svh">
 	<div>
 		<div>
 			<h3>Suspension</h3>
@@ -10,14 +15,14 @@
 			</p>
 		</div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg"
 			alt="Welding suspension arms"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg"
 		/>
 	</div>
 	<div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png"
 			alt="chassis in ansys stress simulation"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png"
 		/>
 		<div>
 			<h3>Chassis</h3>
@@ -38,14 +43,14 @@
 			</p>
 		</div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/18HASpcxac4zjPwWZSpbQs94v0ooAX-3hmw4emI_0zO4qfnSYTO5XBMXSH7dow2E_xkngmq.png"
 			alt="brakes and gas pedal CAD"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/18HASpcxac4zjPwWZSpbQs94v0ooAX-3hmw4emI_0zO4qfnSYTO5XBMXSH7dow2E_xkngmq.png"
 		/>
 	</div>
 	<div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/19yTuNKZMp1QCQoaBz86d-zpvATvP6Rx1SaVjynMSV6RQFROM2d7anw3zAD4_nabmkg.png"
 			alt="Suspensions arms and steering"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/19yTuNKZMp1QCQoaBz86d-zpvATvP6Rx1SaVjynMSV6RQFROM2d7anw3zAD4_nabmkg.png"
 		/>
 		<div>
 			<h3>Steering</h3>
@@ -64,14 +69,14 @@
 			</p>
 		</div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915331/cvt_zz0rgl.png"
 			alt="cvt"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915331/cvt_zz0rgl.png"
 		/>
 	</div>
 	<div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754168541/brakes-min_bgmnyc.jpg"
 			alt="top down shot of our brake system"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754168541/brakes-min_bgmnyc.jpg"
 		/>
 		<div>
 			<h3>Final Drive</h3>
@@ -90,14 +95,14 @@
 			</p>
 		</div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/12ZRS9P9XwyNLusJ59EfL98Yc_ZMpbdoYvATMAQKqnf0atoxj0ZUA2vtgQYh09a8_quphim.png"
 			alt="strain gauge"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/12ZRS9P9XwyNLusJ59EfL98Yc_ZMpbdoYvATMAQKqnf0atoxj0ZUA2vtgQYh09a8_quphim.png"
 		/>
 	</div>
 	<div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915330/scale_ccg4wg.png"
 			alt="weight scale"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915330/scale_ccg4wg.png"
 		/>
 		<div>
 			<h3>Data Acquisition</h3>
@@ -116,15 +121,14 @@
 			</p>
 		</div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png"
 			alt="jsx code from our sponsors"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png"
 		/>
 	</div>
-
 	<div>
 		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
 			alt="member wearing ucalgary baja t-shirt"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
 		/>
 		<div>
 			<h3>Business</h3>
@@ -135,99 +139,60 @@
 			</p>
 		</div>
 	</div>
-	<div></div>
-</div>
+</StdFromSide>
 
 <style>
 	* {
 		background-color: var(--BajaBlack);
-		color: white;
-	}
-	/*  {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 4svh 0svw;
-		padding-bottom: 16svh;
-		background-color: var(--BajaBlack);
-		color: white;
-	} */
-
-	div {
-		display: flex;
-		flex-direction: column;
-		row-gap: 10svh;
-		color: inherit;
-	}
-
-	div div {
-		flex-flow: row wrap;
-		column-gap: 2svw;
-
-		/* padding: 0svh 2svw; */
-		color: inherit;
-		justify-content: center;
-		padding: 0svh 2svw;
-	}
-
-	div div div {
-		flex-direction: column;
-		max-width: 48ch;
-		row-gap: 0px;
-		color: inherit;
-		/* padding: 0px 3svw; */
-		justify-content: flex-start;
-	}
-
-	img {
-		display: flex;
-		width: 700px;
-		height: 400px;
-		border-radius: 1rem;
+		color: var(--BajaWhite);
 	}
 
 	h2 {
 		font-size: 80px;
 		text-align: center;
-		margin: 0px;
-		padding: 0.83em 0svw;
+		margin: 0;
+		/* border-top: 1px solid whitesmoke; */
+		padding: 66px 0svw;
 	}
 
 	h3 {
-		margin: 0px;
-		padding: 2svh 0svw;
-		color: inherit;
 		font-size: 50px;
-		color: white;
-	}
-
-	div div:nth-child(2) {
-		text-align: end;
+		margin: 0;
+		padding: 2svh 0svw;
 	}
 
 	p {
-		margin: 0px;
-		padding: 0px;
+		color: inherit;
 		font-size: 22px;
-		/* color: inherit; */
+		margin: 0;
+		padding: 0;
 	}
 
-	@media only screen and (max-width: 800px) {
-		div div div {
-			max-width: inherit;
-		}
+	img {
+		border-radius: 1rem;
+		display: flex;
+		height: 400px;
+		width: 700px;
+		object-fit: initial;
+	}
 
-		div div:nth-child(even) {
-			flex-wrap: wrap-reverse;
-		}
+	div {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 4svw;
+		justify-content: space-between;
+		width: 100%;
+	}
 
-		img {
-			width: 100svw;
-			height: auto;
-		}
+	div > div {
+		flex-direction: column;
+		justify-content: flex-start;
+		max-width: 48ch;
+		row-gap: 0;
+		padding: 0svh 25px;
+	}
 
-		h3 {
-			font-size: 40px;
-		}
+	div > div:nth-child(2) {
+		text-align: end;
 	}
 </style>
