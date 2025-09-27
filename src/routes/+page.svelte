@@ -41,7 +41,7 @@
 				process. After building the vehicle, we attend competitions in the United States, where our
 				hard work is put to the test against the teams from all across the world.
 			</p>
-			<a href="/">Learn More</a>
+			<a href="/history">Learn More</a>
 		</div>
 		<img
 			alt="possibly a montage mainly showcasing team members working"
@@ -66,7 +66,7 @@
 				donated components to financial backing, our sponsors are a key part of what drives our team
 				forward.
 			</p>
-			<a href="/OurSponsors">Learn More</a>
+			<a href="/sponsors">Learn More</a>
 		</div>
 	</div>
 	<div id="HomeBottomGallery">

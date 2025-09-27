@@ -25,7 +25,7 @@
 		</div>
 	</div>
 	<div id="HomeSponsorLinks">
-		<a href="/OurSponsors">See All</a><a href="/OurSponsors">Support Us</a>
+		<a href="/sponsors">See All</a><a href="/sponsors">Support Us</a>
 	</div>
 </StdFromSide>
 
