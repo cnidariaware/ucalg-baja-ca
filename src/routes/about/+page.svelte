@@ -176,6 +176,6 @@
     }
   }
 
-  /* Small niceties for consistent rhythm */
+  /* Niceties for consistent rhythm */
   .stat .value + .desc { margin-top: .15rem; }
 </style>

@@ -93,6 +93,7 @@
 </div>
 
 <style>
+/* GLOBAL RESET & BASE STYLES */
 a {
 	text-decoration: none;
 	color: inherit;
@@ -111,6 +112,8 @@ p {
 	margin: 1svh 0svw;
 	text-wrap: wrap;
 }
+
+/* HOURS OF OPERATION SECTION */
 div > div:nth-child(2) {
 	display: flex;
 	flex-flow: row wrap-reverse;
@@ -143,9 +146,13 @@ div > div:nth-child(2) > div:last-child h1 {
 	width: inherit;
 	border-bottom: 3px solid var(--BajaBlack);
 }
+
+/* Email hover styles */
 div > div:nth-child(2) > h4 { font-weight: normal; }
 div > div:nth-child(2) > a h4 { font-weight: bold; }
 div > div:nth-child(2) > a:hover { color: var(--BajaRed); }
+
+/* RESPONSIVE STYLES */
 @media (max-width: 800px) {
 	div > div:nth-child(2) > div:first-child {
 		display: flex;
@@ -168,10 +175,14 @@ div > div:nth-child(2) > a:hover { color: var(--BajaRed); }
 		display: none;
 	}
 }
+
+/* ROOT VARIABLES */
 :root {
 	--card-background-color: rgba(38, 38, 38, 0.5);
 	--card-border-radius: 0.5rem;
 }
+
+/* CONTACT FORM SECTION */
 div > div:nth-child(1) {
 	display: flex;
 	flex-flow: row wrap;
@@ -182,6 +193,8 @@ div > div:nth-child(1) {
 	color: white;
 	background-color: var(--BajaBlack);
 }
+
+/* Contact form container */
 div > div:first-child > div,
 div > div:first-child > form {
 	display: flex;
@@ -195,6 +208,8 @@ div > div:first-child > form {
 	max-width: 600px !important;
 	height: inherit !important;
 }
+
+/* Form text styling */
 div > div:first-child > h2,
 div > div:first-child > p {
 	padding: 0svh 2svw;
@@ -205,9 +220,13 @@ div > div:first-child > p {
 	margin: 2svh 0svw;
 	padding: 0svh 0svw;
 }
+
+/* FORM ELEMENT STYLING */
 label {
 	margin: 0svh 0.25svw;
 }
+
+/* Inputs */
 input {
 	background-color: var(--card-background-color);
 	border-radius: var(--card-border-radius);
@@ -218,6 +237,8 @@ input {
 	color: inherit;
 	align-items: start;
 }
+
+/* Textareas */
 textarea {
 	background-color: var(--card-background-color);
 	border-radius: var(--card-border-radius);
@@ -229,6 +250,8 @@ textarea {
 	align-items: start;
 	min-height: 15svh;
 }
+
+/* Submit button */
 button {
 	border-radius: var(--card-border-radius);
 	color: inherit;
@@ -243,9 +266,13 @@ button:hover {
 	cursor: pointer;
 	background-color: var(--BajaHover);
 }
+
+/* Links inside form paragraph */
 div > div:first-child > p a:hover {
 	color: var(--BajaRed);
 }
+
+/* Spacer element */
 span {
 	background-color: var(--card-background-color);
 	border-radius: var(--card-border-radius);
@@ -256,4 +283,5 @@ span {
 	color: inherit;
 	align-items: start;
 }
+
 </style>
