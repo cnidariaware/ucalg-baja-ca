@@ -24,24 +24,12 @@
 		display: flex;
 		justify-content: flex-end;
 
-		/* position: relative; */
 		z-index: 0;
 		top: 0;
 		left: 0;
 		background-repeat: no-repeat;
 		background-size: cover;
 		background-position: center;
-
-		/* -webkit-mask-image: linear-gradient(
-		to bottom,
-		black var(--fade-starts-at-bottom),
-		transparent
-	);
-	mask-image: linear-gradient(
-		to bottom,
-		black var(--fade-starts-at-bottom),
-		transparent
-	); */
 	}
 
 	/* Fix later */
