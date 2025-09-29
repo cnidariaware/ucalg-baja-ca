@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest:docker://docker.gitea.com/runner-images:ubuntu-latest-full
 
     steps:
       - name: Checkout repository
