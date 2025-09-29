@@ -41,7 +41,7 @@ jobs:
           echo "Deploying branch: $BRANCH_NAME"
 
           wrangler pages deploy .svelte-kit/cloudflare \
-            --project-name ucalg-baja-website \
+            --project-name ucalg-baja-ca \
             --branch "$BRANCH_NAME" \
             --commit-hash "${GITHUB_SHA}" \
             --commit-message "${GITHUB_COMMIT_MESSAGE}" \
