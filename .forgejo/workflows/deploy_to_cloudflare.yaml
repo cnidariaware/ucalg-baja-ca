@@ -10,8 +10,8 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest:docker://docker.gitea.com/runner-images:ubuntu-latest-full
-
+    runs-on: ubuntu
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
