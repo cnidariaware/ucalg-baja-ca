@@ -68,12 +68,3 @@ jobs:
             ${{ secrets.DARKICEWOLF50_WEBHOOK }}
             ${{ secrets.BAJA_WEBHOOK }}
           GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          
-          echo "::notice::$AUTHOR"
-          echo "::notice@deploy::$REPO:$BRANCH 1 new commit"
-          echo "::notice::$SHORT_SHA $COMMIT_MSG - $AUTHOR"
-          echo "::notice@deploy::$REPO Deployed successfully on $BRANCH"
-          echo "::notice@deploy::Latest commit: $SHORT_SHA"
-          echo "::notice@deploy::Status: ✅ Deploy successful!"
-          echo "::notice@deploy::Preview URL: https://${SHORT_SHA}.uofcbaja.pages.dev/"
-          echo "::notice@deploy::[Cloudflare Workers and Pages checks success on $BRANCH]"
