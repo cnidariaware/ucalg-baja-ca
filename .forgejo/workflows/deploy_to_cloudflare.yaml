@@ -53,13 +53,21 @@ jobs:
           GITHUB_SHA: ${{ github.sha }}
           GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
       
-      - name: Post deployment summary
+      - name: Send formatted webhook
         run: |
-          AUTHOR="${{ github.actor }}"
-          BRANCH="${GITHUB_REF#refs/heads/}"
-          SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
-          COMMIT_MSG="${{ github.event.head_commit.message }}"
-          REPO="${{ github.repository }}"
+          payload="{
+          \"content\": \"${GITHUB_ACTOR}\n[${GITHUB_REPOSITORY}:${GITHUB_REF_NAME}] 1 new commit\n${GITHUB_SHA::7} ${GITHUB_COMMIT_MESSAGE} - ${GITHUB_ACTOR}\n\n✅ Action succeeded in ${GITHUB_REPOSITORY} ${GITHUB_REF_NAME}\"
+          }"
+
+          for url in $WEBHOOK_URLS; do
+            curl -s -X POST -H "Content-Type: application/json" \
+              -d "$payload" "$url"
+          done
+        env:
+          WEBHOOK_URLS: >-
+            ${{ secrets.DARKICEWOLF50_WEBHOOK }}
+            ${{ secrets.BAJA_WEBHOOK }}
+          GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           
           echo "::notice::$AUTHOR"
           echo "::notice@deploy::$REPO:$BRANCH 1 new commit"
