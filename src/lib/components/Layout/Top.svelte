@@ -27,6 +27,9 @@
 		<li>
 			<a href={"/contactus"}>CONTACT US</a>
 		</li>
+		<li>
+			<a href={"/merch"}>MERCH</a>
+		</li>
 	</ul>
 </nav>
 <div></div>
