@@ -94,7 +94,7 @@ jobs:
                   title: $title,
                   url: $title_url,
                   color: $color,
-                  description: ("Latest commit: \($latest_commit) <\($title_url)>\n\($status_emoji) \($status_text)\nSHA preview URL: <\($sha_preview_url)>\nBranch preview URL: <\($branch_preview_url)>"),
+                  description: ("Latest commit: [\($latest_commit)](\($title_url))\n\($status_emoji) \($status_text)\nSHA preview URL: <\($sha_preview_url)>\nBranch preview URL: <\($branch_preview_url)>"),
                   footer: { text: $footer }
                 }
               ]
