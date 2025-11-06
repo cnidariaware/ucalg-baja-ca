@@ -1,4 +1,5 @@
 <script>
+	import Aarsh from '$lib/+Aarsh.svelte';
 	import Sponsors from '$lib/components/Home/Sponsors.svelte';
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
@@ -80,6 +81,7 @@
 			alt="The Baja Car doing a massive jump"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756589650/DSC_0970-min_telnpf_c_fill_w_780_h_400_o4vqdc.jpg"
 		/>
+		<Aarsh/>
 	</div>
 </StdFromSide>
 
