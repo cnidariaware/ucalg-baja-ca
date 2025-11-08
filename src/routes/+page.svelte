@@ -60,6 +60,9 @@
 <Sponsors />
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="6svh" paddingTopBottom="4svh">
+	<div id="HomeBottomGallery">
+		<Aarsh/>
+	</div>
 	<div>
 		<img
 			alt="Our Car waiting in line for endurance"
@@ -75,13 +78,6 @@
 			</p>
 			<a href="/sponsors">Learn More</a>
 		</div>
-	</div>
-	<div id="HomeBottomGallery">
-		<img
-			alt="The Baja Car doing a massive jump"
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756589650/DSC_0970-min_telnpf_c_fill_w_780_h_400_o4vqdc.jpg"
-		/>
-		<Aarsh/>
 	</div>
 </StdFromSide>
 
