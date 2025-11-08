@@ -1,8 +1,8 @@
 <script>
-	import Aarsh from '$lib/+Aarsh.svelte';
 	import Sponsors from '$lib/components/Home/Sponsors.svelte';
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
+	import Gallery from '$lib/Gallery.svelte';
 </script>
 
 <title>UCalgary Baja - Home</title>
@@ -61,7 +61,7 @@
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="6svh" paddingTopBottom="4svh">
 	<div id="HomeBottomGallery">
-		<Aarsh/>
+		<Gallery />
 	</div>
 	<div>
 		<img
@@ -130,16 +130,16 @@
 		max-width: 700px;
 		padding: 0 1svw;
 	}
-
+	/* 
 	#HomeBottomGallery {
 		height: 400px;
 		width: 780px;
-	}
+	} */
 
-	#HomeBottomGallery img {
+	/* #HomeBottomGallery img {
 		width: inherit;
 		height: inherit;
-	}
+	} */
 
 	@media only screen and (max-width: 800px) {
 		div {
