@@ -11,7 +11,7 @@
 
 	let current_index = $state(0);
 	let dialogOpen = $state(false);
-	let selected = $state(null);
+	let selected = $state(0);
 
 	function nextSet() {
 		current_index = (current_index + 1) % photos.length;
@@ -72,7 +72,7 @@
 	<dialog open class="image-dialog" on:click={closeDialog}>
 		<div class="dialog-content" on:click|stopPropagation>
 			<button class="close-btn" on:click={closeDialog}>✕</button>
-			<img src={selected} alt="Full View" class="full-image" />
+			<img id="window-image" src={selected} alt="Full View" class="full-image" />
 		</div>
 	</dialog>
 {/if}
@@ -144,9 +144,9 @@
 		max-height: 90%;
 	}
 
-	.full-image {
-		max-width: 100%;
-		max-height: 100%;
+	dialog #window-image {
+		height: 80svh;
+		width: 120svh;
 		border-radius: 10px;
 	}
 
