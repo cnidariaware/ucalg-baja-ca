@@ -32,7 +32,7 @@
 					<div>
 						{#each sponsorInfo[tier] as item}
 							<div>
-								<img alt="Blah" src={item.LogoUrl} />
+								<img alt="Sponsor Logo" src={item.LogoUrl} />
 								<div>
 									<h2>
 										{item.SponsorName}
@@ -70,7 +70,6 @@
 		padding-top: 0.33em;
 		padding-bottom: 3em;
 	}
-
 	h4 {
 		text-align: center;
 		display: block;
@@ -79,14 +78,15 @@
 	}
 	img {
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: left;
 		align-items: center;
 		background-color: gray;
-		width: 150px;
+		width: 250px;
 		height: 150px;
-		aspect-ratio: auto/1;
 		object-fit: contain;
-		margin: auto;
+		margin-right: 10px;
+		margin-left: 10px;
 		padding: 5px;
 		border-radius: 15px;
 	}
@@ -97,6 +97,7 @@
 	}
 	h2 {
 		display: flex;
+		flex-wrap: wrap;
 		color: var(--BajaWhite);
 		justify-content: center;
 		font-size: 2em;
@@ -104,26 +105,31 @@
 	div > div > div {
 		display: flex;
 		justify-content: center;
-		column-gap: 50px;
+		column-gap: 5px;
 		flex-wrap: wrap;
-
 		align-items: center;
 		height: 50%;
-		width: 100%;
+		max-width: 100%;
 	}
 	div > div > div > div {
 		border-style: solid;
-		min-width: 10svw;
-		max-width: 70%;
+		min-width: 500px;
+		max-width: 900px;
 		text-align: right;
 		display: flex;
+		flex-direction: row;
 		justify-content: left;
 		padding: 10px;
+		border-radius: 15px;
 	}
 	div > div > div > div > div {
 		border-style: none;
 		text-align: center;
 		display: flex;
+		flex-wrap: wrap;
+		min-width: auto;
+		max-width: 500px;
+		align-items: center;
 		justify-content: center;
 		flex-direction: column;
 	}
