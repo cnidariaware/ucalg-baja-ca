@@ -42,7 +42,7 @@
 	<div class="gallery-row">
 		<img
 			src={photos[(current_index - 1 + photos.length) % photos.length]}
-			alt=""
+			alt="hello"
 			class="main-photo"
 			on:click={() => openDialog(photos[(current_index - 1 + photos.length) % photos.length])}
 		/>
@@ -114,7 +114,7 @@
 		height: 20px;
 		border-radius: 50%;
 		border: 1px solid #ccc;
-		background-color: #888;
+		background-color: var(--BajaBlack);
 		cursor: pointer;
 		padding: 0;
 	}
@@ -153,13 +153,15 @@
 	.close-btn {
 		position: absolute;
 		top: 0px;
-		right: 0px;
+		right: -1px;
 		color: rgb(0, 0, 0);
-		font-size: 18px;
+		font-size: 20px;
 		cursor: pointer;
 		background: none;
 		border: none;
 		justify-content: right;
 		margin-right: 10px;
+		background-color: rgb(240, 255, 255, 0.3);
+		border-radius: 50%;
 	}
 </style>
