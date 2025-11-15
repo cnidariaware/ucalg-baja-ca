@@ -3,6 +3,15 @@
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
 	import Gallery from '$lib/Gallery.svelte';
+
+	//Adding the photos from assets, in the gallery folder
+	import photo1 from '$lib/assets/gallery/photo1.jpg';
+	import photo2 from '$lib/assets/gallery/photo2.jpg';
+	import photo3 from '$lib/assets/gallery/photo3.jpg';
+	import photo4 from '$lib/assets/gallery/photo4.jpg';
+	import photo5 from '$lib/assets/gallery/photo5.jpg';
+
+	let photos = [photo1, photo2, photo3, photo4, photo5];
 </script>
 
 <title>UCalgary Baja - Home</title>
@@ -61,7 +70,7 @@
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="6svh" paddingTopBottom="4svh">
 	<div id="HomeBottomGallery">
-		<Gallery />
+		<Gallery {photos} />
 	</div>
 	<div>
 		<img
