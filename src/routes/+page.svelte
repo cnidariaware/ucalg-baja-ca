@@ -112,13 +112,13 @@
 		text-decoration: none;
 	}
 
-	img {
+	/* img {
 		align-self: center;
 		aspect-ratio: 1;
 		border-radius: 1rem;
 		height: 400px;
 		width: 400px;
-	}
+	} */
 
 	div {
 		display: flex;
