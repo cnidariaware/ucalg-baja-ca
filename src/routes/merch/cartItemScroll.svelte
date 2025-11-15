@@ -1,5 +1,4 @@
 <script>
-  // Reactive items so + / − actually update the UI
   let { items } = $state({
     items: [
       {
@@ -24,7 +23,7 @@
       },
       {
         id: 3,
-        name: 'Floof CrewNeck',
+        name: 'Floof CrewNeck by Brock the One and Only Rockstar',
         color: 'Black',
         price: 39.99,
         priceLabel: '$39.99',
@@ -90,72 +89,118 @@
   };
 
   const formatPrice = (price) => `$${price.toFixed(2)}`;
+
+  // reactive subtotal: sum of price * quantity
+  const subtotal = $derived(
+    items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  );
 </script>
 
-<main class="items">
-  {#if items.length === 0}
-    <p class="empty">Your cart is empty.</p>
-  {:else}
-    {#each items as item (item.id)}
-      <div class="cart-item">
-        <img
-          class="item-image"
-          src={item.imageSrc}
-          alt={`${item.name} picture`}
-        />
-
-        <div class="item-details">
-          <p class="item-name">
-            {item.name}
-            <span class="item-color">({item.color})</span>
-          </p>
-          <p class="item-meta">
-            {formatPrice(item.price)} × {item.quantity}
-          </p>
-          <p class="item-size">Size: {item.size}</p>
-        </div>
-
-        <div class="qty">
-          <button
-            type="button"
-            class="square"
-            onclick={() => dec(item.id)}
-            aria-label="Decrease quantity"
-          >
-            −
-          </button>
-
-          <input
-            class="count"
-            type="number"
-            min="1"
-            value={item.quantity}
-            readonly
+<div class="cart-body">
+  <main class="items">
+    {#if items.length === 0}
+      <p class="empty">Your cart is empty.</p>
+    {:else}
+      {#each items as item (item.id)}
+        <div class="cart-item">
+          <img
+            class="item-image"
+            src={item.imageSrc}
+            alt={`${item.name} picture`}
           />
 
-          <button
-            type="button"
-            class="square"
-            onclick={() => inc(item.id)}
-            aria-label="Increase quantity"
-          >
-            +
-          </button>
-        </div>
+          <div>
+            <p class="item-name">
+              {item.name}
+            </p>
+            <div class="item-details">
+              <span class="item-color">({item.color})</span>
+              <p class="item-size">Size: {item.size}</p>
+            </div>
+          </div>
 
-        <button
-          class="remove-btn"
-          type="button"
-          aria-label="Remove item from cart"
-        >
-          🗑
-        </button>
-      </div>
-    {/each}
-  {/if}
-</main>
+          <div id="itemmanipulation">
+            <div class="qty">
+              <button
+                type="button"
+                class="square"
+                onclick={() => dec(item.id)}
+                aria-label="Decrease quantity"
+              >
+                −
+              </button>
+
+              <input
+                class="count"
+                type="number"
+                min="1"
+                bind:value={item.quantity}
+              />
+
+              <button
+                type="button"
+                class="square"
+                onclick={() => inc(item.id)}
+                aria-label="Increase quantity"
+              >
+                +
+              </button>
+            </div>
+
+            <button
+              class="remove-btn"
+              type="button"
+              aria-label="Remove item from cart"
+            >
+              🗑
+            </button>
+          </div>
+        </div>
+      {/each}
+    {/if}
+  </main>
+
+<footer>
+  <span class="label">Subtotal:</span>
+  <div class="subtotal-value">
+    <span>${subtotal.toFixed(2)}</span>
+    <span class="beforetax">(Before Taxes)</span>
+  </div>
+</footer>
+
+</div>
 
 <style>
+  .cart-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+    footer {
+    padding-top: 2svh;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    }
+
+    .subtotal-value {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    }
+
+    .beforetax {
+    font-style: italic;
+    font-weight: 400;
+    opacity: 0.6;
+    font-size: 0.85rem;
+    }
+
+
   /* scroll area */
   .items {
     flex: 1;
@@ -174,6 +219,7 @@
     gap: 0.75rem;
     padding: 0.75rem 0;
     border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
   }
 
   .item-image {
@@ -194,10 +240,15 @@
     font-weight: 600;
     margin: 0;
     color: #111;
+    width: 12ch;
   }
 
   .item-color {
     font-weight: 400;
+  }
+
+  #itemmanipulation {
+    justify-content: right;
   }
 
   .item-meta,
@@ -207,7 +258,6 @@
     margin: 2px 0;
   }
 
-  /* === same qty CSS as product page === */
   .qty {
     display: inline-grid;
     grid-template-columns: 40px 56px 40px;
@@ -223,7 +273,6 @@
     font-size: 18px;
   }
 
-  /* Baja hover color for + / − */
   .square:hover {
     background-color: var(--BajaHover);
   }

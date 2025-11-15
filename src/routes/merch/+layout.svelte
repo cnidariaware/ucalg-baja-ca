@@ -58,7 +58,6 @@
 		<CartItemScroll />
 	</main>
 	<footer>
-		<div class="subtotal"><span>Subtotal:</span><span>$0.00</span></div>
 		<a href="/merch/checkout" class="checkout-btn" id="checkout" onclick={() => (showCart = false)}>Checkout</a>
 	</footer>
 </aside>
@@ -148,7 +147,7 @@ nav a:hover {
 	top: 0;
 	right: 0;
 	height: 100vh;
-	width: min(420px, 90vw);
+	width: min(470px, 90vw);
 	background: white;
 	color: #111;
 	box-shadow: -10px 0 30px rgba(0,0,0,0.3);
@@ -196,14 +195,8 @@ nav a:hover {
 }
 .side-cart footer {
 	padding: 1rem;
-	border-top: 1px solid #eee;
 }
-.side-cart .subtotal {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 0.75rem;
-	font-weight: 600;
-}
+
 .checkout-btn {
 	display: inline-block;
 	width: 100%;
@@ -211,6 +204,7 @@ nav a:hover {
 	padding: 0.8rem 1rem;
 	background: var(--BajaRed);
 	color: white;
+	font-weight:bolder;
 	text-decoration: none;
 	border-radius: 3px;
 }
@@ -219,7 +213,7 @@ nav a:hover {
 }
 #checkout {
 	background: var(--BajaRed);
-	width: 22svw;
+	width: 26svw;
 	justify-content: center;
 	margin: 0 auto;
 	display: block;
