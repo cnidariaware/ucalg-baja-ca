@@ -14,3 +14,4 @@
     <div>{price}</div>
   </figcaption>
 </figure>
+
