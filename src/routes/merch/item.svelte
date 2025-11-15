@@ -220,15 +220,42 @@
     gap: 10px;
     margin-top: 14px;
     font-weight: 500;
+    position: relative; 
   }
   .field > span { font-size: medium; }
   select {
-    height: 40px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 44px;
     border-radius: 10px;
     border: var(--Border);
-    padding: 0 12px;
-    background: #ffffff;
+    padding: 0 44px 0 12px; /* leave room on right for arrow */
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 7l5 5 5-5' stroke='%23000' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px;
     color: #000;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  /* hide the native dropdown arrow in IE/Edge */
+  select::-ms-expand { display: none; }
+
+  select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(196, 18, 48, 0.12); /* subtle Baja red focus */
+    border-color: rgba(196, 18, 48, 0.6);
+  }
+
+  /* style the options inside the native dropdown (limited cross-browser support) */
+  select option {
+    padding: 8px 12px;
+    font-size: 15px;
+    color: #000;
+    background: #fff;
   }
 
   .purchase-row {
