@@ -32,15 +32,20 @@
 					<div>
 						{#each sponsorInfo[tier] as item}
 							<div>
-								<img alt="Sponsor Logo" src={item.LogoUrl} />
-								<div>
-									<h2>
-										{item.SponsorName}
-									</h2>
-									{#if tier == order[0] || tier == order[1]}
-										<h2>{item.DescriptionAboutSponsor}</h2>
+								<a href={item.Url}>
+									<img alt="{item.SponsorName}'s Logo" src={item.LogoUrl} />
+									{#if tier == order[0] || tier == order[1] || tier == order[2]}
+										<div>
+											<h2>
+												{item.SponsorName}
+											</h2>
+
+											{#if tier == order[0] || tier == order[1]}
+												<p>{item.DescriptionAboutSponsor}</p>
+											{/if}
+										</div>
 									{/if}
-								</div>
+								</a>
 							</div>
 						{/each}
 					</div>
@@ -48,7 +53,10 @@
 			{/each}
 		</div>
 	{/if}
-
+	<img
+		src="https://res.cloudinary.com/dqr21nexg/image/upload/v1763606815/SponsorShip_package_fyb9uv.png"
+		alt="Sponsorship Package"
+	/>
 	<h4>Sponsorship Benefits</h4>
 	<p>
 		Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae
@@ -65,6 +73,9 @@
 </div>
 
 <style>
+	a {
+		text-decoration: none;
+	}
 	div {
 		background-color: var(--BajaBlack);
 		padding-top: 0.33em;
@@ -85,8 +96,10 @@
 		width: 250px;
 		height: 150px;
 		object-fit: contain;
+		margin-top: 20px;
 		margin-right: 10px;
 		margin-left: 10px;
+		margin-bottom: 10px;
 		padding: 5px;
 		border-radius: 15px;
 	}
@@ -100,42 +113,52 @@
 		flex-wrap: wrap;
 		color: var(--BajaWhite);
 		justify-content: center;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 20px;
 		font-size: 2em;
 	}
 	div > div > div {
 		display: flex;
 		justify-content: center;
-		column-gap: 5px;
+		column-gap: 65px;
 		flex-wrap: wrap;
 		align-items: center;
 		height: 50%;
 		max-width: 100%;
 	}
-	div > div > div > div {
-		border-style: solid;
-		min-width: 500px;
+	div > div > div > div > a {
+		text-decoration: none;
+		border: solid 1px var(--BajaBlack);
+		min-width: auto;
 		max-width: 900px;
 		text-align: right;
 		display: flex;
+		flex-wrap: wrap;
 		flex-direction: row;
 		justify-content: left;
-		padding: 10px;
+		margin: 10px;
 		border-radius: 15px;
 	}
-	div > div > div > div > div {
+	div > div > div > div > a > div {
 		border-style: none;
 		text-align: center;
 		display: flex;
 		flex-wrap: wrap;
-		min-width: auto;
+		min-width: 0px;
 		max-width: 500px;
+		padding-bottom: 0%;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
 	}
 	p {
-		text-align: center;
+		text-align: left;
 		margin-bottom: 0;
 		color: var(--BajaWhite);
+		padding-top: -10px;
+		padding-left: 10%;
+		padding-right: 10%;
+		padding-bottom: 25px;
 	}
 </style>
