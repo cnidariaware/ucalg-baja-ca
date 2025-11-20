@@ -24,13 +24,11 @@
 	function openDialog(image) {
 		selected = image;
 		dialogOpen = true;
-		document.body.style.overflow = 'hidden';
 	}
 
 	function closeDialog() {
 		dialogOpen = false;
-		selected = null;
-		document.body.style.overflow = '';
+		selected = 0;
 	}
 
 	setInterval(() => {
@@ -41,37 +39,37 @@
 <div class="gallery-container">
 	<div class="gallery-row">
 		<img
-			src={photos[(current_index - 1 + photos.length) % photos.length]}
-			alt="hello"
+			src={photos[(current_index - 1 + photos.length) % photos.length].src}
 			class="main-photo"
-			on:click={() => openDialog(photos[(current_index - 1 + photos.length) % photos.length])}
+			alt={photos[(current_index - 1 + photos.length) % photos.length].alt}
+			onclick={() => openDialog(photos[(current_index - 1 + photos.length) % photos.length].src)}
 		/>
 		<img
-			src={photos[current_index]}
-			alt="Gallery Image"
+			src={photos[current_index].src}
 			class="main-photo"
-			on:click={() => openDialog(photos[current_index])}
+			alt={photos[current_index].alt}
+			onclick={() => openDialog(photos[current_index].src)}
 		/>
 		<img
-			src={photos[(current_index + 1) % photos.length]}
-			alt="Gallery Image"
+			src={photos[(current_index + 1) % photos.length].src}
 			class="main-photo"
-			on:click={() => openDialog(photos[(current_index + 1) % photos.length])}
+			alt={photos[(current_index + 1) % photos.length].alt}
+			onclick={() => openDialog(photos[(current_index + 1) % photos.length].src)}
 		/>
 	</div>
 
 	<div class="button-container">
 		{#each photos as _, index}
-			<button class:selected={index === current_index} on:click={() => (current_index = index)}
+			<button class:selected={index === current_index} onclick={() => (current_index = index)}
 			></button>
 		{/each}
 	</div>
 </div>
 
 {#if dialogOpen}
-	<dialog open class="image-dialog" on:click={closeDialog}>
-		<div class="dialog-content" on:click|stopPropagation>
-			<button class="close-btn" on:click={closeDialog}>✕</button>
+	<dialog open class="image-dialog" onclick={closeDialog}>
+		<div class="dialog-content">
+			<button class="close-btn" onclick={closeDialog}>✕</button>
 			<img id="window-image" src={selected} alt="Full View" class="full-image" />
 		</div>
 	</dialog>
@@ -120,7 +118,7 @@
 	}
 
 	.button-container button.selected {
-		background-color: white;
+		background-color: rgba(255, 255, 255, 0.7);
 		border-color: #888;
 	}
 
@@ -130,7 +128,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0.8);
+		background-color: rgba(0, 0, 0, 0.5);
 		padding: 0;
 		margin: 0;
 		display: flex;
@@ -157,7 +155,6 @@
 		color: rgb(0, 0, 0);
 		font-size: 20px;
 		cursor: pointer;
-		background: none;
 		border: none;
 		justify-content: right;
 		margin-right: 10px;

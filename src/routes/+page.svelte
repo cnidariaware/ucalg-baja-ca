@@ -11,7 +11,13 @@
 	import photo4 from '$lib/assets/gallery/photo4.jpg';
 	import photo5 from '$lib/assets/gallery/photo5.jpg';
 
-	let photos = [photo1, photo2, photo3, photo4, photo5];
+	let photos = [
+		{ src: photo1, alt: 'enter description of photo 1' },
+		{ src: photo2, alt: 'enter description of photo 2' },
+		{ src: photo3, alt: 'enter description of photo 3' },
+		{ src: photo4, alt: 'enter description of photo 4' },
+		{ src: photo5, alt: 'enter description of photo 5' }
+	];
 </script>
 
 <title>UCalgary Baja - Home</title>
@@ -73,10 +79,6 @@
 		<Gallery {photos} />
 	</div>
 	<div>
-		<img
-			alt="Our Car waiting in line for endurance"
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_400,h_400/v1755376324/PXL_20250503_154645931-min_gi8qlf.jpg"
-		/>
 		<div>
 			<h3>Sponsor Us</h3>
 			<p>
@@ -101,6 +103,7 @@
 		font-size: 36px;
 		margin-bottom: 2svh;
 		padding-bottom: 0.5svh;
+		text-align: center;
 	}
 
 	p {
@@ -108,6 +111,7 @@
 		margin: 1.5svh 0svw;
 		min-width: 0px;
 		padding: 0svh 0svw;
+		text-align: center;
 	}
 
 	a {
@@ -121,14 +125,6 @@
 		text-decoration: none;
 	}
 
-	/* img {
-		align-self: center;
-		aspect-ratio: 1;
-		border-radius: 1rem;
-		height: 400px;
-		width: 400px;
-	} */
-
 	div {
 		display: flex;
 		column-gap: 2svw;
@@ -137,27 +133,13 @@
 	div > div {
 		flex-direction: column;
 		max-width: 700px;
-		padding: 0 1svw;
+		padding: 0 2svw;
 	}
-	/* 
-	#HomeBottomGallery {
-		height: 400px;
-		width: 780px;
-	} */
-
-	/* #HomeBottomGallery img {
-		width: inherit;
-		height: inherit;
-	} */
 
 	@media only screen and (max-width: 800px) {
 		div {
 			padding: 0svh 4svw;
 		}
-		/* .HomePageLayout div img {
-		width: 275px;
-		height: 275px;
-	} */
 
 		#HomeBottomGallery {
 			width: 80svw;
