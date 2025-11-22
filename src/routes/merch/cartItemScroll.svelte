@@ -70,6 +70,46 @@
         quantity: 1,
         size: 'XL',
         imageSrc: 'https://picsum.photos/200'
+      },
+      {
+        id: 8,
+        name: 'Floof CrewNeck',
+        color: 'Black',
+        price: 39.99,
+        priceLabel: '$39.99',
+        quantity: 1,
+        size: 'XL',
+        imageSrc: 'https://picsum.photos/200'
+      },
+      {
+        id: 9,
+        name: 'Floof CrewNeck',
+        color: 'Black',
+        price: 39.99,
+        priceLabel: '$39.99',
+        quantity: 1,
+        size: 'XL',
+        imageSrc: 'https://picsum.photos/200'
+      },
+      {
+        id: 10,
+        name: 'Floof CrewNeck',
+        color: 'Black',
+        price: 39.99,
+        priceLabel: '$39.99',
+        quantity: 1,
+        size: 'XL',
+        imageSrc: 'https://picsum.photos/200'
+      },
+      {
+        id: 11,
+        name: 'Floof CrewNeck',
+        color: 'Black',
+        price: 39.99,
+        priceLabel: '$39.99',
+        quantity: 1,
+        size: 'XL',
+        imageSrc: 'https://picsum.photos/200'
       }
     ]
   });
@@ -164,7 +204,7 @@
   <span class="label">Subtotal:</span>
   <div class="subtotal-value">
     <span>${subtotal.toFixed(2)}</span>
-    <span class="beforetax">(Before Taxes)</span>
+    <span class="beforetax">(Before Taxes and Shipping)</span>
   </div>
 </footer>
 
@@ -214,12 +254,15 @@
 
   /* individual cart item */
   .cart-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 80px 1fr auto; /* image | details | manipulation */
     align-items: center;
-    gap: 0.75rem;
     padding: 0.75rem 0;
     border-bottom: 1px solid #eee;
     border-top: 1px solid #eee;
+    gap: 1rem;
+    max-width: 950px;     /* center whole row on large screens */
+    margin: 0 auto;       /* centers the row */
   }
 
   .item-image {
@@ -248,14 +291,10 @@
   }
 
   #itemmanipulation {
-    justify-content: right;
-  }
-
-  .item-meta,
-  .item-size {
-    font-size: 0.85rem;
-    color: #555;
-    margin: 2px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
   }
 
   .qty {
