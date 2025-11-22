@@ -28,14 +28,6 @@
 	let dialogOpen = $state(false);
 	let selected = $state(0);
 
-	// function nextSet() {
-	// 	current_index = (current_index + 1) % photos.length;
-	// }
-
-	// function prevSet() {
-	// 	current_index = (current_index - 1 + photos.length) % photos.length;
-	// }
-
 	function changeSet(step) {
 		current_index = (current_index + step + photos.length) % photos.length;
 	}
@@ -63,25 +55,50 @@
 	}
 
 	startTimer();
+
+	let touchstart_horizontal = 0;
+	let touchend_horizontal = 0;
+
+	function handleTouchStart(event) {
+		touchstart_horizontal = event.touches[0].clientX;
+	}
+
+	function handleTouchMove(event) {
+		touchend_horizontal = event.touches[0].clientX;
+	}
+
+	function handleTouchEnd() {
+		const horizontal_change = touchend_horizontal - touchstart_horizontal;
+		if (Math.abs(horizontal_change) > 30) {
+			changeSet(horizontal_change < 0 ? 1 : -1);
+			startTimer();
+		}
+	}
 </script>
 
-<div class="gallery-container">
-	<div class="gallery-row">
+<div ontouchstart={handleTouchStart} ontouchmove={handleTouchMove} ontouchend={handleTouchEnd}>
+	<div>
+		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+
 		<img
 			src={photos[(current_index - 1 + photos.length) % photos.length].src}
-			class="main-photo"
 			alt={photos[(current_index - 1 + photos.length) % photos.length].alt}
 			onclick={() => openDialog(photos[(current_index - 1 + photos.length) % photos.length].src)}
 		/>
+
+		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<img
 			src={photos[current_index].src}
-			class="main-photo"
 			alt={photos[current_index].alt}
 			onclick={() => openDialog(photos[current_index].src)}
 		/>
+
+		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<img
 			src={photos[(current_index + 1) % photos.length].src}
-			class="main-photo"
 			alt={photos[(current_index + 1) % photos.length].alt}
 			onclick={() => openDialog(photos[(current_index + 1) % photos.length].src)}
 		/>
@@ -94,8 +111,8 @@
 				onclick={() => {
 					current_index = index;
 					startTimer();
-				}}
-			></button>
+				}}>x</button
+			>
 		{/each}
 	</div>
 </div>
@@ -124,16 +141,43 @@
 		justify-content: center;
 		flex-direction: row;
 		gap: 16px;
-		width: 400px;
+		overflow: hidden;
+		width: 100%;
+		max-width: 400px;
 		height: 300px;
 	}
 
 	div:first-of-type > div:first-child > img {
-		width: 400px;
-		height: 300px;
+		flex: 0 0 90%;
+		max-width: 100%;
+		height: 100%;
 		border-radius: 16px;
 		object-fit: cover;
-		margin-right: 10px;
+	}
+
+	div:first-of-type > div:first-child > img:nth-child(1),
+	div:first-of-type > div:first-child > img:nth-child(3) {
+		flex: 0 0 15%;
+		max-width: 15%;
+		opacity: 0.8;
+	}
+
+	@media (min-width: 768px) {
+		div:first-of-type > div:first-child > img {
+			flex: 0 0 33%;
+			max-width: 33%;
+		}
+
+		div:first-of-type > div:first-child > img:nth-child(1),
+		div:first-of-type > div:first-child > img:nth-child(3) {
+			flex: 0 0 33%;
+			max-width: 33%;
+			opacity: 1;
+		}
+
+		div:first-of-type > div:first-child {
+			max-width: 1200px;
+		}
 	}
 
 	div div:nth-child(2) {
@@ -145,9 +189,10 @@
 	div div:nth-child(2) button {
 		width: 25px;
 		height: 25px;
+		color: rgba(0, 0, 0, 0);
 		border-radius: 50%;
 		border: 2px solid #ccc;
-		background-color: var(--BajaBlack);
+		background-color: transparent;
 		cursor: pointer;
 		padding: 0;
 	}
