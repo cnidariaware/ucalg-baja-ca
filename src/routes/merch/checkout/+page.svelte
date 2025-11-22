@@ -2,14 +2,27 @@
 	import TopBanner from '../MerchTopBanner.svelte';
 	import CartItemScroll from '../cartItemScroll.svelte';
 
-    import { goto } from '$app/navigation';
-    
-    function handleSubmit(event) {
-        event.preventDefault();
-        if (event.target.checkValidity()) {
-            goto('/merch/orderconfirmed');
-        }
-    }
+	import { goto } from '$app/navigation';
+
+	async function handleSubmit(event) {
+		event.preventDefault();
+		let formData = new FormData(event.target);
+		let formObject = Object.fromEntries(formData.entries());
+
+		console.log(formObject);
+		// let res = fetch("http://localhost:6525", {
+		// 				method: "POST",
+		// 				headers: {
+		// 					"Content-Type": "application/json",
+		// 				},
+		// 				body: JSON.stringify(formObject),
+		// 			});
+		if (false) {
+			if (event.target.checkValidity()) {
+				goto('/merch/orderconfirmed');
+			}
+		}
+	}
 
 	let { member, subTeam, couponCode } = $state({
 		member: false,
@@ -30,16 +43,12 @@
 
 <div class="checkout-container">
 	<div class="checkout-layout">
-		<form class="checkout-form" on:submit={handleSubmit}>
+		<form class="checkout-form" onsubmit={handleSubmit}>
 			<div class="field-inline">
 				<label for="member">
 					Are you a registered member of UCalgary Baja?<span class="required">*</span>
 				</label>
-				<input
-					id="member"
-					type="checkbox"
-					bind:checked={member}
-				/>
+				<input type="checkbox" bind:checked={member} />
 			</div>
 
 			<h4>Contact</h4>
@@ -47,27 +56,23 @@
 			<label for="name">
 				Full Name:<span class="required">*</span>
 			</label>
-			<input id="name" type="text" name="name" required />
+			<input type="text" name="name" required />
 
 			<label for="email">
 				Email (UCalgary Email preferred):<span class="required">*</span>
 			</label>
-			<input id="email" type="email" name="email" required />
+			<input type="email" name="email" required />
 
 			<label for="phone">
 				Phone:<span class="required">*</span>
 			</label>
-			<input id="phone" type="tel" name="phone" required />
+			<input type="tel" name="phone" required />
 
 			{#if member}
 				<label for="sub_team">
 					Baja Sub-team:{#if member}<span class="required">*</span>{/if}
 				</label>
-				<select
-					id="sub_team"
-					bind:value={subTeam}
-					required={member ? true : undefined}
-				>
+				<select bind:value={subTeam} required={member ? true : undefined}>
 					<option value="" disabled selected>Select a sub-team</option>
 					{#each subTeams as option}
 						<option value={option}>{option}</option>
@@ -80,64 +85,60 @@
 				<label for="shippingFirstName">
 					First Name:<span class="required">*</span>
 				</label>
-				<input id="shippingFirstName" type="text" name="shippingFirstName" required />
+				<input type="text" name="shippingFirstName" required />
 
 				<label for="shippingLastName">
 					Last Name:<span class="required">*</span>
 				</label>
-				<input id="shippingLastName" type="text" name="shippingLastName" required />
+				<input type="text" name="shippingLastName" required />
 
 				<label for="shippingStreet">
 					Street Address:<span class="required">*</span>
 				</label>
-				<input id="shippingStreet" type="text" name="shippingStreet" required />
+				<input type="text" name="shippingStreet" required />
 
 				<label for="shippingUnit">Unit Number:</label>
-				<input id="shippingUnit" type="text" name="shippingUnit" />
+				<input type="text" name="shippingUnit" />
 
 				<label for="shippingCity">
 					City/Town:<span class="required">*</span>
 				</label>
-				<input id="shippingCity" type="text" name="shippingCity" required />
+				<input type="text" name="shippingCity" required />
 
 				<label for="shippingProvince">
 					Province/Territory:<span class="required">*</span>
 				</label>
-				<input id="shippingProvince" type="text" name="shippingProvince" required />
+				<input type="text" name="shippingProvince" required />
 
 				<label for="shippingPostCode">
 					Postal Code:<span class="required">*</span>
 				</label>
-				<input id="shippingPostCode" type="text" name="shippingPostCode" required />
+				<input type="text" name="shippingPostCode" required />
 
 				<label for="shippingPhone">
 					Phone:<span class="required">*</span>
 				</label>
-				<input id="shippingPhone" type="text" name="shippingPhone" required />
+				<input type="text" name="shippingPhone" required />
 			{/if}
 
 			<label for="couponCode"><h4>Coupon Code:</h4></label>
-			<input id="couponCode" type="text" bind:value={couponCode} />
+			<input name="couponCode" type="text" bind:value={couponCode} />
 
 			<label for="additionalInfo"><h4>Additional Information:</h4></label>
-			<textarea id="additionalInfo" name="additionalInfo" rows="2"></textarea>
+			<textarea name="additionalInfo" rows="2"></textarea>
 
 			<h4>Payment:</h4>
 			<p class="payment-note">Will be manually processed at a later date.</p>
 
-			<button type="submit" class="place-order-btn">
-				Place Order
-			</button>
+			<button type="submit" class="place-order-btn"> Place Order </button>
 		</form>
 
-		<aside
-			class="cart-panel"
-			style={`height: ${cartHeight}px;`}
-		>
+		<aside class="cart-panel" style={`height: ${cartHeight}px;`}>
 			<CartItemScroll />
 		</aside>
 	</div>
 </div>
+
 <style>
 	.checkout-container {
 		max-width: 1100px;
@@ -169,7 +170,7 @@
 		padding: 0.75rem 0.75rem 1rem;
 		box-sizing: border-box;
 
-		overflow: hidden;    
+		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 	}
@@ -270,7 +271,7 @@
 		outline: none;
 		box-shadow: 0 0 0 3px rgba(196, 18, 48, 0.12);
 		border-color: rgba(196, 18, 48, 0.6);
-		border: none
+		border: none;
 	}
 
 	select option {
