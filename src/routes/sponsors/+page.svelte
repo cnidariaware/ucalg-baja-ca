@@ -54,153 +54,155 @@
 		</div>
 	{/if}
 	<h4>Sponsorship Benefits</h4>
-	<table class="sponsor-table">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Bronze<br />&gt;$250</th>
-				<th>Silver<br />$1,000</th>
-				<th>Gold<br />$2,500</th>
-				<th>Platinum<br />$5,000</th>
-				<th>Diamond<br />$10,000</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- Logo on Website -->
-			<tr>
-				<th>Logo On<br />Website</th>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-			</tr>
+	<div class="table-wrapper">
+		<table class="sponsor-table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Bronze<br />&gt;$250</th>
+					<th>Silver<br />$1,000</th>
+					<th>Gold<br />$2,500</th>
+					<th>Platinum<br />$5,000</th>
+					<th>Diamond<br />$10,000</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Logo on Website -->
+				<tr>
+					<th>Logo On<br />Website</th>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+				</tr>
 
-			<!-- Social Media Exposure -->
-			<tr>
-				<th>Social Media<br />Exposure</th>
-				<td></td>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-			</tr>
+				<!-- Social Media Exposure -->
+				<tr>
+					<th>Social Media<br />Exposure</th>
+					<td></td>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+				</tr>
 
-			<!-- Shop Tour / Introduction -->
-			<tr>
-				<th>Shop Tour /<br />Introduction</th>
-				<td></td>
-				<td></td>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-			</tr>
+				<!-- Shop Tour / Introduction -->
+				<tr>
+					<th>Shop Tour /<br />Introduction</th>
+					<td></td>
+					<td></td>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+				</tr>
 
-			<!-- Social Media Feature -->
-			<tr>
-				<th>Social Media<br />Feature</th>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-				<td
-					><img
-						class="cross"
-						src="https://www.svgrepo.com/show/491212/cross.svg"
-						alt="Included"
-					/></td
-				>
-			</tr>
+				<!-- Social Media Feature -->
+				<tr>
+					<th>Social Media<br />Feature</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+					<td
+						><img
+							class="cross"
+							src="https://www.svgrepo.com/show/491212/cross.svg"
+							alt="Included"
+						/></td
+					>
+				</tr>
 
-			<!-- Logo on Vehicle -->
-			<tr>
-				<th>Logo On<br />Vehicle</th>
-				<td>Small</td>
-				<td>Small</td>
-				<td>Medium</td>
-				<td>Large</td>
-				<td>Full Body<br />Panel</td>
-			</tr>
-		</tbody>
-	</table>
+				<!-- Logo on Vehicle -->
+				<tr>
+					<th>Logo On<br />Vehicle</th>
+					<td>Small</td>
+					<td>Small</td>
+					<td>Medium</td>
+					<td>Large</td>
+					<td>Full Body<br />Panel</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<p>
 		Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae
 		pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean
@@ -220,7 +222,6 @@
 
 <style>
 	td > img {
-		margin: auto;
 		filter: invert();
 	}
 	a {
@@ -230,6 +231,7 @@
 		background-color: var(--BajaBlack);
 		padding-top: 0.33em;
 		padding-bottom: 3em;
+		overflow-x: hidden;
 	}
 	h4 {
 		text-align: center;
@@ -287,7 +289,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-		justify-content: left;
+		justify-content: center;
 		margin: 10px;
 		border-radius: 15px;
 	}
@@ -323,6 +325,10 @@
 		margin-left: auto;
 		margin-right: auto;
 		margin-bottom: 75px;
+	}
+	.table-wrapper {
+		overflow-x: auto;
+		width: 100%;
 	}
 
 	.sponsor-table th,
