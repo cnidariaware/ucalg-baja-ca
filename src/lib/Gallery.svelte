@@ -1,11 +1,26 @@
 <script>
 	let {
 		photos = [
-			'https://media.timeout.com/images/106150176/image.jpg',
-			'https://upload.wikimedia.org/wikipedia/commons/e/e7/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg',
-			'https://www.wildnatureimages.com/images/640/070620-014-The-Tetons.jpg',
-			'https://cdn.britannica.com/98/263098-138-87DCA742/why-are-mountains-so-tall.jpg?w=800&h=450&c=crop',
-			'https://pictures.altai-travel.com/1920x1040/mount-everest-aerial-view-himalayas-istock-3745.jpg'
+			{
+				src: 'https://media.timeout.com/images/106150176/image.jpg',
+				alt: 'enter description of photo 1'
+			},
+			{
+				src: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Everest_North_Face_toward_Base_Camp_Tibet_Luca_Galuzzi_2006.jpg',
+				alt: 'enter description of photo 2'
+			},
+			{
+				src: 'https://www.wildnatureimages.com/images/640/070620-014-The-Tetons.jpg',
+				alt: 'enter description of photo 3'
+			},
+			{
+				src: 'https://cdn.britannica.com/98/263098-138-87DCA742/why-are-mountains-so-tall.jpg?w=800&h=450&c=crop',
+				alt: 'enter description of photo 4'
+			},
+			{
+				src: 'https://pictures.altai-travel.com/1920x1040/mount-everest-aerial-view-himalayas-istock-3745.jpg',
+				alt: 'enter description of photo 5'
+			}
 		]
 	} = $props();
 
@@ -13,27 +28,41 @@
 	let dialogOpen = $state(false);
 	let selected = $state(0);
 
-	function nextSet() {
-		current_index = (current_index + 1) % photos.length;
-	}
+	// function nextSet() {
+	// 	current_index = (current_index + 1) % photos.length;
+	// }
 
-	function prevSet() {
-		current_index = (current_index - 1 + photos.length) % photos.length;
+	// function prevSet() {
+	// 	current_index = (current_index - 1 + photos.length) % photos.length;
+	// }
+
+	function changeSet(step) {
+		current_index = (current_index + step + photos.length) % photos.length;
 	}
 
 	function openDialog(image) {
 		selected = image;
 		dialogOpen = true;
+		clearTimeout(rotateTimer);
 	}
 
 	function closeDialog() {
 		dialogOpen = false;
 		selected = 0;
+		startTimer();
 	}
 
-	setInterval(() => {
-		current_index = (current_index + 1) % photos.length;
-	}, 5000);
+	let rotateTimer;
+
+	function startTimer() {
+		clearTimeout(rotateTimer);
+		rotateTimer = setTimeout(() => {
+			changeSet(1);
+			startTimer();
+		}, 5000);
+	}
+
+	startTimer();
 </script>
 
 <div class="gallery-container">
@@ -58,25 +87,30 @@
 		/>
 	</div>
 
-	<div class="button-container">
+	<div>
 		{#each photos as _, index}
-			<button class:selected={index === current_index} onclick={() => (current_index = index)}
+			<button
+				class:selected={index === current_index}
+				onclick={() => {
+					current_index = index;
+					startTimer();
+				}}
 			></button>
 		{/each}
 	</div>
 </div>
 
 {#if dialogOpen}
-	<dialog open class="image-dialog" onclick={closeDialog}>
-		<div class="dialog-content">
-			<button class="close-btn" onclick={closeDialog}>✕</button>
+	<dialog open onclick={closeDialog}>
+		<div>
+			<button onclick={closeDialog}>✕</button>
 			<img id="window-image" src={selected} alt="Full View" class="full-image" />
 		</div>
 	</dialog>
 {/if}
 
 <style>
-	.gallery-container {
+	div:first-of-type {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -85,15 +119,16 @@
 		border-radius: 20px;
 	}
 
-	.gallery-row {
+	div:first-of-type > div:first-child {
 		display: flex;
 		justify-content: center;
+		flex-direction: row;
 		gap: 16px;
 		width: 400px;
 		height: 300px;
 	}
 
-	img {
+	div:first-of-type > div:first-child > img {
 		width: 400px;
 		height: 300px;
 		border-radius: 16px;
@@ -101,28 +136,28 @@
 		margin-right: 10px;
 	}
 
-	.button-container {
+	div div:nth-child(2) {
 		display: flex;
 		gap: 12px;
 		margin-top: 16px;
 	}
 
-	.button-container button {
-		width: 20px;
-		height: 20px;
+	div div:nth-child(2) button {
+		width: 25px;
+		height: 25px;
 		border-radius: 50%;
-		border: 1px solid #ccc;
+		border: 2px solid #ccc;
 		background-color: var(--BajaBlack);
 		cursor: pointer;
 		padding: 0;
 	}
 
-	.button-container button.selected {
+	div div:nth-child(2) .selected {
 		background-color: rgba(255, 255, 255, 0.7);
 		border-color: #888;
 	}
 
-	dialog.image-dialog {
+	dialog {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -136,7 +171,7 @@
 		justify-content: center;
 	}
 
-	.dialog-content {
+	dialog div {
 		position: fixed;
 		max-width: 90%;
 		max-height: 90%;
@@ -148,16 +183,15 @@
 		border-radius: 10px;
 	}
 
-	.close-btn {
+	dialog button {
 		position: absolute;
-		top: 0px;
-		right: -1px;
+		top: 32px;
+		right: 32px;
 		color: rgb(0, 0, 0);
 		font-size: 20px;
 		cursor: pointer;
 		border: none;
 		justify-content: right;
-		margin-right: 10px;
 		background-color: rgb(240, 255, 255, 0.3);
 		border-radius: 50%;
 	}

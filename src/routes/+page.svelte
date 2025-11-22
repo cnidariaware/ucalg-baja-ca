@@ -125,6 +125,14 @@
 		text-decoration: none;
 	}
 
+	img {
+		align-self: center;
+		aspect-ratio: 1;
+		border-radius: 1rem;
+		height: 400px;
+		width: 400px;
+	}
+
 	div {
 		display: flex;
 		column-gap: 2svw;
@@ -133,7 +141,7 @@
 	div > div {
 		flex-direction: column;
 		max-width: 700px;
-		padding: 0 2svw;
+		padding: 0 1svw;
 	}
 
 	@media only screen and (max-width: 800px) {
