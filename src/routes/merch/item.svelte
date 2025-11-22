@@ -240,11 +240,13 @@
     font-size: 16px;
     box-sizing: border-box;
     width: 100%;
+    border: 1px solid #ccc;
   }
   /* hide the native dropdown arrow in IE/Edge */
   select::-ms-expand { display: none; }
 
   select:focus {
+    border: none;
     outline: none;
     box-shadow: 0 0 0 3px rgba(196, 18, 48, 0.12); /* subtle Baja red focus */
     border-color: rgba(196, 18, 48, 0.6);

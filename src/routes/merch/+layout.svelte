@@ -190,9 +190,7 @@ nav a:hover {
 	overflow-y: auto;
 	padding: 1rem;
 }
-.side-cart .empty {
-	color: #666;
-}
+
 .side-cart footer {
 	padding: 1rem;
 }
