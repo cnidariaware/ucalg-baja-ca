@@ -63,7 +63,7 @@
 	let rotateTimer;
 
 	/**
-	 * @param {null} - does not take in an input
+	 * @param {event} event - does not take in an input
 	 * @returns {null} - This funcion doesn't return anything
 	 * @description - Starts the timer again, clearing any previous timers
 	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
@@ -84,7 +84,7 @@
 	let touchend_horizontal = 0;
 
 	/**
-	 * @param {null} event - takes the starting value when the screen is touched
+	 * @param {event} event - takes the starting value when the screen is touched
 	 * @returns {null} - This funcion doesn't return anything
 	 * @description - records the starting horizontal position for swipe detection
 	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
@@ -95,7 +95,7 @@
 	}
 
 	/**
-	 * @param {null} event - takes the event at which the finger mves across the screen
+	 * @param {event} event - takes the event at which the finger mves across the screen
 	 * @returns {null} - This funcion doesn't return anything
 	 * @description - tracks the finger movement during the swipe to calculate distance
 	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
