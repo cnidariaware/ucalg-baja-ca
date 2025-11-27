@@ -1,9 +1,9 @@
 <script>
 	import TopBanner from '$lib/components/TopBanner.svelte';
+	import Contact from '$lib/components/contact.svelte';
 	let sponsorInfo = $state('');
 	let order = ['Diamond Tier', 'Platinum Tier', 'Gold Tier', 'Silver Tier', 'Bronze Tier'];
-	let gotThing = $state(false);
-	const fetchingData = async () => {
+	const getSponsors = async () => {
 		let sponsors = await fetch('http://localhost:6526/sponsors');
 		let test = await sponsors.json();
 
@@ -23,7 +23,7 @@
 />
 <div>
 	<h4>Current sponsors</h4>
-	<button onclick={fetchingData}> Press me </button>
+	<button onclick={getSponsors}> Press me </button>
 	{#if sponsorInfo !== ''}
 		<div>
 			{#each order as tier}
@@ -59,11 +59,11 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>Bronze<br />&gt;$250</th>
-					<th>Silver<br />$1,000</th>
-					<th>Gold<br />$2,500</th>
-					<th>Platinum<br />$5,000</th>
-					<th>Diamond<br />$10,000</th>
+					<th>Bronze $250</th>
+					<th>Silver $1,000</th>
+					<th>Gold $2,500</th>
+					<th>Platinum $5,000</th>
+					<th>Diamond $10,000</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -204,23 +204,23 @@
 		</table>
 	</div>
 	<p>
-		Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae
-		pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean
-		sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa
-		nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti
-		sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet
-		consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id
-		cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar
-		vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer
-		nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per
-		conubia nostra inceptos himenaeos.
+		Our sponsors are the backbone of UCalgary Baja's success, providing support that allows our
+		members to gain hands-on engineering experience as part of their education. Our team is entirely
+		student-run, allowing members to develop skills beyond engineering, including design,
+		fundraising, sourcing materials, team management, and project coordination. We deeply value the
+		partnership with our sponsors, as their support makes every project and competition possible. If
+		you're interested in sponsoring UCalgary Baja, please contact our team captain at
+		uofcbaja@gmail.com. Below, you can find our sponsorship package detailing the opportunities
+		available.
 	</p>
-</div>
-<div>
-	<!-- Contact form -->
+	<h4>Sponsor Us</h4>
 </div>
 
 <style>
+	th {
+		width: 12ch;
+		text-align: center;
+	}
 	td > img {
 		filter: invert();
 	}
