@@ -30,9 +30,21 @@
 		couponCode: ''
 	});
 
-	let subTeams = ['Software', 'Team', 'Telemetry', 'Data Aquisition'];
+	let subTeams = [
+		'Chassis',
+		'Business',
+		'Data Aquisition',
+		'Final Drive',
+		'Ergonomics',
+		'Powertrain',
+		'Steering',
+		'Telemetry',
+		'Suspension',
+		'Software',
+		'Team'
+	];
 
-	const cartHeight = $derived(member ? 775 : 1318);
+	const cartHeightLimiter = $derived(member ? 775 : 1318);
 	$inspect(member);
 </script>
 
@@ -41,146 +53,140 @@
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914996/DSC_0393_inuw2z.jpg"
 />
 
-<div class="checkout-container">
-	<div class="checkout-layout">
-		<form class="checkout-form" onsubmit={handleSubmit}>
-			<div class="field-inline">
-				<label for="member">
-					Are you a registered member of UCalgary Baja?<span class="required">*</span>
-				</label>
-				<input type="checkbox" bind:checked={member} />
-			</div>
-
-			<h4>Contact</h4>
-
-			<label for="name">
-				Full Name:<span class="required">*</span>
+<div class="checkout-container" style="height: {cartHeightLimiter}px;">
+	<form onsubmit={handleSubmit}>
+		<div class="field-inline">
+			<label for="member">
+				Are you a registered member of UCalgary Baja?<span>*</span>
 			</label>
-			<input type="text" name="name" required />
+			<input type="checkbox" bind:checked={member} />
+		</div>
 
-			<label for="email">
-				Email (UCalgary Email preferred):<span class="required">*</span>
+		<h4>Contact</h4>
+
+		<label for="name">
+			Full Name:<span>*</span>
+		</label>
+		<input type="text" name="name" required />
+
+		<label for="email">
+			Email (UCalgary Email preferred):<span>*</span>
+		</label>
+		<input type="email" name="email" required />
+
+		<label for="phone">
+			Phone:<span>*</span>
+		</label>
+		<input type="tel" name="phone" required />
+
+		{#if member}
+			<label for="sub_team">
+				Baja Sub-team:{#if member}<span>*</span>{/if}
 			</label>
-			<input type="email" name="email" required />
+			<select bind:value={subTeam} required={member ? true : undefined}>
+				<option value="" disabled selected>Select a sub-team</option>
+				{#each subTeams as option}
+					<option value={option}>{option}</option>
+				{/each}
+			</select>
+		{:else}
+			<h4>Shipping Address</h4>
+			<h5>(We <u><strong>ONLY</strong></u> ship to Canada)</h5>
 
-			<label for="phone">
-				Phone:<span class="required">*</span>
+			<label for="shippingFirstName">
+				First Name:<span>*</span>
 			</label>
-			<input type="tel" name="phone" required />
+			<input type="text" name="shippingFirstName" required />
 
-			{#if member}
-				<label for="sub_team">
-					Baja Sub-team:{#if member}<span class="required">*</span>{/if}
-				</label>
-				<select bind:value={subTeam} required={member ? true : undefined}>
-					<option value="" disabled selected>Select a sub-team</option>
-					{#each subTeams as option}
-						<option value={option}>{option}</option>
-					{/each}
-				</select>
-			{:else}
-				<h4>Shipping Address</h4>
-				<h5>(We <u><strong>ONLY</strong></u> ship to Canada)</h5>
+			<label for="shippingLastName">
+				Last Name:<span>*</span>
+			</label>
+			<input type="text" name="shippingLastName" required />
 
-				<label for="shippingFirstName">
-					First Name:<span class="required">*</span>
-				</label>
-				<input type="text" name="shippingFirstName" required />
+			<label for="shippingStreet">
+				Street Address:<span>*</span>
+			</label>
+			<input type="text" name="shippingStreet" required />
 
-				<label for="shippingLastName">
-					Last Name:<span class="required">*</span>
-				</label>
-				<input type="text" name="shippingLastName" required />
+			<label for="shippingUnit">Unit Number:</label>
+			<input type="text" name="shippingUnit" />
 
-				<label for="shippingStreet">
-					Street Address:<span class="required">*</span>
-				</label>
-				<input type="text" name="shippingStreet" required />
+			<label for="shippingCity">
+				City/Town:<span>*</span>
+			</label>
+			<input type="text" name="shippingCity" required />
 
-				<label for="shippingUnit">Unit Number:</label>
-				<input type="text" name="shippingUnit" />
+			<label for="shippingProvince">
+				Province/Territory:<span>*</span>
+			</label>
+			<input type="text" name="shippingProvince" required />
 
-				<label for="shippingCity">
-					City/Town:<span class="required">*</span>
-				</label>
-				<input type="text" name="shippingCity" required />
+			<label for="shippingPostCode">
+				Postal Code:<span>*</span>
+			</label>
+			<input type="text" name="shippingPostCode" required />
 
-				<label for="shippingProvince">
-					Province/Territory:<span class="required">*</span>
-				</label>
-				<input type="text" name="shippingProvince" required />
+			<label for="shippingPhone">
+				Phone:<span>*</span>
+			</label>
+			<input type="text" name="shippingPhone" required />
+		{/if}
 
-				<label for="shippingPostCode">
-					Postal Code:<span class="required">*</span>
-				</label>
-				<input type="text" name="shippingPostCode" required />
+		<label for="couponCode"><h4>Coupon Code:</h4></label>
+		<input name="couponCode" type="text" bind:value={couponCode} />
 
-				<label for="shippingPhone">
-					Phone:<span class="required">*</span>
-				</label>
-				<input type="text" name="shippingPhone" required />
-			{/if}
+		<label for="additionalInfo"><h4>Additional Information:</h4></label>
+		<textarea name="additionalInfo" rows="2"></textarea>
 
-			<label for="couponCode"><h4>Coupon Code:</h4></label>
-			<input name="couponCode" type="text" bind:value={couponCode} />
+		<h4>Payment:</h4>
+		<p class="payment-note">Will be manually processed at a later date.</p>
 
-			<label for="additionalInfo"><h4>Additional Information:</h4></label>
-			<textarea name="additionalInfo" rows="2"></textarea>
+		<button type="submit" class="place-order-btn"> Place Order </button>
+	</form>
 
-			<h4>Payment:</h4>
-			<p class="payment-note">Will be manually processed at a later date.</p>
-
-			<button type="submit" class="place-order-btn"> Place Order </button>
-		</form>
-
-		<aside class="cart-panel" style={`height: ${cartHeight}px;`}>
-			<CartItemScroll />
-		</aside>
-	</div>
+	<aside class="cart-panel">
+		<CartItemScroll />
+	</aside>
 </div>
 
 <style>
 	.checkout-container {
+		display: flex;
 		max-width: 1100px;
 		margin: 0 auto 4rem;
 		padding: 2rem 1.5rem 0;
 		background: #ffffff;
 		color: #000000;
 		box-sizing: border-box;
-	}
-
-	.checkout-layout {
-		display: flex;
 		align-items: flex-start;
-		gap: 2rem;
+		column-gap: 8svw;
 	}
 
-	.checkout-form {
-		flex: 1;
+	form {
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;
+		height: fit-content;
 	}
 
 	/* UPDATED */
-	.cart-panel {
-		flex: 1;
+	aside {
 		border: 1px solid #ccc;
 		background: #ffffff;
 		padding: 0.75rem 0.75rem 1rem;
 		box-sizing: border-box;
-
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+		height: 100%;
 	}
 
-	.checkout-form h4 {
+	h4 {
 		margin: 1.2rem 0 0.4rem;
 		font-size: large;
 	}
 
-	.checkout-form h5 {
+	h5 {
 		margin: 0 0 0.4rem;
 		font-weight: 500;
 		font-style: italic;
@@ -190,7 +196,7 @@
 		font-size: 0.95rem;
 	}
 
-	.required {
+	span {
 		color: var(--BajaRed);
 		font-weight: 700;
 		margin-left: 2px;
@@ -274,7 +280,7 @@
 		border: none;
 	}
 
-	select option {
+	option {
 		padding: 8px 12px;
 		font-size: 15px;
 		color: #000;
@@ -282,10 +288,6 @@
 	}
 
 	@media (max-width: 900px) {
-		.checkout-layout {
-			flex-direction: column;
-		}
-
 		.place-order-btn {
 			width: 100%;
 			text-align: center;
