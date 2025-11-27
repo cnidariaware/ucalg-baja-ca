@@ -28,26 +28,49 @@
 	let dialogOpen = $state(false);
 	let selected = $state(0);
 
+	/**
+	 * @param {number} step - the number of positions to move the gallery
+	 * @returns {null} - This funcion doesn't return a value, itupdates current index
+	 * @description Updates the current index based on the provided step and wraps around if it reaches the max, positive moves right and negative is left
+	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
+	 */
 	function changeSet(step) {
+		// changes the current index according to the direction inputted, the + photos.length
+		// makes sure its positive and the % photos.length makes sure it wraps around
 		current_index = (current_index + step + photos.length) % photos.length;
 	}
 
-	function openDialog(image) {
-		selected = image;
-		dialogOpen = true;
-		clearTimeout(rotateTimer);
-	}
-
-	function closeDialog() {
-		dialogOpen = false;
-		selected = 0;
-		startTimer();
+	/**
+	 * @param {string} image - the image URL to display when opening the image
+	 * @returns {null} - does not return anything
+	 * @description - Opens or closses the dialog, stops the timer when the dialog is open, starts it back up when its closed
+	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
+	 */
+	function toggleDialog(image) {
+		// sets to not open
+		dialogOpen = !dialogOpen;
+		// if the image is opened, it will clear out the timer, making sure the images dont rotate
+		if (dialogOpen === true) {
+			selected = image;
+			clearTimeout(rotateTimer);
+			// similarly this will make sure that the timer starts back up when the dialog is closed
+		} else {
+			selected = 0;
+			startTimer();
+		}
 	}
 
 	let rotateTimer;
 
+	/**
+	 * @returns {null} - This funcion doesn't return anything
+	 * @description - Starts the timer again, clearing any previous timers
+	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
+	 */
 	function startTimer() {
+		// stops any timer running prior
 		clearTimeout(rotateTimer);
+		// sets a new timer when the images are moved, and restart the timer
 		rotateTimer = setTimeout(() => {
 			changeSet(1);
 			startTimer();
@@ -59,18 +82,42 @@
 	let touchstart_horizontal = 0;
 	let touchend_horizontal = 0;
 
+	/**
+	 * @param {event} - takes the starting value when the screen is touched
+	 * @returns {null} - This funcion doesn't return anything
+	 * @description - records the starting horizontal position for swipe detection
+	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
+	 */
 	function handleTouchStart(event) {
+		// stores the starting position of the swipe
 		touchstart_horizontal = event.touches[0].clientX;
 	}
 
+	/**
+	 * @param {event} - takes the event at which the finger mves across the screen
+	 * @returns {null} - This funcion doesn't return anything
+	 * @description - tracks the finger movement during the swipe to calculate distance
+	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
+	 */
 	function handleTouchMove(event) {
+		// stores the swipe distance
 		touchend_horizontal = event.touches[0].clientX;
 	}
 
+	/**
+	 * @returns {null} - This funcion doesn't return anything
+	 * @description - runs after the user lifts their finger, if the distance is greater than
+	 * the set amoutn it counts it as a swipe and moves the images left or right, then resets the timer
+	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
+	 */
 	function handleTouchEnd() {
+		// finds the difference between the start and end positions, giving the direction
 		const horizontal_change = touchend_horizontal - touchstart_horizontal;
+		// makes sure it only works if it is a proper swipe and not an accidental swipe
 		if (Math.abs(horizontal_change) > 30) {
+			// using the deirection, it will move left or right
 			changeSet(horizontal_change < 0 ? 1 : -1);
+			// resets the timer
 			startTimer();
 		}
 	}
@@ -84,7 +131,7 @@
 		<img
 			src={photos[(current_index - 1 + photos.length) % photos.length].src}
 			alt={photos[(current_index - 1 + photos.length) % photos.length].alt}
-			onclick={() => openDialog(photos[(current_index - 1 + photos.length) % photos.length].src)}
+			onclick={() => toggleDialog(photos[(current_index - 1 + photos.length) % photos.length].src)}
 		/>
 
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -92,7 +139,7 @@
 		<img
 			src={photos[current_index].src}
 			alt={photos[current_index].alt}
-			onclick={() => openDialog(photos[current_index].src)}
+			onclick={() => toggleDialog(photos[current_index].src)}
 		/>
 
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -100,7 +147,7 @@
 		<img
 			src={photos[(current_index + 1) % photos.length].src}
 			alt={photos[(current_index + 1) % photos.length].alt}
-			onclick={() => openDialog(photos[(current_index + 1) % photos.length].src)}
+			onclick={() => toggleDialog(photos[(current_index + 1) % photos.length].src)}
 		/>
 	</div>
 
@@ -118,7 +165,7 @@
 </div>
 
 {#if dialogOpen}
-	<dialog open onclick={closeDialog}>
+	<dialog open onclick={toggleDialog}>
 		<div>
 			<button onclick={closeDialog}>✕</button>
 			<img id="window-image" src={selected} alt="Full View" class="full-image" />
@@ -155,8 +202,7 @@
 		object-fit: cover;
 	}
 
-	div:first-of-type > div:first-child > img:nth-child(1),
-	div:first-of-type > div:first-child > img:nth-child(3) {
+	div:first-of-type > div:first-child > img:nth-child(odd) {
 		flex: 0 0 15%;
 		max-width: 15%;
 		opacity: 0.8;
@@ -168,8 +214,7 @@
 			max-width: 33%;
 		}
 
-		div:first-of-type > div:first-child > img:nth-child(1),
-		div:first-of-type > div:first-child > img:nth-child(3) {
+		div:first-of-type > div:first-child > img:nth-child(odd) {
 			flex: 0 0 33%;
 			max-width: 33%;
 			opacity: 1;
@@ -180,13 +225,13 @@
 		}
 	}
 
-	div div:nth-child(2) {
+	div:nth-child(2) {
 		display: flex;
 		gap: 12px;
 		margin-top: 16px;
 	}
 
-	div div:nth-child(2) button {
+	div:nth-child(2) button {
 		width: 25px;
 		height: 25px;
 		color: rgba(0, 0, 0, 0);
@@ -197,7 +242,7 @@
 		padding: 0;
 	}
 
-	div div:nth-child(2) .selected {
+	div:nth-child(2) .selected {
 		background-color: rgba(255, 255, 255, 0.7);
 		border-color: #888;
 	}
