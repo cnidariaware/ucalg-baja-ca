@@ -83,7 +83,7 @@
 	let touchend_horizontal = 0;
 
 	/**
-	 * @param {event} - takes the starting value when the screen is touched
+	 * @param {null} event - takes the starting value when the screen is touched
 	 * @returns {null} - This funcion doesn't return anything
 	 * @description - records the starting horizontal position for swipe detection
 	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
@@ -94,7 +94,7 @@
 	}
 
 	/**
-	 * @param {event} - takes the event at which the finger mves across the screen
+	 * @param {null} event - takes the event at which the finger mves across the screen
 	 * @returns {null} - This funcion doesn't return anything
 	 * @description - tracks the finger movement during the swipe to calculate distance
 	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
