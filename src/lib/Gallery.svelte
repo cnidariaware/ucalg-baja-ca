@@ -63,6 +63,7 @@
 	let rotateTimer;
 
 	/**
+	 * @param {null} - does not take in an input
 	 * @returns {null} - This funcion doesn't return anything
 	 * @description - Starts the timer again, clearing any previous timers
 	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
@@ -105,6 +106,7 @@
 	}
 
 	/**
+	 * @param {null} - This function does not take in an input
 	 * @returns {null} - This funcion doesn't return anything
 	 * @description - runs after the user lifts their finger, if the distance is greater than
 	 * the set amoutn it counts it as a swipe and moves the images left or right, then resets the timer
