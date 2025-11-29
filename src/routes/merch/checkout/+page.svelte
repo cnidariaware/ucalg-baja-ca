@@ -18,7 +18,7 @@
 			orders.push({
 				order_id: null,
 				item_id: element.name,
-				colour: element.color,
+				colour: element.colour,
 				size: element.itemSize,
 				quantity: element.quantity,
 				price: element.price
@@ -60,7 +60,7 @@
 		});
 		console.log(await res.json());
 
-		if (true) {
+		if (false) {
 			if (event.target.checkValidity()) {
 				goto('/merch/orderconfirmed');
 			}

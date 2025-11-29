@@ -1,18 +1,5 @@
 <script>
-	import { cartStore, subtotal, formatPrice, removeItem } from './cartStore.svelte.js';
-	const dec = (id) => {
-		const item = $cartStore.find((i) => i.id === id);
-		if (!item) return;
-		const current = Number(item.quantity) || 1;
-		item.quantity = Math.max(1, current - 1);
-	};
-
-	const inc = (id) => {
-		const item = $cartStore.find((i) => i.id === id);
-		if (!item) return;
-		const current = Number(item.quantity) || 1;
-		item.quantity = current + 1;
-	};
+	import { cartStore, subtotal, formatPrice, removeItem, inc, dec } from './cartStore.svelte.js';
 
 	// const formatPrice = (price) => `$${price.toFixed(2)}`;
 
@@ -34,7 +21,7 @@
 							{item.name}
 						</p>
 						<div class="item-details">
-							<span class="item-color">({item.color})</span>
+							<span class="item-color">({item.colour})</span>
 							<p class="item-size">Size: {item.itemSize}</p>
 						</div>
 					</div>
