@@ -1,9 +1,9 @@
 <script>
-	let name = '';
-	let email = '';
-	let message = '';
-	let isButtonDisabled = false;
-	let submitText = 'Submit';
+	let name = $state('');
+	let email = $state('');
+	let message = $state('');
+	let isButtonDisabled = $state(false);
+	let submitText = $state('Submit');
 	async function formSubmit(e) {
 		e.preventDefault();
 		isButtonDisabled = true;
@@ -31,14 +31,14 @@
 	}
 </script>
 
-<form on:submit|preventDefault={(e) => formSubmit(e)}>
-	<label>Name</label>
+<form onsubmit={(e) => formSubmit(e)}>
+	<label for="Name">Name</label>
 	<input name="Name" bind:value={name} required />
 
-	<label>Email</label>
+	<label for="Email">Email</label>
 	<input name="Email" type="email" bind:value={email} required />
 
-	<label>Message</label>
+	<label for="Message">Message</label>
 	<textarea name="Message" bind:value={message} required></textarea>
 
 	<span></span>
