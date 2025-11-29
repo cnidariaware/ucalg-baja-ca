@@ -70,75 +70,21 @@
 				<!-- Logo on Website -->
 				<tr>
 					<th>Logo On<br />Website</th>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
 				</tr>
 
 				<!-- Social Media Exposure -->
 				<tr>
 					<th>Social Media<br />Exposure</th>
 					<td></td>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
 				</tr>
 
 				<!-- Shop Tour / Introduction -->
@@ -146,27 +92,9 @@
 					<th>Shop Tour /<br />Introduction</th>
 					<td></td>
 					<td></td>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
 				</tr>
 
 				<!-- Social Media Feature -->
@@ -175,20 +103,8 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
-					<td
-						><img
-							class="cross"
-							src="https://www.svgrepo.com/show/491212/cross.svg"
-							alt="Included"
-						/></td
-					>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
 				</tr>
 
 				<!-- Logo on Vehicle -->
@@ -215,14 +131,30 @@
 	</p>
 	<h4>Sponsor Us</h4>
 </div>
+<div class="contact-div">
+	<Contact />
+</div>
 
 <style>
+	.contact-div {
+		display: flex;
+		justify-content: center;
+		background-color: --var(--BajaBlack);
+		flex-wrap: wrap;
+		max-width: 250px;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 3em;
+	}
 	th {
 		width: 12ch;
 		text-align: center;
 	}
 	td > img {
 		filter: invert();
+		width: 40px;
+		height: 40px;
+		object-fit: contain;
 	}
 	a {
 		text-decoration: none;
@@ -349,11 +281,5 @@
 	.sponsor-table th:first-child {
 		text-align: left;
 		width: 30%;
-	}
-
-	.sponsor-table .cross {
-		width: 40px;
-		height: 40px;
-		object-fit: contain;
 	}
 </style>
