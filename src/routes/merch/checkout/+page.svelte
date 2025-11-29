@@ -1,6 +1,7 @@
 <script>
 	import TopBanner from '../MerchTopBanner.svelte';
 	import CartItemScroll from '../cartItemScroll.svelte';
+	import { cartStore, formattedSubtotal } from '../cartStore.svelte.js';
 
 	import { goto } from '$app/navigation';
 
@@ -9,15 +10,57 @@
 		let formData = new FormData(event.target);
 		let formObject = Object.fromEntries(formData.entries());
 
-		console.log(formObject);
-		// let res = fetch("http://localhost:6525", {
-		// 				method: "POST",
-		// 				headers: {
-		// 					"Content-Type": "application/json",
-		// 				},
-		// 				body: JSON.stringify(formObject),
-		// 			});
-		if (false) {
+		// console.log(formObject);
+
+		let orders = [];
+
+		$cartStore.forEach((element) => {
+			orders.push({
+				order_id: null,
+				item_id: element.name,
+				colour: element.color,
+				size: element.itemSize,
+				quantity: element.quantity,
+				price: element.price
+			});
+		});
+
+		let orderRequest = {
+			customer_info: {
+				order_id: null,
+				email: formObject.email,
+				phone: formObject.phone,
+				name: formObject.name,
+				sub_team: subTeam,
+				order_total: parseFloat($formattedSubtotal.replace('$', '')),
+				ship_full_name: formObject.shippingFullName,
+				ship_street_addr: formObject.shippingStreet,
+				ship_unit_number: formObject.shippingUnit,
+				ship_city: formObject.shippingCity,
+				ship_province: formObject.shippingProvince,
+				ship_country: formObject.shippingCountry ?? 'Canada',
+				ship_postal_code: formObject.shippingPostCode,
+				ship_phone: formObject.shippingPhone,
+				additional_notes: formObject.additionalInfo
+			},
+			cart_items: orders,
+			order_id: null,
+			coupon_code: couponCode
+		};
+		console.log(orderRequest);
+
+		// console.log(JSON.stringify(orderRequest));
+
+		let res = await fetch('http://localhost:6526/shop/recieve_order', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(orderRequest)
+		});
+		console.log(await res.json());
+
+		if (true) {
 			if (event.target.checkValidity()) {
 				goto('/merch/orderconfirmed');
 			}
@@ -26,7 +69,7 @@
 
 	let { member, subTeam, couponCode } = $state({
 		member: false,
-		subTeam: '',
+		subTeam: null,
 		couponCode: ''
 	});
 
@@ -93,15 +136,10 @@
 			<h4>Shipping Address</h4>
 			<h5>(We <u><strong>ONLY</strong></u> ship to Canada)</h5>
 
-			<label for="shippingFirstName">
-				First Name:<span>*</span>
+			<label for="shippingFullName">
+				Full Name:<span>*</span>
 			</label>
-			<input type="text" name="shippingFirstName" required />
-
-			<label for="shippingLastName">
-				Last Name:<span>*</span>
-			</label>
-			<input type="text" name="shippingLastName" required />
+			<input type="text" name="shippingFullName" required />
 
 			<label for="shippingStreet">
 				Street Address:<span>*</span>
@@ -144,7 +182,7 @@
 		<button type="submit" class="place-order-btn"> Place Order </button>
 	</form>
 
-	<aside class="cart-panel">
+	<aside>
 		<CartItemScroll />
 	</aside>
 </div>
@@ -169,7 +207,6 @@
 		height: fit-content;
 	}
 
-	/* UPDATED */
 	aside {
 		border: 1px solid #ccc;
 		background: #ffffff;
@@ -179,6 +216,7 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
+		min-width: 453px;
 	}
 
 	h4 {
@@ -217,6 +255,7 @@
 
 	textarea {
 		resize: vertical;
+		font: inherit;
 	}
 
 	.field-inline {

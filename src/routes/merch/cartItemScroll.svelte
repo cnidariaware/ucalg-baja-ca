@@ -1,147 +1,33 @@
 <script>
-	let { items } = $state({
-		items: [
-			{
-				id: 1,
-				name: 'Floof Hoodie',
-				color: 'Black',
-				price: 49.99,
-				priceLabel: '$49.99',
-				quantity: 1,
-				size: 'L',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 2,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 3,
-				name: 'Floof CrewNeck by Brock the One and Only Rockstar',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 4,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 5,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 6,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 7,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 8,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 9,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 10,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			},
-			{
-				id: 11,
-				name: 'Floof CrewNeck',
-				color: 'Black',
-				price: 39.99,
-				priceLabel: '$39.99',
-				quantity: 1,
-				size: 'XL',
-				imageSrc: 'https://picsum.photos/200'
-			}
-		]
-	});
-
+	import { cartStore, subtotal, formatPrice, removeItem } from './cartStore.svelte.js';
 	const dec = (id) => {
-		const item = items.find((i) => i.id === id);
+		const item = $cartStore.find((i) => i.id === id);
 		if (!item) return;
 		const current = Number(item.quantity) || 1;
 		item.quantity = Math.max(1, current - 1);
 	};
 
 	const inc = (id) => {
-		const item = items.find((i) => i.id === id);
+		const item = $cartStore.find((i) => i.id === id);
 		if (!item) return;
 		const current = Number(item.quantity) || 1;
 		item.quantity = current + 1;
 	};
 
-	const formatPrice = (price) => `$${price.toFixed(2)}`;
+	// const formatPrice = (price) => `$${price.toFixed(2)}`;
 
 	// reactive subtotal: sum of price * quantity
-	let subtotal = $derived(items.reduce((sum, item) => sum + item.price * item.quantity, 0));
+	// let subtotal = $derived($cartStore.reduce((sum, item) => sum + item.price * item.quantity, 0));
 </script>
 
 <div class="cart-body">
 	<main class="items">
-		{#if items.length === 0}
+		{#if $cartStore.length === 0}
 			<p class="empty">Your cart is empty.</p>
 		{:else}
-			{#each items as item (item.id)}
-				<div class="cart-item">
-					<img class="item-image" src={item.imageSrc} alt={`${item.name} picture`} />
+			{#each $cartStore as item (item.itemId)}
+				<div class="cart-item" key={item.itemId}>
+					<img class="item-image" src={item.imageSrc} alt={item.name + ' picture'} />
 
 					<div>
 						<p class="item-name">
@@ -149,7 +35,7 @@
 						</p>
 						<div class="item-details">
 							<span class="item-color">({item.color})</span>
-							<p class="item-size">Size: {item.size}</p>
+							<p class="item-size">Size: {item.itemSize}</p>
 						</div>
 					</div>
 
@@ -158,7 +44,7 @@
 							<button
 								type="button"
 								class="square"
-								onclick={() => dec(item.id)}
+								onclick={() => dec(item.itemId)}
 								aria-label="Decrease quantity"
 							>
 								-
@@ -169,14 +55,19 @@
 							<button
 								type="button"
 								class="square"
-								onclick={() => inc(item.id)}
+								onclick={() => inc(item.itemId)}
 								aria-label="Increase quantity"
 							>
 								+
 							</button>
 						</div>
 
-						<button class="remove-btn" type="button" aria-label="Remove item from cart">
+						<button
+							class="remove-btn"
+							type="button"
+							aria-label="Remove item from cart"
+							onclick={() => removeItem(item.itemId)}
+						>
 							🗑
 						</button>
 					</div>
@@ -188,7 +79,7 @@
 	<footer>
 		<span class="label">Subtotal:</span>
 		<div class="subtotal-value">
-			<span>${subtotal.toFixed(2)}</span>
+			<span>${$subtotal.toFixed(2)}</span>
 			<span class="beforetax">(Before Taxes and Shipping)</span>
 		</div>
 	</footer>
