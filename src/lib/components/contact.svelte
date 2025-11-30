@@ -1,4 +1,6 @@
 <script>
+	import { resolve } from '$app/paths';
+
 	let name = $state('');
 	let email = $state('');
 	let message = $state('');
@@ -25,6 +27,11 @@
 				}
 			);
 		} finally {
+			await new Promise((resolve) => setTimeout(resolve, 5000)).then(() => {
+				name = '';
+				email = '';
+				message = '';
+			});
 			isButtonDisabled = false;
 			submitText = 'Submit';
 		}
@@ -32,20 +39,22 @@
 </script>
 
 <form onsubmit={(e) => formSubmit(e)}>
-	<label for="Name">Name</label>
-	<input name="Name" bind:value={name} required />
+	<div>
+		<label for="Name">Name</label>
+		<input name="Name" bind:value={name} required />
 
-	<label for="Email">Email</label>
-	<input name="Email" type="email" bind:value={email} required />
+		<label for="Email">Email</label>
+		<input name="Email" type="email" bind:value={email} required />
 
-	<label for="Message">Message</label>
-	<textarea name="Message" bind:value={message} required></textarea>
+		<label for="Message">Message</label>
+		<textarea name="Message" bind:value={message} required></textarea>
 
-	<span></span>
+		<span></span>
 
-	<button id="ContactUsSubmit" type="submit" disabled={isButtonDisabled}>
-		{submitText}
-	</button>
+		<button type="submit" disabled={isButtonDisabled}>
+			{submitText}
+		</button>
+	</div>
 </form>
 
 <style>
@@ -55,9 +64,21 @@
 		--card-border-radius: 0.5rem;
 	}
 
+	div {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		justify-content: center;
+		background-color: var(--BajaBlack);
+		margin-left: auto;
+		margin-right: auto;
+		width: 600px;
+	}
+
 	/* FORM ELEMENT STYLING */
 	label {
 		margin: 0svh 0.25svw;
+		color: var(--BajaWhite);
 	}
 
 	/* Inputs */
@@ -68,8 +89,9 @@
 		border-width: 2px;
 		padding: 1svh 1ch;
 		margin: 1svh 0svw;
-		color: inherit;
+		color: var(--BajaWhite);
 		align-items: start;
+		width: 100%;
 	}
 
 	/* Textareas */
@@ -80,21 +102,23 @@
 		border-width: 2px;
 		padding: 1svh 1ch;
 		margin: 1svh 0svw;
-		color: inherit;
+		color: var(--BajaWhite);
 		align-items: start;
 		min-height: 15svh;
+		width: 100%;
 	}
 
 	/* Submit button */
 	button {
 		border-radius: var(--card-border-radius);
-		color: inherit;
+		color: var(--BajaWhite);
 		background-color: var(--BajaRed);
 		border-color: transparent;
 		align-items: start;
 		margin: 1svh 0svw;
 		padding: 1svh 0svw;
 		font-size: large;
+		width: 100%;
 	}
 	button:hover {
 		cursor: pointer;

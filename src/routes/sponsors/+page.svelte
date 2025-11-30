@@ -1,18 +1,37 @@
 <script>
 	import TopBanner from '$lib/components/TopBanner.svelte';
 	import Contact from '$lib/components/contact.svelte';
-	let sponsorInfo = $state('');
-	let order = ['Diamond Tier', 'Platinum Tier', 'Gold Tier', 'Silver Tier', 'Bronze Tier'];
+	// let sponsorInfo = $state('');
+	let sponsorPromise = $state(null);
+	const order = ['Diamond Tier', 'Platinum Tier', 'Gold Tier', 'Silver Tier', 'Bronze Tier'];
+	/**
+	 * @param none
+	 * @return none
+	 * @description fetches sponsor information from the backend YAML fiel and stores it in sponsors variable, we then convert it to JSON format, and store it in sponsorInfo variable for later use in the page
+	 * @author Siddharth Engineer <siddharthengineer24@gmail.com>
+	 */
 	const getSponsors = async () => {
 		let sponsors = await fetch('http://localhost:6526/sponsors');
-		let test = await sponsors.json();
-
-		sponsorInfo = await test;
-		gotThing = true;
-		$inspect(sponsorInfo);
+		// let test = await sponsors.json();
+		// sponsorInfo = await test;
+		return sponsors;
 	};
 
-	$inspect(sponsorInfo);
+	// $inspect(sponsorInfo);
+
+	$effect(async () => {
+		// sponsorPromise = fetch('http://localhost:6526/sponsors').then((res) => res.json());
+		sponsorPromise = (async () => {
+			let res = await getSponsors();
+			if (!res.ok) {
+				return null;
+			}
+
+			return await res.json();
+		})();
+	});
+
+	$inspect(sponsorPromise);
 </script>
 
 <title>UCalgary Baja - Sponsors</title>
@@ -23,36 +42,42 @@
 />
 <div>
 	<h4>Current sponsors</h4>
-	<button onclick={getSponsors}> Press me </button>
-	{#if sponsorInfo !== ''}
-		<div>
-			{#each order as tier}
-				{#if sponsorInfo[tier]}
-					<h2>{tier}</h2>
-					<div>
-						{#each sponsorInfo[tier] as item}
-							<div>
-								<a href={item.Url}>
-									<img alt="{item.SponsorName}'s Logo" src={item.LogoUrl} />
-									{#if tier == order[0] || tier == order[1] || tier == order[2]}
-										<div>
-											<h2>
-												{item.SponsorName}
-											</h2>
+	{#await sponsorPromise}
+		<p>Loading sponsors...</p>
+	{:then data}
+		{#if data !== null}
+			<div>
+				{#each order as tier}
+					{#if data[tier]}
+						<h2>{tier}</h2>
+						<div>
+							{#each data[tier] as item}
+								<div>
+									<a href={item.Url}>
+										<img alt="{item.SponsorName}'s Logo" src={item.LogoUrl} />
+										{#if tier == order[0] || tier == order[1] || tier == order[2]}
+											<div>
+												<h2>
+													{item.SponsorName}
+												</h2>
 
-											{#if tier == order[0] || tier == order[1]}
-												<p>{item.DescriptionAboutSponsor}</p>
-											{/if}
-										</div>
-									{/if}
-								</a>
-							</div>
-						{/each}
-					</div>
-				{/if}
-			{/each}
-		</div>
-	{/if}
+												{#if tier == order[0] || tier == order[1]}
+													<p>{item.DescriptionAboutSponsor}</p>
+												{/if}
+											</div>
+										{/if}
+									</a>
+								</div>
+							{/each}
+						</div>
+					{/if}
+				{/each}
+			</div>
+		{/if}
+	{:catch error}
+		<p>Error loading sponsors: {error.message}</p>
+	{/await}
+
 	<h4>Sponsorship Benefits</h4>
 	<div class="table-wrapper">
 		<table class="sponsor-table">
@@ -130,21 +155,17 @@
 		available.
 	</p>
 	<h4>Sponsor Us</h4>
-</div>
-<div class="contact-div">
-	<Contact />
+	<div class="contact-container">
+		<Contact />
+	</div>
 </div>
 
 <style>
-	.contact-div {
+	.contact-container {
 		display: flex;
 		justify-content: center;
-		background-color: --var(--BajaBlack);
-		flex-wrap: wrap;
-		max-width: 250px;
-		flex-direction: column;
 		align-items: center;
-		margin-bottom: 3em;
+		margin-bottom: 50px;
 	}
 	th {
 		width: 12ch;
