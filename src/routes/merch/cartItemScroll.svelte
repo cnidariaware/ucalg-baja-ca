@@ -1,6 +1,6 @@
 <script>
-	import { cartStore, subtotal, formatPrice, removeItem, inc, dec } from './cartStore.svelte.js';
-
+	// import { cartStore, subtotal, formatPrice, removeItem, inc, dec } from './cartStore.svelte.js';
+	import { cartStore } from '$lib/cookies/cartStore.js';
 	// const formatPrice = (price) => `$${price.toFixed(2)}`;
 
 	// reactive subtotal: sum of price * quantity
@@ -12,8 +12,8 @@
 		{#if $cartStore.length === 0}
 			<p class="empty">Your cart is empty.</p>
 		{:else}
-			{#each $cartStore as item (item.itemId)}
-				<div class="cart-item" key={item.itemId}>
+			{#each $cartStore as item, index}
+				<div class="cart-item" key={item + index}>
 					<img class="item-image" src={item.imageSrc} alt={item.name + ' picture'} />
 
 					<div>
@@ -31,7 +31,7 @@
 							<button
 								type="button"
 								class="square"
-								onclick={() => dec(item.itemId)}
+								onclick={() => cartStore.dec(index)}
 								aria-label="Decrease quantity"
 							>
 								-
@@ -42,7 +42,7 @@
 							<button
 								type="button"
 								class="square"
-								onclick={() => inc(item.itemId)}
+								onclick={() => cartStore.inc(index)}
 								aria-label="Increase quantity"
 							>
 								+
@@ -53,7 +53,7 @@
 							class="remove-btn"
 							type="button"
 							aria-label="Remove item from cart"
-							onclick={() => removeItem(item.itemId)}
+							onclick={() => cartStore.removeItem(index)}
 						>
 							🗑
 						</button>
@@ -66,7 +66,7 @@
 	<footer>
 		<span class="label">Subtotal:</span>
 		<div class="subtotal-value">
-			<span>${$subtotal.toFixed(2)}</span>
+			<span>${$cartStore.formatted_subtotal}</span>
 			<span class="beforetax">(Before Taxes and Shipping)</span>
 		</div>
 	</footer>

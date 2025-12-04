@@ -1,7 +1,8 @@
 <script>
 	import TopBanner from '../MerchTopBanner.svelte';
 	import CartItemScroll from '../cartItemScroll.svelte';
-	import { cartStore, formattedSubtotal } from '../cartStore.svelte.js';
+	import { cartStore } from '$lib/cookies/cartStore';
+	// import { cartStore, formattedSubtotal } from '../cartStore.svelte.js';
 
 	import { goto } from '$app/navigation';
 
@@ -32,7 +33,7 @@
 				phone: formObject.phone,
 				name: formObject.name,
 				sub_team: subTeam,
-				order_total: parseFloat($formattedSubtotal.replace('$', '')),
+				order_total: parseFloat(cartStore.formatted_subtotal()),
 				ship_full_name: formObject.shippingFullName,
 				ship_street_addr: formObject.shippingStreet,
 				ship_unit_number: formObject.shippingUnit,
