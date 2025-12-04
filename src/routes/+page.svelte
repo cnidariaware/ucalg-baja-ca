@@ -2,6 +2,22 @@
 	import Sponsors from '$lib/components/Home/Sponsors.svelte';
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
+	import Gallery from '$lib/Gallery.svelte';
+
+	//Adding the photos from assets, in the gallery folder
+	import photo1 from '$lib/assets/gallery/photo1.jpg';
+	import photo2 from '$lib/assets/gallery/photo2.jpg';
+	import photo3 from '$lib/assets/gallery/photo3.jpg';
+	import photo4 from '$lib/assets/gallery/photo4.jpg';
+	import photo5 from '$lib/assets/gallery/photo5.jpg';
+
+	let photos = [
+		{ src: photo1, alt: 'enter description of photo 1' },
+		{ src: photo2, alt: 'enter description of photo 2' },
+		{ src: photo3, alt: 'enter description of photo 3' },
+		{ src: photo4, alt: 'enter description of photo 4' },
+		{ src: photo5, alt: 'enter description of photo 5' }
+	];
 </script>
 
 <title>UCalgary Baja - Home</title>
@@ -59,11 +75,10 @@
 <Sponsors />
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="6svh" paddingTopBottom="4svh">
+	<div id="HomeBottomGallery">
+		<Gallery {photos} />
+	</div>
 	<div>
-		<img
-			alt="Our Car waiting in line for endurance"
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_400,h_400/v1755376324/PXL_20250503_154645931-min_gi8qlf.jpg"
-		/>
 		<div>
 			<h3>Sponsor Us</h3>
 			<p>
@@ -74,12 +89,6 @@
 			</p>
 			<a href="/sponsors">Learn More</a>
 		</div>
-	</div>
-	<div id="HomeBottomGallery">
-		<img
-			alt="The Baja Car doing a massive jump"
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756589650/DSC_0970-min_telnpf_c_fill_w_780_h_400_o4vqdc.jpg"
-		/>
 	</div>
 </StdFromSide>
 
@@ -94,6 +103,7 @@
 		font-size: 36px;
 		margin-bottom: 2svh;
 		padding-bottom: 0.5svh;
+		text-align: center;
 	}
 
 	p {
@@ -101,6 +111,7 @@
 		margin: 1.5svh 0svw;
 		min-width: 0px;
 		padding: 0svh 0svw;
+		text-align: center;
 	}
 
 	a {
@@ -133,24 +144,10 @@
 		padding: 0 1svw;
 	}
 
-	#HomeBottomGallery {
-		height: 400px;
-		width: 780px;
-	}
-
-	#HomeBottomGallery img {
-		width: inherit;
-		height: inherit;
-	}
-
 	@media only screen and (max-width: 800px) {
 		div {
 			padding: 0svh 4svw;
 		}
-		/* .HomePageLayout div img {
-		width: 275px;
-		height: 275px;
-	} */
 
 		#HomeBottomGallery {
 			width: 80svw;
