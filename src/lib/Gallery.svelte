@@ -167,9 +167,15 @@
 </div>
 
 {#if dialogOpen}
-	<dialog open onclick={toggleDialog}>
-		<div>
-			<button onclick={toggleDialog}>✕</button>
+	<dialog open onclick={() => toggleDialog()}>
+		<div onclick={(e) => e.stopPropagation()}>
+			<button
+				class="close-btn"
+				onclick={(e) => {
+					e.stopPropagation();
+					toggleDialog();
+				}}>✕</button
+			>
 			<img id="window-image" src={selected} alt="Full View" class="full-image" />
 		</div>
 	</dialog>
@@ -297,8 +303,8 @@
 
 	dialog button {
 		position: absolute;
-		top: 33px;
-		right: 101px;
+		top: 32px;
+		right: 93px;
 		color: rgb(0, 0, 0);
 		font-size: 18px;
 		cursor: pointer;
