@@ -216,7 +216,7 @@
 		opacity: 0.8;
 	}
 
-	@media (min-width: 768px) {
+	@media (min-width: 950px) {
 		div:first-of-type > div:first-child > img {
 			flex: 0 0 33%;
 			max-width: 33%;
@@ -283,7 +283,7 @@
 		object-fit: contain;
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 950px) {
 		dialog div {
 			max-height: 90svw;
 			max-width: 90svw;
@@ -294,17 +294,17 @@
 			height: auto;
 		}
 
-		dialog button {
-			top: 12px;
-			right: 12px;
+		dialog div button {
+			top: 11%;
+			right: 11%;
 			font-size: 16px;
 		}
 	}
 
 	dialog button {
 		position: absolute;
-		top: 32px;
-		right: 93px;
+		top: 5%;
+		right: 7.5%;
 		color: rgb(0, 0, 0);
 		font-size: 18px;
 		cursor: pointer;
