@@ -169,7 +169,7 @@
 {#if dialogOpen}
 	<dialog open onclick={toggleDialog}>
 		<div>
-			<button onclick={closeDialog}>✕</button>
+			<button onclick={toggleDialog}>✕</button>
 			<img id="window-image" src={selected} alt="Full View" class="full-image" />
 		</div>
 	</dialog>
@@ -265,22 +265,42 @@
 
 	dialog div {
 		position: fixed;
-		max-width: 90%;
-		max-height: 90%;
+		max-width: 80%;
+		max-height: 80%;
+		margin-bottom: 5svh;
 	}
 
 	dialog #window-image {
-		height: 80svh;
-		width: 120svh;
+		max-height: 90%;
+		max-width: 90%;
 		border-radius: 10px;
+		object-fit: contain;
+	}
+
+	@media (max-width: 768px) {
+		dialog div {
+			max-height: 90svw;
+			max-width: 90svw;
+		}
+
+		dialog #window-image {
+			width: 100%;
+			height: auto;
+		}
+
+		dialog button {
+			top: 12px;
+			right: 12px;
+			font-size: 16px;
+		}
 	}
 
 	dialog button {
 		position: absolute;
-		top: 32px;
-		right: 32px;
+		top: 33px;
+		right: 101px;
 		color: rgb(0, 0, 0);
-		font-size: 20px;
+		font-size: 18px;
 		cursor: pointer;
 		border: none;
 		justify-content: right;
