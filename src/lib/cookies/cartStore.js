@@ -1,24 +1,32 @@
 import { browser } from '$app/environment';
-import { writable, derived } from 'svelte/store';
+import { writable, derived, get } from 'svelte/store';
 
 const STORAGE_KEY = 'UCalgaryBajaCart';
 
 function load() {
-	if (!browser) return '';
+	if (!browser) return [];
 	const json = sessionStorage.getItem(STORAGE_KEY);
-	return json
-		? JSON.parse(json)
-		: [
-				{
-					name: '',
-					colour: '',
-					price: 0,
-					priceLabel: '',
-					quantity: 0,
-					itemSize: '',
-					imageSrc: 'https://picsum.photos/200'
-				}
-			];
+	try {
+		const parsed = json ? JSON.parse(json) : [];
+		// ensure it’s always an array
+		return Array.isArray(parsed) ? parsed : [];
+	} catch {
+		return [];
+	}
+
+	// return json
+	// 	? JSON.parse(json)
+	// 	: [
+	// 			{
+	// 				name: '',
+	// 				colour: '',
+	// 				price: 0,
+	// 				priceLabel: '',
+	// 				quantity: 0,
+	// 				itemSize: '',
+	// 				imageSrc: 'https://picsum.photos/200'
+	// 			}
+	// 		];
 }
 
 function save(info) {
@@ -31,6 +39,10 @@ const store = writable(load());
 if (browser) {
 	store.subscribe((value) => save(value));
 }
+
+const formatted_subtotal = derived(store, ($cart) =>
+	$cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)
+);
 
 export const cartStore = {
 	subscribe: store.subscribe,
@@ -61,7 +73,43 @@ export const cartStore = {
 		return value;
 	},
 
-	formatted_subtotal: derived(store, ($cart) =>
-		$cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
-	)
+	formatted_subtotal,
+
+	// formatted_subtotal: derived(store, ($cart) =>
+	// 	$cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+	// ),
+	// let subtotal = $derived($cartStore.reduce((sum, item) => sum + item.price * item.quantity, 0));
+
+	// get formatted_subtotal() {
+	// 	const value = get(store); // get the current cart array
+	// 	const subtotal = value.reduce((sum, item) => sum + item.price * item.quantity, 0);
+	// 	return subtotal.toFixed(2);
+	// },
+
+	// formatted_subtotal: derived(store, ($cart) =>
+	// 	$cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+	// ),
+
+	// (store, ($cart) =>
+
+	addToCart(product, qty, selectedColour, selectedSize) {
+		let item = {
+			name: product.name,
+			colour: selectedColour,
+			price: product.price,
+			quantity: qty,
+			itemSize: selectedSize,
+			imageSrc: product.url_images[0]
+		};
+
+		store.update((cart) => {
+			cart.push(item);
+			save(cart);
+			return cart;
+		});
+
+		return new Promise((resolve) => {
+			setTimeout(() => resolve(true), 300);
+		});
+	}
 };

@@ -1,7 +1,7 @@
 <script>
 	import TopBanner from '$lib/components/Merch/MerchTopBanner.svelte';
 	import CartItemScroll from '$lib/components/Merch/CartItemScroll.svelte';
-	import { cartStore } from '$lib/cookies/cartStore';
+	import { cartStore } from '$lib/cookies/cartStore.js';
 	// import { cartStore, formattedSubtotal } from '../cartStore.svelte.js';
 
 	import { goto } from '$app/navigation';
@@ -88,8 +88,9 @@
 		'Team'
 	];
 
+	let disableCheckout = $derived(parseFloat(cartStore.formatted_subtotal) <= 0);
+
 	const cartHeightLimiter = $derived(member ? 775 : 1318);
-	$inspect(member);
 </script>
 
 <TopBanner
@@ -180,7 +181,14 @@
 		<h4>Payment:</h4>
 		<p class="payment-note">Will be manually processed at a later date.</p>
 
-		<button type="submit" class="place-order-btn"> Place Order </button>
+		<button
+			type="submit"
+			class="place-order-btn"
+			style={disableCheckout ? 'background-color:grey; cursor: default;' : ''}
+			disabled={disableCheckout}
+		>
+			Place Order
+		</button>
 	</form>
 
 	<aside>

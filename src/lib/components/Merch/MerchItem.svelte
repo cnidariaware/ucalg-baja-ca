@@ -1,4 +1,5 @@
 <script>
+	import { cartStore } from '$lib/cookies/cartStore.js';
 	import { loadMerchItems } from '$lib/cookies/shopItems';
 	let { product } = $props();
 	// const product = {
@@ -26,15 +27,21 @@
 	const dec = () => (qty = Math.max(1, qty - 1));
 	const inc = () => (qty = qty + 1);
 
-	let selectedColor = $state(product.colours[0] ?? '');
+	let selectedColour = $state(product.colours[0] ?? '');
 	let selectedSize = $state(product.sizes_available[0] ?? '');
 
-	function addToCart() {
-		alert(
-			`Added ${qty} x ${product.name}` +
-				(selectedColor ? ` (${selectedColor})` : '') +
-				(selectedSize ? ` [${selectedSize}]` : '')
-		);
+	let addToCartButton = $state(true);
+
+	async function addToCart() {
+		// alert(
+		// 	`Added ${qty} x ${product.name}` +
+		// 		(selectedColour ? ` (${selectedColour})` : '') +
+		// 		(selectedSize ? ` [${selectedSize}]` : '')
+		// );
+
+		addToCartButton = false;
+
+		addToCartButton = await cartStore.addToCart(product, qty, selectedColour, selectedSize);
 	}
 </script>
 
@@ -80,7 +87,7 @@
 				{#if product.colours.length}
 					<label class="field">
 						<span>Color</span>
-						<select bind:value={selectedColor}>
+						<select bind:value={selectedColour}>
 							{#each product.colours as c}
 								<option value={c}>{c}</option>
 							{/each}
@@ -110,7 +117,14 @@
 						>
 					</div>
 
-					<button type="button" class="add-to-cart" onclick={addToCart}>Add to Cart</button>
+					<button
+						type="button"
+						class="add-to-cart"
+						onclick={addToCart}
+						disabled={!addToCartButton}
+						style={addToCartButton ? '' : 'background-color: grey; color: var(--BajaBlack)'}
+						>{addToCartButton ? 'Add to Cart' : 'Adding...'}
+					</button>
 				</div>
 
 				<hr />

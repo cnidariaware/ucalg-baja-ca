@@ -4,7 +4,12 @@
 	// const formatPrice = (price) => `$${price.toFixed(2)}`;
 
 	// reactive subtotal: sum of price * quantity
-	// let subtotal = $derived($cartStore.reduce((sum, item) => sum + item.price * item.quantity, 0));
+	// let subtotal = $derived(
+	// 	$cartStore.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
+	// );
+
+	let total = $derived(cartStore.formatted_subtotal);
+	$inspect(total);
 </script>
 
 <div class="cart-body">
@@ -66,6 +71,7 @@
 	<footer>
 		<span class="label">Subtotal:</span>
 		<div class="subtotal-value">
+			<!-- {$inspect(cartStore.formatted_subtotal)} -->
 			<span>${$cartStore.formatted_subtotal}</span>
 			<span class="beforetax">(Before Taxes and Shipping)</span>
 		</div>

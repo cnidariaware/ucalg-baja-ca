@@ -25,6 +25,17 @@ export async function loadMerchItems() {
 	}
 }
 
+export async function merchCategories() {
+	if (!browser) return [];
+
+	const merchList = await loadMerchItems();
+
+	// Extract the category of each item
+	const categories = merchList.map((item) => item.category);
+	// Return unique categories
+	return Array.from(new Set(categories));
+}
+
 /*
 <script>
   import { loadMerchItems } from '$lib/merch';
