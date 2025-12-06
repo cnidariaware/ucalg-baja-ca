@@ -113,7 +113,8 @@
 	nav a:hover {
 		color: var(--BajaRed);
 	}
-	/* cart pop up css */
+	
+	/* cart pop-up css */
 	.cart-btn {
 		background: transparent;
 		border: none;
@@ -181,6 +182,7 @@
 	#topheader {
 		color: white;
 	}
+
 	.side-cart .items {
 		flex: 1;
 		overflow-y: auto;
