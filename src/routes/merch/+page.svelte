@@ -2,51 +2,6 @@
 	import { loadMerchItems } from '$lib/cookies/shopItems';
 	import TopBanner from '$lib/components/Merch/MerchTopBanner.svelte';
 	import ProductCard from '$lib/components/Merch/ProductCard.svelte';
-
-	// const items = [
-	// 	{
-	// 		category: 'Category',
-	// 		name: 'Item Name',
-	// 		price: '$49.99',
-	// 		imageSrc: 'https://picsum.photos/200'
-	// 	},
-	// 	{
-	// 		category: 'Category',
-	// 		name: 'Item Name',
-	// 		price: '$59.99',
-	// 		imageSrc: 'https://picsum.photos/200'
-	// 	},
-	// 	{
-	// 		category: 'Category',
-	// 		name: 'Item Name',
-	// 		price: '$39.99',
-	// 		imageSrc: 'https://picsum.photos/200'
-	// 	},
-	// 	{
-	// 		category: 'Category',
-	// 		name: 'Item Name',
-	// 		price: '$39.99',
-	// 		imageSrc: 'https://picsum.photos/200'
-	// 	},
-	// 	{
-	// 		category: 'Category',
-	// 		name: 'Item Name',
-	// 		price: '$39.99',
-	// 		imageSrc: 'https://picsum.photos/200'
-	// 	},
-	// 	{
-	// 		category: 'Category',
-	// 		name: 'Item Name',
-	// 		price: '$39.99',
-	// 		imageSrc: 'https://picsum.photos/200'
-	// 	},
-	// 	{
-	// 		category: 'Category',
-	// 		name: 'Item Name',
-	// 		price: '$39.99',
-	// 		imageSrc: 'https://picsum.photos/200'
-	// 	}
-	// ];
 </script>
 
 <TopBanner
@@ -58,7 +13,7 @@
 	<p>Loading...</p>
 {:then merchItems}
 	<div class="product-grid">
-		{#each merchItems as i, idx (idx)}
+		{#each merchItems as i}
 			<ProductCard category={i.category} name={i.name} price={i.price} imageSrc={i.url_images[0]} />
 		{/each}
 	</div>

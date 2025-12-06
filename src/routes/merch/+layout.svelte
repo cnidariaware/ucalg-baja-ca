@@ -1,8 +1,23 @@
 <script>
 	import TopBanner from '$lib/components/TopBanner.svelte';
 	import CartItemScroll from '$lib/components/Merch/CartItemScroll.svelte';
+	import { merchCategories } from '$lib/cookies/shopItems';
+	import { browser } from '$app/environment';
+	import { cartStore } from '$lib/cookies/cartStore.js';
 	let { children } = $props();
 	let { showCart } = $state({ showCart: false });
+
+	// let disableCheckout = $derived(() => {
+	// 	if (cartStore.formatted_subtotal <= 0) {
+	// 		return true;
+	// 	} else {
+	// 		false;
+	// 	}
+	// });
+
+	let disableCheckout = $derived(parseFloat(cartStore.formatted_subtotal) <= 0);
+
+	const categories = merchCategories();
 
 	// prevent background scroll when cart is open
 	$effect(() => {
@@ -20,15 +35,29 @@
 			<li>
 				<a href={'/merch'}>ALL DROPS</a>
 			</li>
-			<li>
-				<a href={'/merch/heavy'}>HEAVY WEAR</a>
+			{#await merchCategories() then categories}
+				{#if categories.length === 0}
+					<p>Failed to get merch Items</p>
+				{:else}
+					{#each categories as cat, index}
+						<li key={index}>
+							<a href={'/merch/category/' + cat}>{cat.toUpperCase()}</a>
+						</li>
+					{/each}
+				{/if}
+			{:catch}
+				<p>An Error occured</p>
+			{/await}
+
+			<!-- <li>
+				<a href={'/merch/category/heavy'}>HEAVY WEAR</a>
 			</li>
 			<li>
-				<a href={'/merch/soft'}>SOFT WEAR</a>
+				<a href={'/merch/category/soft'}>SOFT WEAR</a>
 			</li>
 			<li>
-				<a href={'/merch/accesories'}>ACCESORIES</a>
-			</li>
+				<a href={'/merch/category/accesories'}>ACCESORIES</a>
+			</li> -->
 		</ul>
 	</nav>
 	<button class="cart-btn" onclick={() => (showCart = true)} aria-label="Open cart">
@@ -54,9 +83,21 @@
 		<CartItemScroll />
 	</main>
 	<footer>
-		<a href="/merch/checkout" class="checkout-btn" id="checkout" onclick={() => (showCart = false)}
-			>Checkout</a
+		<a
+			href="/merch/checkout"
+			class="checkout-btn"
+			id="checkout"
+			onclick={(e) => {
+				if (disableCheckout) {
+					event.preventDefault(); // stops navigation
+				} else {
+					showCart = false;
+				}
+			}}
+			style={disableCheckout ? 'background-color:grey; cursor: default;' : ''}
 		>
+			Checkout
+		</a>
 	</footer>
 </aside>
 

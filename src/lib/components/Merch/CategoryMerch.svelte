@@ -1,25 +1,28 @@
 <script>
 	import TopBanner from '$lib/components/Merch/MerchTopBanner.svelte';
 	import MerchItem from '$lib/components/Merch/MerchItem.svelte';
-	import { loadMerchItems } from '$lib/cookies/shopItems';
+	import { loadMerchItems, merchCategories } from '$lib/cookies/shopItems';
 	import ProductCard from '$lib/components/Merch/ProductCard.svelte';
+	import { page } from '$app/state';
+
+	let categoryType = $derived(page.params.slug);
+
+	const matchesCategory = (backendCategory, urlCategory) => {
+		return backendCategory.toLowerCase().startsWith(urlCategory.toLowerCase());
+	};
 </script>
 
-<TopBanner
-	titleText="Heavy Wear"
-	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914996/DSC_0393_inuw2z.jpg"
-/>
-
-{#await loadMerchItems()}
+{#await Promise.all([loadMerchItems(), merchCategories()])}
 	<p>Loading...</p>
-{:then merchList}
+{:then [merchList, categories]}
 	{#if merchList === 0}
 		<p>Could not get merch items</p>
+	{:else if !categories.includes(categoryType)}
+		<p>Category "{categoryType}" does not exist</p>
 	{:else}
-		{console.log(merchList)}
 		<div>
 			{#each merchList as merchItem, index}
-				{#if merchItem.category === 'heavy-wear'}
+				{#if matchesCategory(merchItem.category, categoryType)}
 					<ProductCard
 						category={merchItem.category}
 						name={merchItem.name}
@@ -33,8 +36,6 @@
 {:catch}
 	<p>An Error has occured</p>
 {/await}
-
-<!-- <MerchItem /> -->
 
 <style>
 	div {
