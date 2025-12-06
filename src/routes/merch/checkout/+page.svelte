@@ -1,6 +1,6 @@
 <script>
-	import TopBanner from '../MerchTopBanner.svelte';
-	import CartItemScroll from '../cartItemScroll.svelte';
+	import TopBanner from '$lib/components/Merch/MerchTopBanner.svelte';
+	import CartItemScroll from '$lib/components/Merch/CartItemScroll.svelte';
 	import { cartStore } from '$lib/cookies/cartStore';
 	// import { cartStore, formattedSubtotal } from '../cartStore.svelte.js';
 

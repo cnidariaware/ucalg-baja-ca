@@ -1,32 +1,33 @@
 <script>
 	import { loadMerchItems } from '$lib/cookies/shopItems';
-	const product = {
-		category: 'HeavyWear',
-		name: 'Floof Hoodie',
-		price: 49.99,
-		description: 'This is a really beautiful hoodie. Please buy it.',
-		images: [
-			'https://picsum.photos/seed/hoodie-1/800',
-			'https://picsum.photos/seed/hoodie-2/800',
-			'https://picsum.photos/seed/hoodie-3/800'
-		],
-		colors: ['Black', 'Red', 'Sand'],
-		sizes: ['S', 'M', 'L', 'XL'],
-		material: '100% Cotton (200gsm jersey)',
-		washing: 'Cold wash, inside out. Tumble dry low.',
-		sizeGuideUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-	};
+	let { product } = $props();
+	// const product = {
+	// 	category: 'HeavyWear',
+	// 	name: 'Floof Hoodie',
+	// 	price: 49.99,
+	// 	description: 'This is a really beautiful hoodie. Please buy it.',
+	// 	images: [
+	// 		'https://picsum.photos/seed/hoodie-1/800',
+	// 		'https://picsum.photos/seed/hoodie-2/800',
+	// 		'https://picsum.photos/seed/hoodie-3/800'
+	// 	],
+	// 	colours: ['Black', 'Red', 'Sand'],
+	// 	sizes: ['S', 'M', 'L', 'XL'],
+	// 	material: '100% Cotton (200gsm jersey)',
+	// 	washing: 'Cold wash, inside out. Tumble dry low.',
+	// 	sizeGuideUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+	// };
 
-	let idx = 0;
-	const prev = () => (idx = (idx - 1 + product.images.length) % product.images.length);
-	const next = () => (idx = (idx + 1) % product.images.length);
+	let idx = $state(0);
+	const prev = () => (idx = (idx - 1 + product.url_images.length) % product.url_images.length);
+	const next = () => (idx = (idx + 1) % product.url_images.length);
 
-	let qty = 1;
+	let qty = $state(1);
 	const dec = () => (qty = Math.max(1, qty - 1));
 	const inc = () => (qty = qty + 1);
 
-	let selectedColor = product.colors[0] ?? '';
-	let selectedSize = product.sizes[0] ?? '';
+	let selectedColor = $state(product.colours[0] ?? '');
+	let selectedSize = $state(product.sizes_available[0] ?? '');
 
 	function addToCart() {
 		alert(
@@ -47,19 +48,19 @@
 		<div class="product-page">
 			<section class="gallery">
 				<figure class="frame">
-					<button type="button" class="nav left" aria-label="Previous image" on:click={prev}
+					<button type="button" class="nav left" aria-label="Previous image" onclick={prev}
 						>‹</button
 					>
 
-					<img alt={product.name} src={product.images[idx]} />
+					<img alt={product.name} src={product.url_images[idx]} />
 
-					<button type="button" class="nav right" aria-label="Next image" on:click={next}>›</button>
+					<button type="button" class="nav right" aria-label="Next image" onclick={next}>›</button>
 
 					<button
 						type="button"
 						class="icon corner-right"
 						aria-label="Open in new tab"
-						on:click={() => window.open(product.images[idx], '_blank')}>↗</button
+						onclick={() => window.open(product.url_images[idx], '_blank')}>↗</button
 					>
 				</figure>
 			</section>
@@ -68,7 +69,7 @@
 				<div class="title">
 					<div class="category">Merch / {product.category}</div>
 					<h1>{product.name}</h1>
-					<div class="price">${product.price.toFixed(2)}</div>
+					<div class="price">${product.price}</div>
 				</div>
 
 				<div class="desc">
@@ -76,22 +77,22 @@
 					<p>{product.description}</p>
 				</div>
 
-				{#if product.colors.length}
+				{#if product.colours.length}
 					<label class="field">
 						<span>Color</span>
 						<select bind:value={selectedColor}>
-							{#each product.colors as c}
+							{#each product.colours as c}
 								<option value={c}>{c}</option>
 							{/each}
 						</select>
 					</label>
 				{/if}
 
-				{#if product.sizes.length}
+				{#if product.sizes_available.length}
 					<label class="field">
 						<span>Size</span>
 						<select bind:value={selectedSize}>
-							{#each product.sizes as s}
+							{#each product.sizes_available as s}
 								<option value={s}>{s}</option>
 							{/each}
 						</select>
@@ -100,33 +101,38 @@
 
 				<div class="purchase-row">
 					<div class="qty">
-						<button type="button" class="square" on:click={dec} aria-label="Decrease quantity"
+						<button type="button" class="square" onclick={dec} aria-label="Decrease quantity"
 							>-</button
 						>
 						<input class="count" type="number" min="1" bind:value={qty} />
-						<button type="button" class="square" on:click={inc} aria-label="Increase quantity"
+						<button type="button" class="square" onclick={inc} aria-label="Increase quantity"
 							>+</button
 						>
 					</div>
 
-					<button type="button" class="add-to-cart" on:click={addToCart}>Add to Cart</button>
+					<button type="button" class="add-to-cart" onclick={addToCart}>Add to Cart</button>
 				</div>
 
 				<hr />
 
 				<div class="details">
-					<div class="subtitle">Additional Details</div>
+					<h3 class="subtitle">Additional Details</h3>
 					<dl>
 						<dt>Material</dt>
 						<dd>{product.material}</dd>
 
-						{#if product.washing}
+						{#if product.cleaning}
 							<dt>Washing / Drying</dt>
-							<dd>{product.washing}</dd>
+							<dd>{product.cleaning}</dd>
+						{/if}
+
+						{#if product.additional_details}
+							<dt>Additional Information</dt>
+							<dd>{product.additional_details}</dd>
 						{/if}
 
 						<dt>Size Guide</dt>
-						<dd><a href={product.sizeGuideUrl}>View size guide</a></dd>
+						<dd><a href={product.size_guide_img_url}>View size guide</a></dd>
 					</dl>
 				</div>
 			</section>

@@ -13,7 +13,7 @@ export async function loadMerchItems() {
 
 	// Fetch from backend if not in localStorage
 	try {
-		const res = await fetch('https://your-backend-url.com/merchitems');
+		const res = await fetch('http://localhost:6526/shop/merch');
 		if (!res.ok) throw new Error('Failed to fetch merch items');
 
 		const data = await res.json();
