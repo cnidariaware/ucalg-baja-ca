@@ -8,7 +8,7 @@ function load() {
 	const json = sessionStorage.getItem(STORAGE_KEY);
 	try {
 		const parsed = json ? JSON.parse(json) : [];
-		// ensure it’s always an array
+		// ensure it is always an array
 		return Array.isArray(parsed) ? parsed : [];
 	} catch {
 		return [];
