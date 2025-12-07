@@ -1,8 +1,7 @@
 <script>
 	import CategoryMerch from '$lib/components/Merch/CategoryMerch.svelte';
-
-	import { page } from '$app/state';
 	import TopBanner from '$lib/components/TopBanner.svelte';
+	import { page } from '$app/state';
 
 	let categoryType = $derived(
 		page.params.slug

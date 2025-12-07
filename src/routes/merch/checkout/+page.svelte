@@ -2,12 +2,15 @@
 	import TopBanner from '$lib/components/Merch/MerchTopBanner.svelte';
 	import CartItemScroll from '$lib/components/Merch/CartItemScroll.svelte';
 	import { cartStore } from '$lib/cookies/cartStore.js';
-	// import { cartStore, formattedSubtotal } from '../cartStore.svelte.js';
-
 	import { goto } from '$app/navigation';
+
+	const orderTotal = cartStore.formatted_subtotal;
+
+	let checkoutEnabled = $state(true);
 
 	async function handleSubmit(event) {
 		event.preventDefault();
+		checkoutEnabled = false;
 		let formData = new FormData(event.target);
 		let formObject = Object.fromEntries(formData.entries());
 
@@ -33,7 +36,7 @@
 				phone: formObject.phone,
 				name: formObject.name,
 				sub_team: subTeam,
-				order_total: parseFloat(cartStore.formatted_subtotal()),
+				order_total: parseFloat($orderTotal),
 				ship_full_name: formObject.shippingFullName,
 				ship_street_addr: formObject.shippingStreet,
 				ship_unit_number: formObject.shippingUnit,
@@ -50,8 +53,6 @@
 		};
 		console.log(orderRequest);
 
-		// console.log(JSON.stringify(orderRequest));
-
 		let res = await fetch('http://localhost:6526/shop/recieve_order', {
 			method: 'POST',
 			headers: {
@@ -59,11 +60,13 @@
 			},
 			body: JSON.stringify(orderRequest)
 		});
-		console.log(await res.json());
+		// console.log(await res.json());
 
-		if (false) {
+		cartStore.removeAll();
+		checkoutEnabled = true;
+		if (res.body.success) {
 			if (event.target.checkValidity()) {
-				goto('/merch/orderconfirmed');
+				location.replace('/merch/orderconfirmed');
 			}
 		}
 	}
@@ -184,10 +187,10 @@
 		<button
 			type="submit"
 			class="place-order-btn"
-			style={disableCheckout ? 'background-color:grey; cursor: default;' : ''}
-			disabled={disableCheckout}
+			style={disableCheckout || !checkoutEnabled ? 'background-color:grey; cursor: default;' : ''}
+			disabled={disableCheckout || !checkoutEnabled}
 		>
-			Place Order
+			{checkoutEnabled ? 'Place Order' : 'Submitting Order...'}
 		</button>
 	</form>
 

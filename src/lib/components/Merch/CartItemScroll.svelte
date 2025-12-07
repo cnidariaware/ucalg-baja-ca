@@ -8,8 +8,8 @@
 	// 	$cartStore.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
 	// );
 
-	let total = $derived(cartStore.formatted_subtotal);
-	$inspect(total);
+	const total = cartStore.formatted_subtotal;
+	$inspect($total);
 </script>
 
 <div class="cart-body">
@@ -72,7 +72,7 @@
 		<span class="label">Subtotal:</span>
 		<div class="subtotal-value">
 			<!-- {$inspect(cartStore.formatted_subtotal)} -->
-			<span>${$cartStore.formatted_subtotal}</span>
+			<span>${$total}</span>
 			<span class="beforetax">(Before Taxes and Shipping)</span>
 		</div>
 	</footer>
