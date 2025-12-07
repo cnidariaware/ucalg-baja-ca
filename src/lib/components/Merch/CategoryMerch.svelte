@@ -1,9 +1,9 @@
 <script>
-	import TopBanner from '$lib/components/Merch/MerchTopBanner.svelte';
 	import MerchItem from '$lib/components/Merch/MerchItem.svelte';
 	import { loadMerchItems, merchCategories } from '$lib/cookies/shopItems';
 	import ProductCard from '$lib/components/Merch/ProductCard.svelte';
 	import { page } from '$app/state';
+	import TopBanner from '$lib/components/TopBanner.svelte';
 
 	let categoryType = $derived(page.params.slug);
 

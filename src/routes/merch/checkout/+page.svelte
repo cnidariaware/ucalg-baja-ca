@@ -1,5 +1,5 @@
 <script>
-	import TopBanner from '$lib/components/Merch/MerchTopBanner.svelte';
+	import TopBanner from '$lib/components/TopBanner.svelte';
 	import CartItemScroll from '$lib/components/Merch/CartItemScroll.svelte';
 	import { cartStore } from '$lib/cookies/cartStore.js';
 	import { goto } from '$app/navigation';
