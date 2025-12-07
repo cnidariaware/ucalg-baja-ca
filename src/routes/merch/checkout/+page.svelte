@@ -53,7 +53,7 @@
 		};
 		console.log(orderRequest);
 
-		let res = await fetch('http://localhost:6526/shop/recieve_order', {
+		let res = await fetch('https://api.ucalgarybaja.ca/shop/recieve_order', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
