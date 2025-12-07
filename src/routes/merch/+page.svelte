@@ -1,7 +1,7 @@
 <script>
 	import { loadMerchItems } from '$lib/cookies/shopItems';
-	import TopBanner from '$lib/components/Merch/MerchTopBanner.svelte';
 	import ProductCard from '$lib/components/Merch/ProductCard.svelte';
+	import TopBanner from '$lib/components/TopBanner.svelte';
 </script>
 
 <TopBanner
