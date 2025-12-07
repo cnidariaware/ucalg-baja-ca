@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { writable, derived, get } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
 const STORAGE_KEY = 'UCalgaryBajaCart';
 
@@ -40,10 +40,6 @@ if (browser) {
 	store.subscribe((value) => save(value));
 }
 
-const formatted_subtotal = derived(store, ($cart) =>
-	$cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)
-);
-
 export const cartStore = {
 	subscribe: store.subscribe,
 	inc(index) {
@@ -73,24 +69,9 @@ export const cartStore = {
 		return value;
 	},
 
-	formatted_subtotal,
-
-	// formatted_subtotal: derived(store, ($cart) =>
-	// 	$cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
-	// ),
-	// let subtotal = $derived($cartStore.reduce((sum, item) => sum + item.price * item.quantity, 0));
-
-	// get formatted_subtotal() {
-	// 	const value = get(store); // get the current cart array
-	// 	const subtotal = value.reduce((sum, item) => sum + item.price * item.quantity, 0);
-	// 	return subtotal.toFixed(2);
-	// },
-
-	// formatted_subtotal: derived(store, ($cart) =>
-	// 	$cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
-	// ),
-
-	// (store, ($cart) =>
+	formatted_subtotal: derived(store, ($cart) =>
+		$cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)
+	),
 
 	addToCart(product, qty, selectedColour, selectedSize) {
 		let item = {
@@ -111,5 +92,9 @@ export const cartStore = {
 		return new Promise((resolve) => {
 			setTimeout(() => resolve(true), 300);
 		});
+	},
+
+	removeAll() {
+		store.set([]);
 	}
 };

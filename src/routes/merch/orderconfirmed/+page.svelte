@@ -1,14 +1,10 @@
 <script>
-	import '$lib/assets/global.css';
-
 	const handleExit = () => {
 		window.location.href = '/';
 	};
 </script>
 
-<svelte:head>
-	<title>UCalgary Baja - Order Successfully Placed</title>
-</svelte:head>
+<title>UCalgary Baja - Order Successfully Placed</title>
 
 <main class="order-success-page">
 	<section class="order-card">
