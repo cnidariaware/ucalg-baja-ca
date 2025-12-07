@@ -9,7 +9,7 @@
 	// );
 
 	const total = cartStore.formatted_subtotal;
-	$inspect($total);
+	// $inspect($total);
 </script>
 
 <div class="cart-body">
