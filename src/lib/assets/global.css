@@ -11,6 +11,9 @@
 	--BajaWhite: #fff;
 
 	--BajaRadius: 1rem;
+
+	--card-background-color: rgba(38, 38, 38, 0.5);
+	--card-border-radius: 0.5rem;
 }
 body {
 	margin: 0px;
