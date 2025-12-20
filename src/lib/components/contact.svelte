@@ -92,6 +92,7 @@
 		color: var(--BajaWhite);
 		align-items: start;
 		width: 100%;
+		box-sizing: border-box;
 	}
 
 	/* Textareas */
@@ -106,6 +107,7 @@
 		align-items: start;
 		min-height: 15svh;
 		width: 100%;
+		box-sizing: border-box;
 	}
 
 	/* Submit button */
