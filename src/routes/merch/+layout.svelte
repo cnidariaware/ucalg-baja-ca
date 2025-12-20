@@ -28,6 +28,8 @@
 	});
 </script>
 
+<title>UCalgary Baja - Merch</title>
+
 <header>
 	<div id="headerdiv"></div>
 	<nav>
