@@ -11,16 +11,11 @@
 	 * @author Siddharth Engineer <siddharthengineer24@gmail.com>
 	 */
 	const getSponsors = async () => {
-		let sponsors = await fetch('http://localhost:6526/sponsors');
-		// let test = await sponsors.json();
-		// sponsorInfo = await test;
+		let sponsors = await fetch('https://api.ucalgarybaja.ca/sponsors');
 		return sponsors;
 	};
 
-	// $inspect(sponsorInfo);
-
 	$effect(async () => {
-		// sponsorPromise = fetch('http://localhost:6526/sponsors').then((res) => res.json());
 		sponsorPromise = (async () => {
 			let res = await getSponsors();
 			if (!res.ok) {

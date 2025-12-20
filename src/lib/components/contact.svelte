@@ -6,6 +6,12 @@
 	let message = $state('');
 	let isButtonDisabled = $state(false);
 	let submitText = $state('Submit');
+	/**
+	 * @param e Event
+	 * @return none
+	 * @description Handles form submission by sending the form data to a Discord webhook. Disables the submit button while processing and resets the form after submission.
+	 * @author Siddharth Engineer <siddharthengineer24@gmail.com>
+	 */
 	async function formSubmit(e) {
 		e.preventDefault();
 		isButtonDisabled = true;
@@ -39,32 +45,26 @@
 </script>
 
 <form onsubmit={(e) => formSubmit(e)}>
-	<div>
-		<label for="Name">Name</label>
-		<input name="Name" bind:value={name} required />
+	<label for="Name">Name</label>
+	<input name="Name" bind:value={name} required />
 
-		<label for="Email">Email</label>
-		<input name="Email" type="email" bind:value={email} required />
+	<label for="Email">Email</label>
+	<input name="Email" type="email" bind:value={email} required />
 
-		<label for="Message">Message</label>
-		<textarea name="Message" bind:value={message} required></textarea>
+	<label for="Message">Message</label>
+	<textarea name="Message" bind:value={message} required></textarea>
 
-		<span></span>
+	<input type="hidden" name="redirect" value={resolve('/thank-you')} />
 
-		<button type="submit" disabled={isButtonDisabled}>
-			{submitText}
-		</button>
-	</div>
+	<span></span>
+
+	<button type="submit" disabled={isButtonDisabled}>
+		{submitText}
+	</button>
 </form>
 
 <style>
-	/* ROOT VARIABLES */
-	:root {
-		--card-background-color: rgba(38, 38, 38, 0.5);
-		--card-border-radius: 0.5rem;
-	}
-
-	div {
+	form {
 		display: flex;
 		flex-direction: column;
 		align-items: start;
@@ -127,7 +127,6 @@
 
 	/* Spacer element */
 	span {
-		background-color: var(--card-background-color);
 		border-radius: var(--card-border-radius);
 		border-color: rgba(245, 245, 245, 0.5);
 		border-width: 2px;
