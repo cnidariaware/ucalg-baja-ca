@@ -146,7 +146,7 @@
 		fundraising, sourcing materials, team management, and project coordination. We deeply value the
 		partnership with our sponsors, as their support makes every project and competition possible. If
 		you're interested in sponsoring UCalgary Baja, please contact our team captain at
-		<a href="mailto:club@ucalgarybaja.ca">club@ucalgarybaja.ca</a>. Below, you can find our sponsorship package detailing the opportunities
+		<a href="mailto:club@ucalgarybaja.ca"><strong>club@ucalgarybaja.ca</strong></a>. Below, you can find our sponsorship package detailing the opportunities
 		available.
 	</p>
 	<h4>Sponsor Us</h4>
@@ -174,7 +174,13 @@
 	}
 	a {
 		text-decoration: none;
+		color: inherit;
+
+		&:hover {
+			color: var(--BajaRed)
+		} 
 	}
+
 	div {
 		background-color: var(--BajaBlack);
 		padding-top: 0.33em;
