@@ -1,0 +1,104 @@
+name: '🦋 Bug Report (web interface / frontend)'
+description: "[Advanced users only] Something doesn't look or behave as it should in the web UI? Report it here."
+title: 'bug: '
+labels: ['bug/new-report', 'forgejo/ui']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Before you start
+
+        - Please use English, as this is the language all maintainers share.
+
+        - Be respectful and follow the [Forgejo Code of Conduct](https://codeberg.org/forgejo/code-of-conduct).
+
+        - This template is intended for web interface / frontend issues  
+            (layout problems, visual glitches, unexpected UI behavior).
+
+        - Please ensure you are using the latest Forgejo release, and check whether the issue has already been reported.
+
+        If you are unsure whether this is a frontend or backend issue, choose the one that best matches what you observe.
+
+  - type: textarea
+
+    id: description
+
+    attributes:
+      label: 'Bug description'
+
+      description: |
+        Describe what you observed and what you expected to happen instead.
+          Focus on visible behavior in the web interface.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: steps
+
+    attributes:
+      label: 'Steps to reproduce'
+
+      description: |
+        List the steps needed to reproduce the issue, starting from a fresh page load if possible.
+          Be as precise as you can.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: expected
+
+    attributes:
+      label: 'Expected behavior'
+
+      description: |
+        Describe what you expected the UI to do.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: actual
+
+    attributes:
+      label: 'Actual behavior'
+
+      description: |
+        Describe what actually happened instead.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: environment
+
+    attributes:
+      label: 'Environment'
+
+      description: |
+        Please include:
+        - Browser and version
+
+        - Operating system
+
+        - Forgejo version
+
+        - Any relevant UI-related configuration
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: screenshots
+
+    attributes:
+      label: 'Screenshots or screen recordings'
+      description: |
+        Optional but highly encouraged. Visual evidence helps a lot with UI issues.

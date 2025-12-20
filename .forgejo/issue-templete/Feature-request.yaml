@@ -1,0 +1,58 @@
+name: '💡 Feature Request'
+description: 'Have an idea for a feature Forgejo doesn’t support yet? Suggest it here.'
+title: 'feat: '
+labels: ['enhancement/feature']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Before you start
+
+        - Please use English, as this is the language all maintainers share.
+
+        - Be clear and concise — overly verbose requests are harder to evaluate and implement.
+
+        - Be respectful and follow the [Forgejo Code of Conduct](https://codeberg.org/forgejo/code-of-conduct).
+
+        - Make sure you are using the latest Forgejo release, and take a moment to
+          [check whether this feature has already been suggested](https://codeberg.org/forgejo/forgejo/issues?q=&type=all&labels=78139).
+
+  - type: textarea
+
+    id: needs-benefits
+
+    attributes:
+      label: 'Needs and benefits'
+
+      description: |
+        Describe the problem this feature would solve or the benefits it would provide.
+          Focus on why this feature is useful.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: description
+
+    attributes:
+      label: 'Feature description'
+
+      description: |
+        Describe the feature you would like to see added to Forgejo, or the changes you propose.
+          Try to focus on the intended behavior rather than implementation details.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: screenshots
+
+    attributes:
+      label: 'Screenshots or examples'
+
+      description: |
+        Optional. If available, include screenshots or examples from other platforms
+          (e.g. GitHub, GitLab) to help illustrate the idea.

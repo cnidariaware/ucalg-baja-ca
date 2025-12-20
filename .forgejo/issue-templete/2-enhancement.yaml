@@ -1,0 +1,67 @@
+name: 'Step 2: Enhancement'
+description: 'Propose a solution to one or more problems reported in Step 1.'
+title: 'enh: '
+labels: ['enhancement/feature']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Before you start
+
+        - Please use English, as this is the language all maintainers share.
+
+        - Be respectful and follow the [Forgejo Code of Conduct](https://codeberg.org/forgejo/code-of-conduct).
+
+        - This template is Step 2 of a two-step workflow.
+
+        The purpose of this step is to **discuss potential solutions** to problems that have already been reported.
+          If you'd like more context, see the discussion that led to this workflow:  
+            https://codeberg.org/forgejo/discussions/issues/415  
+          Feedback is very welcome.
+
+  - type: textarea
+
+    id: problems
+
+    attributes:
+      label: 'Existing problems this enhancement addresses'
+
+      description: |
+        List the issue numbers or links for the reported problems this enhancement aims to solve.
+
+        If the underlying problem has not been described yet, please complete  
+          [Step 1: Report a problem or need](https://codeberg.org/forgejo/forgejo/issues/new?template=.forgejo%2fissue_template%2fproblem.yaml)
+          before proposing an enhancement.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: description
+
+    attributes:
+      label: 'Enhancement description'
+
+      description: |
+        Describe the changes you suggest for Forgejo and explain **how they address the listed problems**.
+          Try to be concise and focused.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: details
+
+    attributes:
+      label: 'Details and notes'
+
+      description: |
+        Optional additional information, such as:
+        - Technical considerations or constraints
+
+        - Links to alternative solutions
+
+        - UI mockups, sketches, or screenshots

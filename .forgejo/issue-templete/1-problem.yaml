@@ -1,0 +1,172 @@
+name: 'Step 1: Report a problem or need'
+description: 'Start here to describe a problem, confusion, or missing feature.'
+title: 'problem: '
+labels: ['problem', 'impact/unknown']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Security notice**
+
+        If your issue is a security concern, please do not open a public issue.  
+          Instead, email **security@forgejo.org**: ([security.txt](https://forgejo.org/.well-known/security.txt)).
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Before you start
+
+        Please keep the following in mind:
+
+        - Use English, as this is the language all maintainers share.
+
+        -Be respectful and follow the [Forgejo Code of Conduct](https://codeberg.org/forgejo/code-of-conduct).
+
+        -Take a moment to check for existing discussions or issues:  
+            https://codeberg.org/forgejo/forgejo/issues?q=&type=all&labels=78137  
+            If one exists, feel free to add your experience there.
+
+        -We are experimenting with a problem-first workflow.  
+            Please focus on describing the problem you're experiencing—whether it's a bug, confusion, or a missing feature.  
+            We will explore solutions in a later step.
+
+        If you'd like more background, see the discussion that led to this workflow:  
+        https://codeberg.org/forgejo/discussions/issues/415  
+        Feedback is very welcome
+
+  - type: dropdown
+
+    id: can-reproduce
+
+    attributes:
+      label: 'Does this problem still exist on the latest Forgejo version?'
+
+      description: |
+        Please try reproducing the issue on https://dev.next.forgejo.org
+        or with a local development build of Forgejo.
+
+        Confirming this helps save maintainers and contributors a lot of time.
+
+      options:
+        - 'Yes, the problem still exists (tested on a next instance)'
+
+        - 'Yes, the problem still exists (tested locally with the latest development version)'
+
+        - "Unknown, I can't try this for some reason (please explain below)"
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: environment
+
+    attributes:
+      label: 'Your usage of Forgejo'
+
+      description: |
+        Please describe how and where you use Forgejo. This helps us understand the context of your problem.
+
+        <details>
+        <summary>Further guidance</summary>
+
+        - Mention relevant configuration details if applicable  
+            (“This is how my identity provider is configured”,  
+            “This is how my Forgejo Actions runner is set up”).
+
+        - Describe your role or familiarity with Forgejo  
+            (“I'm new to Forgejo”, “I previously used …”, “As a designer, …”).
+
+        - If requesting a change, describe the intended audience or environment  
+            (“We're a small group of friends using Forgejo for our first libre game”).
+
+        - If you already described this elsewhere, feel free to link it here.
+
+        </details>
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: description
+
+    attributes:
+      label: 'Problem description'
+
+      description: |
+        Please describe the problem from your own perspective.  
+          Focus on what went wrong or felt confusing—solutions come later.
+
+        <details>
+        <summary>Further guidance</summary>
+
+        - Start with your goal  
+            (“I wanted to find an issue to work on”).
+
+        - Describe the steps you took    
+            (“I opened the issue tracker, clicked …, then …”).
+
+        - Point out moments of confusion  
+            (“There was a button labeled … and I wasn't sure what it would do”).
+
+        - If you're unsure whether something is possible, explain the goal  
+            (“I want to know if it's possible to …”).
+
+        </details>
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: workarounds
+
+    attributes:
+      label: 'Potential workarounds'
+
+      description: |
+        If you found a workaround—even an imperfect one—please share it.
+
+        <details>
+        <summary>Further guidance</summary>
+
+        - Explain what you tried and how it worked  
+            (“I used X, which worked, but required many manual steps”).
+
+        - Describe the downsides  
+            (“It's slow”, “The UI is confusing”, “It looks bad”).
+
+        </details>
+
+  - type: input
+
+    id: forgejo-ver
+
+    attributes:
+      label: 'Forgejo version'
+
+      description: 'The Forgejo version or commit reference your instance is running'
+
+  - type: textarea
+
+    id: versions
+
+    attributes:
+      label: 'Other environment details'
+
+      description: |
+        Please include any additional technical details that may help:
+        - Browser engine and version (for UI issues)
+
+        - Operating system and version
+
+        - Database engine and version
+
+        - Deployment method
+
+        - Relevant third-party integrations (identity providers, renderers, etc.)
+
+    validations:
+      required: true

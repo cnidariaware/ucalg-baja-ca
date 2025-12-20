@@ -1,0 +1,109 @@
+name: '🐛 Bug Report (server / backend)'
+description: "[Advanced users only] Found something you weren't expecting on the server or backend? Report it here."
+title: 'bug: '
+labels: ['bug/new-report']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Before you start
+
+        - Please use English, as this is the language all maintainers share.
+
+        - Be respectful and follow the [Forgejo Code of Conduct](https://codeberg.org/forgejo/code-of-conduct).
+
+        - This template is intended for server-side or backend issues  
+            (unexpected behavior, errors, crashes, API issues, data inconsistencies).
+
+        - Please ensure you are using the latest Forgejo release, and check for existing reports.
+
+        If this issue involves security, do not open a public issue.  
+          Contact **security@forgejo.org** instead.
+
+  - type: textarea
+
+    id: description
+
+    attributes:
+      label: 'Bug description'
+
+      description: |
+        Describe the unexpected behavior you encountered.
+        Focus on what the system did and why that was surprising or incorrect.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: steps
+
+    attributes:
+      label: 'Steps to reproduce'
+
+      description: |
+        Provide detailed steps to reproduce the issue.
+        Include relevant configuration, commands, or API calls if applicable.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: expected
+
+    attributes:
+      label: 'Expected behavior'
+
+      description: |
+        Describe what you expected the server or backend to do.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: actual
+
+    attributes:
+      label: 'Actual behavior'
+
+      description: |
+        Describe what actually happened instead.
+
+    validations:
+      required: true
+
+  - type: textarea
+
+    id: logs
+
+    attributes:
+      label: 'Logs and error messages'
+
+      description: |
+        Paste relevant logs, stack traces, or error messages here.
+        Please redact sensitive information if necessary.
+
+  - type: textarea
+
+    id: environment
+
+    attributes:
+      label: 'Environment'
+
+      description: |
+        Please include:
+        - Forgejo version (or commit reference)
+
+        - Operating system and architecture
+
+        - Database engine and version
+
+        - Deployment method (binary, Docker, Kubernetes, etc.)
+
+        - Any relevant configuration details
+
+    validations:
+      required: true
