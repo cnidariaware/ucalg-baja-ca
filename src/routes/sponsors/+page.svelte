@@ -256,12 +256,13 @@
 	}
 	p {
 		text-align: left;
-		margin-bottom: 0;
 		color: var(--BajaWhite);
-		padding-top: -10px;
+		padding-top: 10px;
 		padding-left: 10%;
 		padding-right: 10%;
 		padding-bottom: 25px;
+		max-width: 900px;
+  		margin: 0svh auto;
 	}
 	table {
 		margin-top: 75px;
