@@ -7,14 +7,6 @@
 	let { children } = $props();
 	let { showCart } = $state({ showCart: false });
 
-	// let disableCheckout = $derived(() => {
-	// 	if (cartStore.formatted_subtotal <= 0) {
-	// 		return true;
-	// 	} else {
-	// 		false;
-	// 	}
-	// });
-
 	let disableCheckout = $derived(parseFloat(cartStore.formatted_subtotal) <= 0);
 
 	const categories = merchCategories();
@@ -31,7 +23,7 @@
 <title>UCalgary Baja - Merch</title>
 
 <header>
-	<div id="headerdiv"></div>
+	<span></span>
 	<nav>
 		<ul>
 			<li>
@@ -62,13 +54,12 @@
 			</li> -->
 		</ul>
 	</nav>
-	<button class="cart-btn" onclick={() => (showCart = true)} aria-label="Open cart">
+	<button onclick={() => (showCart = true)} aria-label="Open cart">
 		<img src={'https://www.svgrepo.com/show/470579/cart.svg'} alt="Cart Logo" />
 	</button>
 </header>
 
 <div
-	class="cart-overlay"
 	class:visible={showCart}
 	role="button"
 	tabindex="0"
@@ -76,19 +67,17 @@
 	onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && (showCart = false)}
 ></div>
 
-<aside class="side-cart" class:open={showCart} aria-hidden={!showCart}>
+<aside class:open={showCart} aria-hidden={!showCart}>
 	<header>
-		<h3 id="topheader">Shopping Cart</h3>
-		<button class="close" onclick={() => (showCart = false)} aria-label="Close">&times;</button>
+		<h3>Shopping Cart</h3>
+		<button onclick={() => (showCart = false)} aria-label="Close">&times;</button>
 	</header>
-	<main class="items">
+	<main>
 		<CartItemScroll />
 	</main>
 	<footer>
 		<a
 			href="/merch/checkout"
-			class="checkout-btn"
-			id="checkout"
 			onclick={(e) => {
 				if (disableCheckout) {
 					event.preventDefault(); // stops navigation
@@ -96,7 +85,7 @@
 					showCart = false;
 				}
 			}}
-			style={disableCheckout ? 'background-color:grey; cursor: default;' : ''}
+			style={!disableCheckout ? 'background-color:grey; cursor: default;' : ''}
 		>
 			Checkout
 		</a>
@@ -121,7 +110,8 @@
 		align-items: center;
 		justify-content: center;
 	}
-	#headerdiv {
+	span {
+		display: block;
 		flex: 1;
 	}
 	img {
@@ -156,9 +146,9 @@
 	nav a:hover {
 		color: var(--BajaRed);
 	}
-	
+
 	/* cart pop-up css */
-	.cart-btn {
+	header button {
 		background: transparent;
 		border: none;
 		padding: 0;
@@ -168,7 +158,7 @@
 		cursor: pointer;
 	}
 
-	.cart-overlay {
+	div {
 		position: fixed;
 		inset: 0;
 		background: rgba(0, 0, 0, 0.45);
@@ -177,12 +167,12 @@
 		transition: opacity 0.25s ease;
 		z-index: 50;
 	}
-	.cart-overlay.visible {
+	div.visible {
 		opacity: 1;
 		pointer-events: auto;
 	}
 
-	.side-cart {
+	aside {
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -197,21 +187,23 @@
 		display: flex;
 		flex-direction: column;
 	}
-	.side-cart.open {
+	aside.open {
 		transform: translateX(0);
 	}
-	.side-cart header {
+	aside > header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		padding: 1rem;
 		border-bottom: 1px solid #eee;
 	}
-	.side-cart header h3 {
+
+	h3 {
+		color: white;
 		margin: 0;
 		font-size: 1.1rem;
 	}
-	.side-cart .close {
+	aside button {
 		background: transparent;
 		border: none;
 		font-size: 1.5rem;
@@ -222,21 +214,18 @@
 		color: white;
 		justify-content: right;
 	}
-	#topheader {
-		color: white;
-	}
 
-	.side-cart .items {
+	aside > main {
 		flex: 1;
 		overflow-y: auto;
 		padding: 1rem;
 	}
 
-	.side-cart footer {
+	aside > footer {
 		padding: 1rem;
 	}
 
-	.checkout-btn {
+	footer > a {
 		display: inline-block;
 		width: 100%;
 		text-align: center;
@@ -247,10 +236,10 @@
 		text-decoration: none;
 		border-radius: 3px;
 	}
-	#checkout:hover {
+	footer > a:hover {
 		background: var(--BajaHover);
 	}
-	#checkout {
+	footer > a {
 		background: var(--BajaRed);
 		width: 26svw;
 		justify-content: center;
@@ -262,7 +251,7 @@
 		nav ul {
 			justify-content: space-evenly;
 		}
-		.side-cart {
+		aside {
 			width: 100vw;
 		}
 	}
