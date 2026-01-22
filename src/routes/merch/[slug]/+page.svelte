@@ -6,8 +6,6 @@
 	let merchItemName = $derived(page.params.slug);
 
 	const findProduct = (merchList, merchName) => {
-		// console.log('Finding:', merchName);
-		// console.log('Merch list:', merchList);
 		return merchList.find((item) => item.name === merchName);
 	};
 </script>

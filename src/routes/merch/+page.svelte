@@ -8,7 +8,7 @@
 	titleText="All Drops"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914996/DSC_0393_inuw2z.jpg"
 />
-<div style="height: 6svh;"></div>
+<span style="height: 6svh;"></span>
 {#await loadMerchItems()}
 	<p>Loading...</p>
 {:then merchItems}
@@ -19,10 +19,10 @@
 	</div>
 {/await}
 
-<div style="height: 6svh;"></div>
+<span style="height: 6svh;"></span>
 
 <style>
-	.product-grid {
+	div {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1svw;
@@ -32,29 +32,24 @@
 		max-width: calc(1080px + 8svw);
 	}
 
-	.card {
-		display: flex;
-		justify-content: center;
-		color: white;
+	span {
+		display: block;
+		height: 6svh;
 	}
 
 	/* medium screens: limit max width so only 2 columns fit */
 	@media (max-width: 1100px) {
-		.product-grid {
+		div {
 			max-width: calc(480px + 4svw); /* 2 * 240px + gap */
 		}
 	}
 
 	/* small screens: single column */
 	@media (max-width: 700px) {
-		.product-grid {
+		div {
 			max-width: 100%;
 			padding: 0 2svw;
 			gap: 2svw;
-		}
-		.card {
-			flex: 1 1 100%;
-			max-width: 420px;
 		}
 	}
 </style>

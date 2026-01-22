@@ -6,17 +6,17 @@
 
 <title>UCalgary Baja - Order Successfully Placed</title>
 
-<main class="order-success-page">
-	<section class="order-card">
+<main>
+	<section>
 		<h1>Order Placed Successfully!</h1>
 		<p>UCalgary Baja will reach out with order confrimation, further details and payment.</p>
 
-		<button class="exit-btn" onclick={handleExit}> Exit </button>
+		<button onclick={handleExit}> Exit </button>
 	</section>
 </main>
 
 <style>
-	.order-success-page {
+	main {
 		min-height: 100vh;
 		background: #ffffff;
 		color: #000000;
@@ -26,23 +26,23 @@
 		padding: 4svh 4svw;
 	}
 
-	.order-card {
+	section {
 		text-align: center;
 		max-width: 640px;
 	}
 
-	.order-card h1 {
+	h1 {
 		font-size: 3rem;
 		margin-bottom: 1rem;
 	}
 
-	.order-card p {
+	p {
 		font-size: 1.5rem;
 		line-height: 1.5;
 		margin-bottom: 3rem;
 	}
 
-	.exit-btn {
+	button {
 		border-radius: 10px;
 		background-color: var(--BajaRed);
 		border-color: transparent;
@@ -54,17 +54,16 @@
 		min-width: 15svw;
 	}
 
-	.exit-btn:hover {
+	button:hover {
 		background-color: var(--BajaHover);
-		border-color: var(--BajaBlack);
 		color: black;
 	}
 
 	@media (max-width: 600px) {
-		.order-card h1 {
+		h1 {
 			font-size: 1.8rem;
 		}
-		.order-card p {
+		p {
 			font-size: 0.95rem;
 		}
 	}
