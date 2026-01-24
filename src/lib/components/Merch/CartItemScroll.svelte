@@ -13,40 +13,38 @@
 </script>
 
 <div class="cart-body">
-	<main class="items">
+	<main>
 		{#if $cartStore.length === 0}
-			<p class="empty">Your cart is empty.</p>
+			<p>Your cart is empty.</p>
 		{:else}
 			{#each $cartStore as item, index}
-				<div class="cart-item" key={item + index}>
-					<img class="item-image" src={item.imageSrc} alt={item.name + ' picture'} />
+				<div key={item + index}>
+					<img src={item.imageSrc} alt={item.name + ' picture'} />
 
 					<div>
-						<p class="item-name">
+						<p>
 							{item.name}
 						</p>
-						<div class="item-details">
-							<span class="item-color">({item.colour})</span>
-							<p class="item-size">Size: {item.itemSize}</p>
+						<div>
+							<span>({item.colour})</span>
+							<p>Size: {item.itemSize}</p>
 						</div>
 					</div>
 
-					<div id="itemmanipulation">
-						<div class="qty">
+					<div>
+						<div>
 							<button
 								type="button"
-								class="square"
 								onclick={() => cartStore.dec(index)}
 								aria-label="Decrease quantity"
 							>
 								-
 							</button>
 
-							<input class="count" type="number" min="1" bind:value={item.quantity} />
+							<input type="number" min="1" bind:value={item.quantity} />
 
 							<button
 								type="button"
-								class="square"
 								onclick={() => cartStore.inc(index)}
 								aria-label="Increase quantity"
 							>
@@ -55,7 +53,6 @@
 						</div>
 
 						<button
-							class="remove-btn"
 							type="button"
 							aria-label="Remove item from cart"
 							onclick={() => cartStore.removeItem(index)}
@@ -69,11 +66,11 @@
 	</main>
 
 	<footer>
-		<span class="label">Subtotal:</span>
-		<div class="subtotal-value">
+		<span>Subtotal:</span>
+		<div>
 			<!-- {$inspect(cartStore.formatted_subtotal)} -->
 			<span>${$total}</span>
-			<span class="beforetax">(Before Taxes and Shipping)</span>
+			<span>(Before Shipping)</span>
 		</div>
 	</footer>
 </div>
@@ -95,13 +92,13 @@
 		font-weight: 600;
 	}
 
-	.subtotal-value {
+	footer > div {
 		display: flex;
 		align-items: baseline;
 		gap: 6px;
 	}
 
-	.beforetax {
+	footer > div > span:nth-of-type(2) {
 		font-style: italic;
 		font-weight: 400;
 		opacity: 0.6;
@@ -109,18 +106,18 @@
 	}
 
 	/* scroll area */
-	.items {
+	main {
 		flex: 1;
 		overflow-y: auto;
 		padding: 1rem;
 	}
 
-	.empty {
+	main > p {
 		color: #666;
 	}
 
 	/* individual cart item */
-	.cart-item {
+	main > div {
 		display: grid;
 		grid-template-columns: 80px 1fr auto; /* image | details | manipulation */
 		align-items: center;
@@ -132,58 +129,59 @@
 		margin: 0 auto; /* centers the row */
 	}
 
-	.item-image {
+	main > div > img {
 		width: 80px;
 		height: 80px;
 		object-fit: cover;
 		border-radius: 4px;
 	}
 
-	.item-details {
+	main > div > div > div {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 	}
 
-	.item-name {
+	main > div > div > p {
 		font-weight: 600;
 		margin: 0;
 		color: #111;
 		width: 12ch;
 	}
 
-	.item-color {
+	main > div > div > div > span {
 		font-weight: 400;
 	}
 
-	#itemmanipulation {
+	main > div > div:nth-of-type(2) {
 		display: flex;
 		align-items: center;
-		gap: 10px;
+		gap: 8px;
 		justify-content: flex-end;
 	}
 
-	.qty {
+	main > div > div:nth-of-type(2) > div {
 		display: inline-grid;
 		grid-template-columns: 40px 56px 40px;
 		gap: 8px;
 	}
 
-	.square {
+	button {
 		height: 40px;
 		border-radius: 10px;
 		border: var(--Border);
 		background: #fff;
 		cursor: pointer;
 		font-size: 18px;
+		aspect-ratio: 1;
 	}
 
-	.square:hover {
+	button:hover {
 		background-color: var(--BajaHover);
 	}
 
-	.count {
+	input {
 		height: 40px;
 		border-radius: 10px;
 		border: var(--Border);
@@ -192,7 +190,7 @@
 		width: 56px;
 	}
 
-	.remove-btn {
+	main > div > div > button {
 		background: transparent;
 		border: none;
 		font-size: 1.25rem;

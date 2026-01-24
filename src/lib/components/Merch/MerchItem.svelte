@@ -151,6 +151,7 @@
 		padding: 16px;
 
 		margin: 0;
+		height: fit-content;
 	}
 
 	figure > img {
@@ -190,7 +191,7 @@
 		bottom: 25px;
 		left: 20px;
 		line-height: 1;
-		font: 26px;
+		font-size: 26px;
 		border: none;
 		background: #fff;
 		width: 35px;
