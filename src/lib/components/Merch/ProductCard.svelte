@@ -6,7 +6,7 @@
 	export let imageAlt = name ? `${name} picture` : 'Item picture';
 </script>
 
-<a href={'/merch/' + name} class="card">
+<a href={'/merch/' + name}>
 	<img src={imageSrc} alt={imageAlt} width="200" height="200" />
 	<div>
 		<p>{category}</p>

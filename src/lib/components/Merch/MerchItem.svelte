@@ -2,22 +2,6 @@
 	import { cartStore } from '$lib/cookies/cartStore.js';
 	import { loadMerchItems } from '$lib/cookies/shopItems';
 	let { product } = $props();
-	// const product = {
-	// 	category: 'HeavyWear',
-	// 	name: 'Floof Hoodie',
-	// 	price: 49.99,
-	// 	description: 'This is a really beautiful hoodie. Please buy it.',
-	// 	images: [
-	// 		'https://picsum.photos/seed/hoodie-1/800',
-	// 		'https://picsum.photos/seed/hoodie-2/800',
-	// 		'https://picsum.photos/seed/hoodie-3/800'
-	// 	],
-	// 	colours: ['Black', 'Red', 'Sand'],
-	// 	sizes: ['S', 'M', 'L', 'XL'],
-	// 	material: '100% Cotton (200gsm jersey)',
-	// 	washing: 'Cold wash, inside out. Tumble dry low.',
-	// 	sizeGuideUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-	// };
 
 	let idx = $state(0);
 	const prev = () => (idx = (idx - 1 + product.url_images.length) % product.url_images.length);
@@ -53,39 +37,34 @@
 		<!-- <title>{product.name} - Floof Hoodie</title> -->
 
 		<div class="product-page">
-			<section class="gallery">
-				<figure class="frame">
-					<button type="button" class="nav left" aria-label="Previous image" onclick={prev}
-						>‹</button
-					>
+			<figure>
+				<button type="button" aria-label="Previous image" onclick={prev}>‹</button>
 
-					<img alt={product.name} src={product.url_images[idx]} />
+				<img alt={product.name} src={product.url_images[idx]} />
 
-					<button type="button" class="nav right" aria-label="Next image" onclick={next}>›</button>
+				<button type="button" aria-label="Next image" onclick={next}>›</button>
 
-					<button
-						type="button"
-						class="icon corner-right"
-						aria-label="Open in new tab"
-						onclick={() => window.open(product.url_images[idx], '_blank')}>↗</button
-					>
-				</figure>
-			</section>
+				<button
+					type="button"
+					aria-label="Open in new tab"
+					onclick={() => window.open(product.url_images[idx], '_blank')}>↗</button
+				>
+			</figure>
 
-			<section class="info">
-				<div class="title">
-					<div class="category">Merch / {product.category}</div>
+			<section>
+				<div>
+					<div>Merch / {product.category}</div>
 					<h1>{product.name}</h1>
-					<div class="price">${product.price}</div>
+					<div>${product.price}</div>
 				</div>
 
-				<div class="desc">
-					<div class="subtitle">Description</div>
+				<div>
+					<h3>Description</h3>
 					<p>{product.description}</p>
 				</div>
 
 				{#if product.colours.length}
-					<label class="field">
+					<label>
 						<span>Color</span>
 						<select bind:value={selectedColour}>
 							{#each product.colours as c}
@@ -96,7 +75,7 @@
 				{/if}
 
 				{#if product.sizes_available.length}
-					<label class="field">
+					<label>
 						<span>Size</span>
 						<select bind:value={selectedSize}>
 							{#each product.sizes_available as s}
@@ -106,20 +85,15 @@
 					</label>
 				{/if}
 
-				<div class="purchase-row">
-					<div class="qty">
-						<button type="button" class="square" onclick={dec} aria-label="Decrease quantity"
-							>-</button
-						>
-						<input class="count" type="number" min="1" bind:value={qty} />
-						<button type="button" class="square" onclick={inc} aria-label="Increase quantity"
-							>+</button
-						>
+				<div>
+					<div>
+						<button type="button" onclick={dec} aria-label="Decrease quantity">-</button>
+						<input type="number" min="1" bind:value={qty} />
+						<button type="button" onclick={inc} aria-label="Increase quantity">+</button>
 					</div>
 
 					<button
 						type="button"
-						class="add-to-cart"
 						onclick={addToCart}
 						disabled={!addToCartButton}
 						style={addToCartButton ? '' : 'background-color: grey; color: var(--BajaBlack)'}
@@ -129,8 +103,8 @@
 
 				<hr />
 
-				<div class="details">
-					<h3 class="subtitle">Additional Details</h3>
+				<div>
+					<h3>Additional Details</h3>
 					<dl>
 						<dt>Material</dt>
 						<dd>{product.material}</dd>
@@ -172,21 +146,22 @@
 		}
 	}
 
-	.gallery .frame {
+	figure {
 		position: relative;
 		padding: 16px;
 
 		margin: 0;
 	}
 
-	.gallery img {
+	figure > img {
 		display: block;
 		width: 100%;
 		aspect-ratio: 1 / 1;
 		border-radius: 20px;
 	}
 
-	.gallery .nav {
+	figure > button:nth-of-type(1),
+	figure > button:nth-of-type(2) {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
@@ -199,14 +174,18 @@
 		background: #fff;
 		cursor: pointer;
 	}
-	.gallery .nav.left {
+	/* left, */
+	figure > button:nth-of-type(1) {
 		left: 20px;
 	}
-	.gallery .nav.right {
+
+	/* right */
+	figure > button:nth-of-type(2) {
 		right: 20px;
 	}
 
-	.gallery .icon {
+	/* .gallery .icon */
+	figure > button:nth-of-type(3) {
 		position: absolute;
 		bottom: 25px;
 		left: 20px;
@@ -220,37 +199,37 @@
 		cursor: pointer;
 	}
 
-	.title .category {
+	section > div:nth-of-type(1) > div:nth-of-type(1) {
 		font-size: 14px;
 		opacity: 0.8;
 		margin-bottom: 4px;
 		font-style: italic;
 	}
-	.title h1 {
+	section > div:nth-last-of-type(1) h1 {
 		margin: 0 0 6px 0;
 		font-size: 35px;
 	}
-	.title .price {
+	section > div:nth-of-type(1) > div:nth-of-type(2) {
 		font-size: 20px;
 		font-weight: 600;
 	}
 
-	.desc {
+	section > div:nth-of-type(2) {
 		margin-top: 10px;
 	}
-	.subtitle {
+	h3 {
 		padding-bottom: 5px;
 		font-weight: 600;
 		font-size: medium;
 		margin-bottom: 6px;
 	}
-	.desc p {
+	section > div:nth-of-type(2) > p {
 		margin: 0;
 		line-height: 1.5;
 		font-size: medium;
 	}
 
-	.field {
+	label {
 		display: grid;
 		grid-template-columns: 120px 1fr;
 		align-items: center;
@@ -259,7 +238,7 @@
 		font-weight: 500;
 		position: relative;
 	}
-	.field > span {
+	label > span {
 		font-size: medium;
 	}
 	select {
@@ -301,7 +280,7 @@
 		background: #fff;
 	}
 
-	.purchase-row {
+	section > div:nth-of-type(3) {
 		display: grid;
 		grid-template-columns: auto 1fr;
 		gap: 14px;
@@ -309,20 +288,21 @@
 		align-items: center;
 	}
 
-	.qty {
+	section > div:nth-of-type(3) > div {
 		display: inline-grid;
 		grid-template-columns: 40px 56px 40px;
 		gap: 8px;
 	}
-	.square {
+
+	section > div:nth-of-type(3) > div > button {
 		height: 40px;
 		border-radius: 10px;
 		border: var(--Border);
-		background: #fff;
+		background-color: #fff;
 		cursor: pointer;
 		font-size: 18px;
 	}
-	.count {
+	input {
 		height: 40px;
 		border-radius: 10px;
 		border: var(--Border);
@@ -331,7 +311,7 @@
 		width: 56px;
 	}
 
-	.add-to-cart {
+	section > div:nth-of-type(3) > button {
 		border-radius: 10px;
 		background-color: var(--BajaRed);
 		border-color: transparent;
@@ -343,7 +323,7 @@
 	}
 	button:hover {
 		cursor: pointer;
-		background-color: var(--BajaHover);
+		background-color: var(--BajaHover) !important;
 	}
 
 	hr {
@@ -351,27 +331,28 @@
 		border: none;
 		border-top: var(--Border);
 	}
-	.details dl {
+
+	dl {
 		margin: 0;
 		display: grid;
 		grid-template-columns: 180px 1fr;
 		row-gap: 10px;
 		column-gap: 12px;
 	}
-	.details dt {
+	dt {
 		font-weight: 600;
 	}
-	.details dd {
+	dd {
 		margin: 0;
 	}
-	.details a {
+	dl a {
 		color: #000;
 		text-decoration: underline;
 	}
-	.details a:hover {
+	dl a:hover {
 		color: var(--BajaRed);
 	}
-	.info {
+	section {
 		padding: 16px;
 	}
 </style>
