@@ -7,7 +7,7 @@
 	let { children } = $props();
 	let { showCart } = $state({ showCart: false });
 
-	let disableCheckout = $derived(parseFloat(cartStore.formatted_subtotal) <= 0);
+	let cartTotal = cartStore.formatted_subtotal;
 
 	const categories = merchCategories();
 
@@ -79,13 +79,13 @@
 		<a
 			href="/merch/checkout"
 			onclick={(e) => {
-				if (disableCheckout) {
+				if ($cartTotal === '0.00') {
 					event.preventDefault(); // stops navigation
 				} else {
 					showCart = false;
 				}
 			}}
-			style={!disableCheckout ? 'background-color:grey; cursor: default;' : ''}
+			style={$cartTotal === '0.00' ? 'background-color:grey; cursor: default;' : ''}
 		>
 			Checkout
 		</a>

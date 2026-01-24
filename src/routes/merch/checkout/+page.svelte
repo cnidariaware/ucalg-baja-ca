@@ -91,7 +91,7 @@
 		'Team'
 	];
 
-	let disableCheckout = $derived(parseFloat(cartStore.formatted_subtotal) <= 0);
+	let disableCheckout = $derived($orderTotal === '0.00');
 
 	const cartHeightLimiter = $derived(member ? 775 : 1318);
 </script>
@@ -187,8 +187,8 @@
 		<button
 			type="submit"
 			class="place-order-btn"
-			style={!disableCheckout || !checkoutEnabled ? 'background-color:grey; cursor: default;' : ''}
-			disabled={!disableCheckout || !checkoutEnabled}
+			style={disableCheckout && checkoutEnabled ? 'background-color:grey; cursor: default;' : ''}
+			disabled={disableCheckout && checkoutEnabled}
 		>
 			{checkoutEnabled ? 'Place Order' : 'Submitting Order...'}
 		</button>
