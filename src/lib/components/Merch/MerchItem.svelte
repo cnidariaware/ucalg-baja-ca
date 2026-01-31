@@ -17,12 +17,6 @@
 	let addToCartButton = $state(true);
 
 	async function addToCart() {
-		// alert(
-		// 	`Added ${qty} x ${product.name}` +
-		// 		(selectedColour ? ` (${selectedColour})` : '') +
-		// 		(selectedSize ? ` [${selectedSize}]` : '')
-		// );
-
 		addToCartButton = false;
 
 		addToCartButton = await cartStore.addToCart(product, qty, selectedColour, selectedSize);
@@ -34,15 +28,14 @@
 {:then products}
 	{#if products.length !== 0}
 		<title>UCalgary Baja - Merch - {product.name}</title>
-		<!-- <title>{product.name} - Floof Hoodie</title> -->
 
 		<div class="product-page">
 			<figure>
-				<button type="button" aria-label="Previous image" onclick={prev}>‹</button>
+				<button type="button" aria-label="Previous image" onclick={prev}>&#8249;</button>
 
 				<img alt={product.name} src={product.url_images[idx]} />
 
-				<button type="button" aria-label="Next image" onclick={next}>›</button>
+				<button type="button" aria-label="Next image" onclick={next}>&#8250;</button>
 
 				<button
 					type="button"
@@ -261,6 +254,7 @@
 		width: 100%;
 		border: 1px solid #ccc;
 	}
+
 	/* hide the native dropdown arrow in IE/Edge */
 	select::-ms-expand {
 		display: none;

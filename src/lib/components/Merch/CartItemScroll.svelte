@@ -1,15 +1,7 @@
 <script>
-	// import { cartStore, subtotal, formatPrice, removeItem, inc, dec } from './cartStore.svelte.js';
 	import { cartStore } from '$lib/cookies/cartStore.js';
-	// const formatPrice = (price) => `$${price.toFixed(2)}`;
-
-	// reactive subtotal: sum of price * quantity
-	// let subtotal = $derived(
-	// 	$cartStore.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)
-	// );
 
 	const total = cartStore.formatted_subtotal;
-	// $inspect($total);
 </script>
 
 <div class="cart-body">
@@ -68,7 +60,6 @@
 	<footer>
 		<span>Subtotal:</span>
 		<div>
-			<!-- {$inspect(cartStore.formatted_subtotal)} -->
 			<span>${$total}</span>
 			<span>(Before Shipping)</span>
 		</div>

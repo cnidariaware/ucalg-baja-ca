@@ -13,20 +13,6 @@ function load() {
 	} catch {
 		return [];
 	}
-
-	// return json
-	// 	? JSON.parse(json)
-	// 	: [
-	// 			{
-	// 				name: '',
-	// 				colour: '',
-	// 				price: 0,
-	// 				priceLabel: '',
-	// 				quantity: 0,
-	// 				itemSize: '',
-	// 				imageSrc: 'https://picsum.photos/200'
-	// 			}
-	// 		];
 }
 
 function save(info) {

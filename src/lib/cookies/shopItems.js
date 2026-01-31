@@ -35,28 +35,3 @@ export async function merchCategories() {
 	// Return unique categories
 	return Array.from(new Set(categories));
 }
-
-/*
-<script>
-  import { loadMerchItems } from '$lib/merch';
-</script>
-
-{#await loadMerchItems()}
-  <!-- Loading state -->
-  <p>Loading merchandise...</p>
-{:then merchItems}
-  <!-- Content state -->
-  {#if merchItems.length === 0}
-    <p>No merchandise available.</p>
-  {:else}
-    <ul>
-      {#each merchItems as item}
-        <li>{item.name} - ${item.price}</li>
-      {/each}
-    </ul>
-  {/if}
-{:catch error}
-  <!-- Error state -->
-  <p>Error loading merchandise: {error.message}</p>
-{/await}
-*/
