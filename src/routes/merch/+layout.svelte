@@ -42,16 +42,6 @@
 			{:catch}
 				<p>An Error occured</p>
 			{/await}
-
-			<!-- <li>
-				<a href={'/merch/category/heavy'}>HEAVY WEAR</a>
-			</li>
-			<li>
-				<a href={'/merch/category/soft'}>SOFT WEAR</a>
-			</li>
-			<li>
-				<a href={'/merch/category/accesories'}>ACCESORIES</a>
-			</li> -->
 		</ul>
 	</nav>
 	<button onclick={() => (showCart = true)} aria-label="Open cart">
