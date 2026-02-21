@@ -188,8 +188,8 @@
 		display: flex;
 		flex-wrap: wrap;
 		column-gap: 4svw;
-		justify-content: space-between;
-		width: 100%;
+		justify-content: space-evenly;
+		/* width: inherit; */
 	}
 
 	div > div {
@@ -202,5 +202,28 @@
 
 	div > div:nth-child(2) {
 		text-align: end;
+	}
+
+	@media only screen and (max-width: 800px) {
+		img {
+			max-width: 700px;
+			width: 100%;
+			max-height: 400px;
+			height: auto;
+		}
+
+		div {
+			row-gap: 2rem;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		div:nth-child(even) {
+			flex-wrap: wrap-reverse;
+		}
+
+		div > div {
+			justify-content: center;
+		}
 	}
 </style>
