@@ -33,7 +33,7 @@
 		background:
       /* top layer: the fade */
 			linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--fade-starts-at-bottom, 70%), #1f1f1f 100%),
-			/* bottom layer: the image */ var(--img) no-repeat center / cover;
+			/* bottom layer: the image */ no-repeat center / cover;
 		/* (equivalent to background-image + size/pos/repeat for both layers) */
 	}
 
@@ -50,7 +50,9 @@
 	}
 
 	h1 {
-		font-size: 100px;
+		/* font-size: 100px; */
+		font-size: 6.25rem;
+
 		font-weight: bolder;
 		text-align: end;
 		color: var(--BajaWhite);
@@ -65,5 +67,15 @@
 		color: var(--BajaWhite);
 		margin: var(--banner-text-padding);
 		border-radius: var(--banner-text-rounding);
+	}
+
+	@media only screen and (max-width: 800px) {
+		h1 {
+			font-size: 3.5rem;
+		}
+
+		div > div {
+			margin-right: 1rem;
+		}
 	}
 </style>
