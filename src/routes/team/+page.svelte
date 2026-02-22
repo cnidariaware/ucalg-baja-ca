@@ -7,7 +7,7 @@
 
 <TopBanner
 	titleText="Our Team"
-	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754767548/DSC05631-min_rxx8km.jpg"
+	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1771713184/_MG_5269_ub2hjh.jpg"
 />
 
 <h2>SUBTEAMS</h2>

@@ -75,9 +75,7 @@
 <Sponsors />
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="6svh" paddingTopBottom="4svh">
-	<div id="HomeBottomGallery">
-		<Gallery {photos} />
-	</div>
+	<Gallery {photos} />
 	<div>
 		<div>
 			<h3>Sponsor Us</h3>
@@ -119,7 +117,7 @@
 		border-radius: 1rem;
 		color: inherit;
 		font-size: large;
-		margin: 2svh 8svw 0svh;
+		margin: 2rem 8svw 0svh;
 		padding: 10px;
 		text-align: center;
 		text-decoration: none;
@@ -129,19 +127,27 @@
 		align-self: center;
 		aspect-ratio: 1;
 		border-radius: 1rem;
-		height: 400px;
-		width: 400px;
+		max-height: 400px;
+		max-width: 400px;
+		box-sizing: border-box;
 	}
 
 	div {
 		display: flex;
+		flex-wrap: wrap-reverse;
 		column-gap: 2svw;
+		row-gap: 2rem;
+	}
+
+	div:nth-child(2) {
+		flex-wrap: wrap;
 	}
 
 	div > div {
 		flex-direction: column;
 		max-width: 700px;
 		padding: 0 1svw;
+		row-gap: 0px;
 	}
 
 	@media only screen and (max-width: 800px) {
@@ -149,9 +155,11 @@
 			padding: 0svh 4svw;
 		}
 
-		#HomeBottomGallery {
-			width: 80svw;
-			height: 60svh;
+		img {
+			max-width: 700px;
+			width: 100%;
+			max-height: 400px;
+			height: auto;
 		}
 	}
 </style>

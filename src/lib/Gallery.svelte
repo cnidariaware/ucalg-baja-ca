@@ -125,7 +125,13 @@
 	}
 </script>
 
-<div ontouchstart={handleTouchStart} ontouchmove={handleTouchMove} ontouchend={handleTouchEnd}>
+<div
+	role="region"
+	aria-label="Image gallery, swipe left or right to navigate images"
+	ontouchstart={handleTouchStart}
+	ontouchmove={handleTouchMove}
+	ontouchend={handleTouchEnd}
+>
 	<div>
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -168,7 +174,13 @@
 
 {#if dialogOpen}
 	<dialog open onclick={() => toggleDialog()}>
-		<div onclick={(e) => e.stopPropagation()}>
+		<a
+			href="/"
+			onclick={(e) => {
+				e.preventDefault();
+				e.stopPropagation();
+			}}
+		>
 			<button
 				class="close-btn"
 				onclick={(e) => {
@@ -176,8 +188,8 @@
 					toggleDialog();
 				}}>✕</button
 			>
-			<img id="window-image" src={selected} alt="Full View" class="full-image" />
-		</div>
+			<img src={selected} alt="Full View" class="full-image" />
+		</a>
 	</dialog>
 {/if}
 
@@ -269,32 +281,51 @@
 		justify-content: center;
 	}
 
-	dialog div {
-		position: fixed;
-		max-width: 80%;
-		max-height: 80%;
-		margin-bottom: 5svh;
+	dialog::backdrop {
+		background: rgba(
+			0,
+			0,
+			0,
+			0.6
+		); /* or higher opacity like 0.7–0.8 to hide footer better visually */
 	}
 
-	dialog #window-image {
-		max-height: 90%;
-		max-width: 90%;
+	dialog a {
+		display: block;
+		position: fixed;
+		max-width: 80%;
+		height: 80%;
+		margin: auto;
+		margin-bottom: 5svh;
+		text-align: center;
+	}
+
+	dialog > a > img {
+		max-height: 100%;
+		max-width: 100%;
 		border-radius: 10px;
 		object-fit: contain;
+		box-sizing: content-box;
+		background-repeat: no-repeat;
+		background-size: cover;
 	}
 
 	@media (max-width: 950px) {
-		dialog div {
+		dialog button {
 			max-height: 90svw;
 			max-width: 90svw;
 		}
 
-		dialog #window-image {
+		dialog img {
 			width: 100%;
 			height: auto;
 		}
 
-		dialog div button {
+		dialog a {
+			height: revert;
+		}
+
+		dialog button {
 			top: 11%;
 			right: 11%;
 			font-size: 16px;
@@ -303,8 +334,8 @@
 
 	dialog button {
 		position: absolute;
-		top: 5%;
-		right: 7.5%;
+		top: 3%;
+		right: 2%;
 		color: rgb(0, 0, 0);
 		font-size: 18px;
 		cursor: pointer;

@@ -24,7 +24,7 @@
 			<h4>Solidworks</h4>
 		</div>
 	</div>
-	<div id="HomeSponsorLinks">
+	<div class="HomeSponsorLinks">
 		<a href="/sponsors">See All</a><a href="/sponsors">Support Us</a>
 	</div>
 </StdFromSide>
@@ -34,6 +34,8 @@
 		border-bottom: none;
 		font-size: 50px;
 		margin-top: 0;
+
+		text-align: center;
 	}
 
 	h4 {
@@ -55,6 +57,7 @@
 
 	a:hover {
 		background-color: var(--BajaHover);
+		color: var(--BajaBlack);
 	}
 
 	img {
@@ -84,8 +87,7 @@
 		row-gap: 0;
 	}
 
-	#HomeSponsorLinks {
-		color: var(--BajaBlack);
+	.HomeSponsorLinks {
 		flex-direction: row;
 		justify-content: center;
 		padding-top: 2svh;

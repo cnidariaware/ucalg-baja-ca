@@ -6,7 +6,7 @@
 
 <TopBanner
 	titleText="All Drops"
-	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914996/DSC_0393_inuw2z.jpg"
+	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
 />
 <span style="height: 6svh;"></span>
 {#await loadMerchItems()}
