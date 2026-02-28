@@ -1,9 +1,9 @@
 <script>
-	let { children, backgroundColour, rowGap, paddingTopBottom } = $props();
+	let { children, backgroundColour, rowGap, paddingTopBottom, textColour = 'revert' } = $props();
 </script>
 
 <div style:background-color={`var(${backgroundColour})`} style="padding: {paddingTopBottom} 0svw;">
-	<div style:row-gap={rowGap}>
+	<div style:row-gap={rowGap} style:color={textColour}>
 		{@render children?.()}
 	</div>
 </div>
