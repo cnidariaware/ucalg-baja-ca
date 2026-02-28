@@ -1,6 +1,6 @@
 <script>
 	import TopBanner from '$lib/components/TopBanner.svelte';
-	import Contact from '$lib/components/contact.svelte';
+	import Contact from '$lib/components/Contact.svelte';
 	// let sponsorInfo = $state('');
 	let sponsorPromise = $state(null);
 	const order = ['Diamond Tier', 'Platinum Tier', 'Gold Tier', 'Silver Tier', 'Bronze Tier'];

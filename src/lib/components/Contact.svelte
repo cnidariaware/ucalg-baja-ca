@@ -1,11 +1,12 @@
 <script>
-	import { resolve } from '$app/paths';
+	import { resolve } from '$app/paths';	
 
 	let name = $state('');
 	let email = $state('');
 	let message = $state('');
 	let isButtonDisabled = $state(false);
 	let submitText = $state('Submit');
+	let errorMessage = $state('');
 	/**
 	 * @param e Event
 	 * @return none
@@ -16,6 +17,9 @@
 		e.preventDefault();
 		isButtonDisabled = true;
 		submitText = 'Loading..';
+		
+		errorMessage = '';
+
 		const payload = {
 			content:
 				`***New Message***\n` +
@@ -23,25 +27,64 @@
 				`*Email*: [${email}](mailto:${email})\n` +
 				`*Message*: ${message}`
 		};
+		const controller = new AbortController();
+    	const timeoutId = setTimeout(() => controller.abort(), 10000);
+
 		try {
-			await fetch(
+			let res = await fetch(
 				'https://discord.com/api/webhooks/1393689764888182794/1pLu0Kup643V9wetwb9jzo-QIkoy4qqY5ES_LwwCZrDugLGO5Xaj2F7Ioy39qNIz1XYo',
 				{
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(payload)
-				}
+					body: JSON.stringify(payload),
+					signal: timeoutId
+				},
 			);
+
+
+		if (await res.ok) {
+			clearForm();
+		} else {
+			errorMessage = "An error has occurred try again later";
+		}
+			
+		} catch (error) {
+			// clearForm();
+
+			const isOfflineLike =
+				!navigator.onLine ||
+				error.name === 'TimeoutError' ||
+				error.name === 'AbortError' ||
+				error.message?.includes('network') ||
+				error.message?.includes('Failed to fetch');
+
+			if (!isOfflineLike) {
+				errorMessage = "Something went wrong - please try again later";
+			} else {
+				errorMessage = "Please connect to the internet";
+			}
 		} finally {
-			await new Promise((resolve) => setTimeout(resolve, 5000)).then(() => {
-				name = '';
-				email = '';
-				message = '';
-			});
+    	// This ALWAYS runs — success, error, timeout, etc.
+    		if (timeoutId) {
+      			clearTimeout(timeoutId);
+    		}
+			
+			await delay(8000);
+
 			isButtonDisabled = false;
 			submitText = 'Submit';
 		}
-	}
+	} 
+
+	const clearForm = () => {
+		name = '';
+		email = '';
+		message = '';
+	};
+
+	const delay = (ms) => {
+    	return new Promise(resolve => setTimeout(resolve, ms));
+  	};
 </script>
 
 <form onsubmit={(e) => formSubmit(e)}>
@@ -56,7 +99,7 @@
 
 	<input type="hidden" name="redirect" value={resolve('/thank-you')} />
 
-	<span></span>
+	<span>{errorMessage}</span>
 
 	<button type="submit" disabled={isButtonDisabled}>
 		{submitText}
@@ -64,15 +107,22 @@
 </form>
 
 <style>
+	:root {
+		--card-background-color: rgba(38, 38, 38, 0.5);
+		--card-border-radius: 0.5rem;
+	}
+
 	form {
 		display: flex;
-		flex-direction: column;
-		align-items: start;
+		flex-grow: 1;
+		background-color: var(--card-background-color);
+		border-radius: var(--card-border-radius);
+		flex-flow: column nowrap;
 		justify-content: center;
-		background-color: var(--BajaBlack);
-		margin-left: auto;
-		margin-right: auto;
-		width: 600px;
+		margin: 2svh 0.5svw;
+		padding: 2svh 1svw;
+		max-width: 600px;
+		height: inherit;
 	}
 
 	/* FORM ELEMENT STYLING */
@@ -134,7 +184,8 @@
 		border-width: 2px;
 		padding: 1svh 0.25svw;
 		margin: 1svh 0.5svw;
-		color: inherit;
+		color: var(--BajaRed);
 		align-items: start;
+		text-align: center;
 	}
 </style>
