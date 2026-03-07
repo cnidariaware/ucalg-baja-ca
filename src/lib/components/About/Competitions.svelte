@@ -1,5 +1,5 @@
 <section>
-	<div class="competition-block">
+	<div>
 		<h2>Static Events</h2>
 		<p>
 			Static events are where the whole team steps away from building the car and takes a look at
@@ -9,7 +9,7 @@
 			race.
 		</p>
 	</div>
-	<div class="competition-block">
+	<div>
 		<h2>Dynamic Events</h2>
 		<p>
 			Dynamic events put the car to the test, each one targeting a specific aspect of its

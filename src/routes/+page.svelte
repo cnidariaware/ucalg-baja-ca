@@ -135,6 +135,7 @@
 	div {
 		display: flex;
 		flex-wrap: wrap-reverse;
+		justify-content: space-evenly;
 		column-gap: 2svw;
 		row-gap: 2rem;
 	}
