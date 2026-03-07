@@ -8,11 +8,11 @@
 		execute: (siteKey: string, options: { action: string }) => Promise<string>;
 	};
 
-	let name = '';
-	let email = '';
-	let ucid = '';
-	let isSubmitting = false;
-	let submitError = '';
+	let name = $state('');
+	let email = $state('');
+	let ucid = $state('');
+	let isSubmitting = $state(false);
+	let submitError = $state('');
 
 	const majors = [
 		'Engineering Common Core',
@@ -25,15 +25,15 @@
 		'Other Major'
 	];
 
-	let major = '';
-	let majorOther = '';
-	$: isOtherMajor = major.startsWith('Other');
+	let major = $state('');
+	let majorOther = $state('');
+	let isOtherMajor = $derived(major.startsWith('Other'));
 
 	const years = ['Year 1', 'Year 2', 'Year 3', 'Year 4/4+', 'Internship'];
-	let year_of_study = '';
+	let year_of_study = $state('');
 
 	const availabilityOptions = ['Yes', 'No', 'Partial'];
-	let availability = '';
+	let availability = $state('');
 
 	const subTeams = [
 		'Chassis',
@@ -48,10 +48,10 @@
 		'Business'
 	];
 
-	let first_preference_sub_team = '';
-	let second_preference_sub_team = '';
+	let first_preference_sub_team = $state('');
+	let second_preference_sub_team = $state('');
 
-	let interest_question = '';
+	let interest_question = $state('');
 
 	const teamQuestionText: Record<string, string> = {
 		Software: `Please answer the integer that the variable result will hold in this Python code:
@@ -70,24 +70,41 @@ for x in [3,3,5]:
 	type QuestionTeam = keyof typeof teamQuestionText;
 
 	// Store answers keyed by team name: answers['Software'] = '...'
-	let technical_question_internal: Partial<Record<QuestionTeam, string>> = {};
+	let technical_question_internal = $state<Partial<Record<QuestionTeam, string>>>({});
 
 	// Unique selected teams (no duplicates, no empty, no "None")
-	$: selectedTeams = Array.from(
-		new Set([first_preference_sub_team, second_preference_sub_team].filter(Boolean))
+	let selectedTeams = $derived(
+		Array.from(
+			new Set(
+				[first_preference_sub_team, second_preference_sub_team].filter(
+					(team) => Boolean(team) && team !== 'None'
+				)
+			)
+		)
 	);
 
 	// Teams that actually have questions
-	let teamsWithQuestions: QuestionTeam[] = [];
-	$: teamsWithQuestions = selectedTeams.filter((t): t is QuestionTeam => t in teamQuestionText);
+	let teamsWithQuestions = $derived(
+		selectedTeams.filter((t): t is QuestionTeam => t in teamQuestionText)
+	);
 
 	// Keep answers tidy when selection changes
-	$: {
+	$effect(() => {
 		const keep = new Set(teamsWithQuestions);
-		technical_question_internal = Object.fromEntries(
-			Object.entries(technical_question_internal).filter(([k]) => keep.has(k))
+		const filteredEntries = Object.entries(technical_question_internal).filter(([k]) =>
+			keep.has(k as QuestionTeam)
 		);
-	}
+
+		const hasChanged =
+			filteredEntries.length !== Object.keys(technical_question_internal).length ||
+			filteredEntries.some(([k, v]) => technical_question_internal[k as QuestionTeam] !== v);
+
+		if (hasChanged) {
+			technical_question_internal = Object.fromEntries(filteredEntries) as Partial<
+				Record<QuestionTeam, string>
+			>;
+		}
+	});
 
 	function getRecaptchaToken(action: string): Promise<string> {
 		return new Promise((resolve, reject) => {
@@ -110,6 +127,8 @@ for x in [3,3,5]:
 	}
 
 	async function handleSubmit(e: SubmitEvent) {
+		e.preventDefault();
+
 		const form = e.currentTarget as HTMLFormElement;
 
 		submitError = '';
@@ -180,19 +199,19 @@ for x in [3,3,5]:
 		Excited to learn from a team-based experience? Fill out the form below and we'll reach out!
 	</p>
 
-	<form on:submit|preventDefault={handleSubmit}>
+	<form onsubmit={handleSubmit}>
 		<div class="row">
-			<label for="name">Full Name:<span class="required">*</span></label>
-			<input id="name" bind:value={name} required />
+			<label for="full-name">Full Name:<span class="required">*</span></label>
+			<input id="full-name" bind:value={name} required />
 		</div>
 
 		<div class="row">
-			<label for="email">
+			<label for="ucalgary-email">
 				UCalgary Email:<span class="required">*</span>
 			</label>
 
 			<input
-				id="email"
+				id="ucalgary-email"
 				type="email"
 				bind:value={email}
 				required
@@ -202,9 +221,9 @@ for x in [3,3,5]:
 		</div>
 
 		<div class="row">
-			<label for="ucid">UCID:<span class="required">*</span></label>
+			<label for="student-ucid">UCID:<span class="required">*</span></label>
 			<input
-				id="ucid"
+				id="student-ucid"
 				type="text"
 				bind:value={ucid}
 				required
@@ -215,8 +234,8 @@ for x in [3,3,5]:
 		</div>
 
 		<div class="row">
-			<label for="major">Major:<span class="required">*</span></label>
-			<select id="major" bind:value={major} required>
+			<label for="major-selection">Major:<span class="required">*</span></label>
+			<select id="major-selection" bind:value={major} required>
 				<option value="" disabled selected>Select...</option>
 				{#each majors as m}
 					<option value={m}>{m}</option>
@@ -226,18 +245,18 @@ for x in [3,3,5]:
 
 		{#if isOtherMajor}
 			<div class="row">
-				<label for="othermajor">Please specify your major:<span class="required">*</span></label>
-				<input id="othermajor" bind:value={majorOther} required />
+				<label for="other-major">Please specify your major:<span class="required">*</span></label>
+				<input id="other-major" bind:value={majorOther} required />
 			</div>
 		{/if}
 
 		<div class="row">
-			<label for="ayear">Academic Year:<span class="required">*</span></label>
-			<div class="radio">
+			<div id="academic-year-label">Academic Year:<span class="required">*</span></div>
+			<div class="radio" role="radiogroup" aria-labelledby="academic-year-label">
 				{#each years as y}
-					<label class="r">
+					<label class="r" for={`academic-year-${y}`}>
 						<input
-							id="ayear"
+							id={`academic-year-${y}`}
 							type="radio"
 							name="year"
 							value={y}
@@ -251,15 +270,20 @@ for x in [3,3,5]:
 		</div>
 
 		<div class="row">
-			<label for="timings"
-				>Are you available for the following team meetings?<span class="required">*</span></label
-			>
+			<div id="meeting-availability-label">
+				Are you available for the following team meetings?<span class="required">*</span>
+			</div>
 			<div class="hint">Saturdays: 10:00am-4:00pm | Wednesdays: 6:00pm-8:00pm</div>
-			<div class="radio" style="margin-top: 8px;">
+			<div
+				class="radio"
+				style="margin-top: 8px;"
+				role="radiogroup"
+				aria-labelledby="meeting-availability-label"
+			>
 				{#each availabilityOptions as a}
-					<label class="r">
+					<label class="r" for={`meeting-availability-${a}`}>
 						<input
-							id="timings"
+							id={`meeting-availability-${a}`}
 							type="radio"
 							name="avail"
 							value={a}
@@ -273,8 +297,8 @@ for x in [3,3,5]:
 		</div>
 
 		<div class="row">
-			<label for="desc">Sub-Team Descriptions:</label>
-			<p id="desc" class="hint">
+			<label for="sub-team-descriptions">Sub-Team Descriptions:</label>
+			<p id="sub-team-descriptions" class="hint">
 				<b>Chassis</b> – The chassis involves the car's frame, providing support for all the other
 				parts...
 				<br /><br />
@@ -283,14 +307,14 @@ for x in [3,3,5]:
 		</div>
 
 		<div class="row">
-			<label for="st1"
+			<label for="first-sub-team-choice"
 				>What sub-team are you interested in? (1st choice)<span class="required">*</span></label
 			>
 			<div class="hint">
 				Your choice of sub-team does not have any affect on your chances of making the team, only
 				select the team you are most interested in.
 			</div>
-			<select id="st1" bind:value={first_preference_sub_team} required>
+			<select id="first-sub-team-choice" bind:value={first_preference_sub_team} required>
 				<option value="" disabled selected>Select...</option>
 				{#each subTeams as t}
 					<option value={t}>{t}</option>
@@ -299,14 +323,14 @@ for x in [3,3,5]:
 		</div>
 
 		<div class="row">
-			<label for="st2"
+			<label for="second-sub-team-choice"
 				>What sub-team are you interested in? (2nd choice)<span class="required">*</span></label
 			>
 			<div class="hint">
 				Your choice of sub-team does not have any affect on your chances of making the team, only
 				select the team you are most interested in.
 			</div>
-			<select id="st2" bind:value={second_preference_sub_team} required>
+			<select id="second-sub-team-choice" bind:value={second_preference_sub_team} required>
 				<option value="" disabled selected>Select...</option>
 				{#each [...subTeams, 'None'] as t}
 					<option value={t}>{t}</option>
@@ -315,21 +339,23 @@ for x in [3,3,5]:
 		</div>
 
 		<div class="row">
-			<label for="interest"
+			<label for="interest-response"
 				>Why are you interested in joining UCalgary Baja?<span class="required">*</span></label
 			>
-			<textarea id="interest" bind:value={interest_question} required></textarea>
+			<textarea id="interest-response" bind:value={interest_question} required></textarea>
 		</div>
 
 		{#if teamsWithQuestions.length > 0}
-			<div class="block">
-				<label for="stq"><b>Sub-Team Questions</b></label>
+			<div class="block" aria-labelledby="sub-team-questions-label">
+				<div id="sub-team-questions-label"><b>Sub-Team Questions</b></div>
 
 				{#each teamsWithQuestions as t (t)}
 					{@const team = t as QuestionTeam}
 
 					<div class="row" style="margin-top: 12px;">
-						<label for="stq"><b>{team} Question:<span class="required">*</span></b></label>
+						<label for={`${team}-question-answer`}
+							><b>{team} Question:<span class="required">*</span></b></label
+						>
 
 						{#if team === 'Software'}
 							<p class="hint">Please answer the integer that <code>result</code> will hold:</p>
@@ -339,6 +365,7 @@ for x in [3,3,5]:
 						{/if}
 
 						<input
+							id={`${team}-question-answer`}
 							bind:value={technical_question_internal[team]}
 							required
 							placeholder="Type your answer..."
