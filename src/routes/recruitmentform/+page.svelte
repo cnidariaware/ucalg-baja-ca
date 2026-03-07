@@ -1,10 +1,18 @@
 <script lang="ts">
 	import TopBanner from '$lib/components/TopBanner.svelte';
 	import { goto } from '$app/navigation';
+	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
+
+	type Grecaptcha = {
+		ready: (cb: () => void) => void;
+		execute: (siteKey: string, options: { action: string }) => Promise<string>;
+	};
 
 	let name = '';
 	let email = '';
 	let ucid = '';
+	let isSubmitting = false;
+	let submitError = '';
 
 	const majors = [
 		'Engineering Common Core',
@@ -81,37 +89,90 @@ for x in [3,3,5]:
 		);
 	}
 
-	function handleSubmit(e: SubmitEvent) {
+	function getRecaptchaToken(action: string): Promise<string> {
+		return new Promise((resolve, reject) => {
+			const grecaptcha = (window as Window & { grecaptcha?: Grecaptcha }).grecaptcha;
+
+			if (!grecaptcha) {
+				reject(new Error('reCAPTCHA failed to load.'));
+				return;
+			}
+
+			grecaptcha.ready(async () => {
+				try {
+					const token = await grecaptcha.execute(PUBLIC_RECAPTCHA_SITE_KEY, { action });
+					resolve(token);
+				} catch {
+					reject(new Error('Failed to generate reCAPTCHA token.'));
+				}
+			});
+		});
+	}
+
+	async function handleSubmit(e: SubmitEvent) {
 		const form = e.currentTarget as HTMLFormElement;
 
+		submitError = '';
+
 		if (!form.reportValidity()) return;
+		if (isSubmitting) return;
 
-		const technical_question = JSON.stringify(technical_question_internal);
+		isSubmitting = true;
 
-		const payload = {
-			name,
-			email,
-			ucid,
-			major: isOtherMajor ? majorOther : major,
-			year_of_study,
-			availability,
-			first_preference_sub_team,
-			second_preference_sub_team,
-			interest_question,
-			technical_question
-		};
+		try {
+			const recaptchaToken = await getRecaptchaToken('recruitment_submit');
 
-		console.log('Recruitment form submit:', payload);
+			const technical_question = JSON.stringify(technical_question_internal);
 
-		// goto('/recruitmentform/submitted');
+			const payload = {
+				name,
+				email,
+				ucid,
+				major: isOtherMajor ? majorOther : major,
+				year_of_study,
+				availability,
+				first_preference_sub_team,
+				second_preference_sub_team,
+				interest_question,
+				technical_question,
+				recaptchaToken
+			};
+
+			const res = await fetch('/recruitmentform', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(payload)
+			});
+
+			const data = await res.json();
+
+			if (!res.ok) {
+				throw new Error(data?.error || 'Submission failed.');
+			}
+
+			goto('/recruitmentform/submitted');
+		} catch (err) {
+			submitError = err instanceof Error ? err.message : 'Something went wrong.';
+			console.error('Recruitment form submit error:', err);
+		} finally {
+			isSubmitting = false;
+		}
 	}
 </script>
 
 <!-- <TopBanner
 	titleText="Sponsors"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914692/IMG_6671_daaeeq.jpg"
-/> -->,
-<title>UCalgary Baja - Recruitment Form</title>
+/> -->
+
+<svelte:head>
+	<title>UCalgary Baja - Recruitment Form</title>
+	<script
+		src={`https://www.google.com/recaptcha/api.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`}
+	></script>
+</svelte:head>
 
 <div class="wrap">
 	<h2>UCalgary Baja Recruitment Form</h2>
@@ -122,7 +183,7 @@ for x in [3,3,5]:
 	<form on:submit|preventDefault={handleSubmit}>
 		<div class="row">
 			<label for="name">Full Name:<span class="required">*</span></label>
-			<input id="email" bind:value={name} required />
+			<input id="name" bind:value={name} required />
 		</div>
 
 		<div class="row">
@@ -289,7 +350,16 @@ for x in [3,3,5]:
 		{/if}
 
 		<div class="row" style="margin-top: 16px;">
-			<button type="submit">Submit</button>
+			<button type="submit" disabled={isSubmitting}>
+				{#if isSubmitting}
+					Submitting...
+				{:else}
+					Submit
+				{/if}
+			</button>
+			{#if submitError}
+				<p class="error">{submitError}</p>
+			{/if}
 		</div>
 	</form>
 </div>
@@ -423,5 +493,16 @@ for x in [3,3,5]:
 		padding: 8px 12px;
 		font-size: 14px;
 		cursor: pointer;
+	}
+	button:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+	}
+
+	.error {
+		color: #b00020;
+		text-align: center;
+		margin-top: 10px;
+		font-size: 14px;
 	}
 </style>
