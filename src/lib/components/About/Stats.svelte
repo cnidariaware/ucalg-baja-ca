@@ -170,7 +170,7 @@
 	}
 
 	/* Responsive */
-	@media (max-width: 900px) {
+	@media (max-width: 800px) {
 		section {
 			grid-template-columns: 1fr;
 			gap: 2.25rem;

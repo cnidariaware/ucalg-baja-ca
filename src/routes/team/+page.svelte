@@ -187,9 +187,10 @@
 	div {
 		display: flex;
 		flex-wrap: wrap;
-		column-gap: 4svw;
+		column-gap: 4rem;
 		justify-content: space-evenly;
 		/* width: inherit; */
+		row-gap: 1rem;
 	}
 
 	div > div {
@@ -223,6 +224,7 @@
 		}
 
 		div > div {
+			max-width: 700px;
 			justify-content: center;
 		}
 	}

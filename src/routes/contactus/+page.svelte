@@ -9,6 +9,7 @@
 	titleText="Contact Us"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914996/DSC_0393_inuw2z.jpg"
 />
+
 <div>
 	<div>
 		<div>
@@ -54,7 +55,7 @@
 <style>
 	/* GLOBAL RESET & BASE STYLES */
 	a {
-		text-decoration: none;
+		text-decoration: underline;
 		color: inherit;
 	}
 	ul {
