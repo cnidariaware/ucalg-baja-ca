@@ -60,7 +60,7 @@
 		color: black;
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 800px) {
 		h1 {
 			font-size: 1.8rem;
 		}
