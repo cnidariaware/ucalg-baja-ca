@@ -5,67 +5,65 @@
 	rel="stylesheet"
 />
 
-<section class="wrap">
-	<aside class="hero">
-		<h2 class="eyebrow">THE</h2>
-		<h1 class="title">NUMBERS</h1>
+<section>
+	<aside>
+		<h2>THE</h2>
+		<h1>NUMBERS</h1>
 	</aside>
 
-	<div class="grid">
+	<div>
 		<!-- Students -->
-		<article class="stat">
-			<h3 class="label">STUDENTS</h3>
-			<div class="value">48</div>
-			<p class="desc">
+		<article>
+			<h3>STUDENTS</h3>
+			<span>48</span>
+			<p>
 				A crew of 48 engineering students who expand their skills, test their limits, and help each
 				other grow.
 			</p>
 		</article>
 
 		<!-- Growth -->
-		<article class="stat">
-			<h3 class="label">GROWTH</h3>
-			<div class="value">200%</div>
-			<p class="desc">
-				Our team is booming this year—with more than double the size compared to last season.
-			</p>
+		<article>
+			<h3>GROWTH</h3>
+			<span>200%</span>
+			<p>Our team is booming this year—with more than double the size compared to last season.</p>
 		</article>
 
 		<!-- Subteams -->
-		<article class="stat">
-			<h3 class="label">SUBTEAMS</h3>
-			<div class="value">7</div>
-			<p class="desc">
+		<article>
+			<h3>SUBTEAMS</h3>
+			<span>7</span>
+			<p>
 				Seven subteams let members dive deep into what they love—or challenge themselves to learn
 				something new.
 			</p>
 		</article>
 
 		<!-- Founded -->
-		<article class="stat">
-			<h3 class="label">FOUNDED</h3>
-			<div class="value">1990</div>
-			<p class="desc">
+		<article>
+			<h3>FOUNDED</h3>
+			<span>1990</span>
+			<p>
 				Built on decades of experience since 1990, giving students a place to spread their wings and
 				see how far they can go.
 			</p>
 		</article>
 
 		<!-- School Years -->
-		<article class="stat">
-			<h3 class="label">SCHOOL YEARS</h3>
-			<div class="value">4</div>
-			<p class="desc">
+		<article>
+			<h3>SCHOOL YEARS</h3>
+			<span>4</span>
+			<p>
 				Members typically spend 4 years with us—rotating through design, manufacturing, testing, and
 				operations.
 			</p>
 		</article>
 
 		<!-- Competition Ranking -->
-		<article class="stat">
-			<h3 class="label">COMPETITION RANKING</h3>
-			<div class="value">Top 30</div>
-			<p class="desc">
+		<article>
+			<h3>COMPETITION RANKING</h3>
+			<span>Top 30</span>
+			<p>
 				Among the leading BAJA SAE teams in Canada, always pushing for higher ranks and bigger
 				challenges.
 			</p>
@@ -87,7 +85,7 @@
 		box-sizing: border-box;
 	}
 
-	section.wrap {
+	section {
 		display: grid;
 		grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr);
 		align-items: start;
@@ -109,17 +107,17 @@
 	}
 
 	/* Left “THE NUMBERS” column */
-	.hero {
+	aside {
 		position: sticky;
 		top: 0; /* nice effect on tall pages */
 	}
-	.eyebrow {
+	h2 {
 		margin: 0;
 		font-weight: 400;
 		letter-spacing: 0.12em;
 		font-size: clamp(1.75rem, 3vw, 2.25rem);
 	}
-	.title {
+	h1 {
 		margin: 0.15em 0 0 0;
 		font-weight: 300;
 		letter-spacing: 0.02em;
@@ -127,18 +125,18 @@
 	}
 
 	/* Right stats grid */
-	.grid {
+	div {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: var(--grid-gap) calc(var(--grid-gap) * 1.25);
 	}
 
-	.stat {
+	article {
 		border-left: 1px solid #e9e9ec;
 		padding-left: clamp(1rem, 2vw, 1.25rem);
 	}
 
-	.label {
+	h3 {
 		margin: 0 0 0.35rem 0;
 		font-size: 0.875rem;
 		letter-spacing: 0.16em;
@@ -146,7 +144,7 @@
 		color: #222;
 	}
 
-	.value {
+	span {
 		font-family: 'Space Grotesk', Inter, system-ui, sans-serif;
 		font-size: clamp(3rem, 7vw, 5rem);
 		line-height: 1.05;
@@ -156,7 +154,7 @@
 		font-variant-numeric: tabular-nums lining-nums;
 	}
 
-	.desc {
+	p {
 		margin: 0;
 		color: var(--muted);
 		font-size: clamp(0.95rem, 1.4vw, 1rem);
@@ -164,27 +162,27 @@
 	}
 
 	/* Make % sign and “Top 30” sit nicely */
-	.stat:nth-child(2) .value {
+	article:nth-child(2) > span {
 		letter-spacing: 0.01em;
 	}
-	.stat:nth-child(6) .value {
+	article:nth-child(6) > span {
 		text-transform: none;
 	}
 
 	/* Responsive */
 	@media (max-width: 900px) {
-		section.wrap {
+		section {
 			grid-template-columns: 1fr;
 			gap: 2.25rem;
 		}
-		.hero {
+		aside {
 			position: static;
 			text-align: left;
 		}
-		.grid {
+		div {
 			grid-template-columns: 1fr;
 		}
-		.stat {
+		article {
 			border-left: none;
 			border-top: 1px solid #eee;
 			padding: clamp(1rem, 3vw, 1.25rem) 0 0 0;
@@ -192,7 +190,7 @@
 	}
 
 	/* Niceties for consistent rhythm */
-	.stat .value + .desc {
+	article > span + p {
 		margin-top: 0.15rem;
 	}
 </style>
