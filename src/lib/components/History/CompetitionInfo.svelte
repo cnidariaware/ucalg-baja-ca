@@ -2,20 +2,26 @@
 	let { year, competitions } = $props();
 </script>
 
-<div key={year + competitions}>
-	<h2>{year}</h2>
-	<h4>Overall Competition Results</h4>
-	<table>
-		<tbody>
-			{#each competitions as comp, index}
-				<tr key={comp + index}>
-					<td key="{index + 'location'}}">{comp.location}</td>
-					<td key={index + 'place'}>{comp.placement}</td>
-				</tr>
-			{/each}
-		</tbody>
-	</table>
-</div>
+<figure key={year + competitions}>
+	<figcaption>
+		<h2>{year}</h2>
+		<h4>Overall Competition Results</h4>
+	</figcaption>
+	<ul>
+		{#each competitions as comp, index}
+			<li key={index + 'location'}>
+				{comp.location}
+			</li>
+			<li key={index + 'placement'}>
+				{comp.placement}
+			</li>
+			<!-- <tr key={comp + index}>
+				<td key="{index + 'location'}}">{comp.location}</td>
+				<td key={index + 'place'}>{comp.placement}</td>
+			</tr> -->
+		{/each}
+	</ul>
+</figure>
 
 <style>
 	* {
@@ -23,22 +29,14 @@
 		font-size: 19.2px;
 	}
 
-	@media only screen and (max-width: 800px) {
-		tr {
-			flex-direction: column !important;
-			padding: 0svw !important;
-			/* align-items: center !important; */
-			margin: 1svh 0svw;
-		}
-	}
-
-	div {
+	figure {
 		display: block;
 		text-align: center;
 		padding: 10svh 0svw;
 
 		border: 1px solid white;
 		border-radius: 1rem;
+		margin: 0px;
 	}
 
 	h2,
@@ -51,28 +49,40 @@
 		font-size: 28.8px;
 	}
 
-	table {
-		display: flex;
-		flex-direction: column;
+	ul {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 		margin: 0 auto;
 		align-items: center;
+		margin: 0px;
+		box-sizing: content-box;
+		padding: 0px 1%;
+		row-gap: 10px;
+		list-style-type: none;
 	}
 
-	tr {
-		flex-wrap: wrap;
+	li {
+		display: grid;
+		column-gap: 10px;
+		width: 100%;
+
 		justify-content: space-evenly;
 		margin: 0.5svh 0svw;
 	}
 
-	td {
-		padding: 0px 2svb;
-	}
+	@media only screen and (max-width: 800px) {
+		h2 {
+			font-size: 28px;
+		}
 
-	tr td:nth-child(odd) {
-		text-align: start;
-	}
+		h4 {
+			line-break: loose;
+			font-size: 20px;
+		}
 
-	tr td:nth-child(even) {
-		text-align: end;
+		h2,
+		h4 {
+			margin: 2svh 0svw;
+		}
 	}
 </style>

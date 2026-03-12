@@ -18,8 +18,8 @@
 			competitionCarImg:
 				'https://res.cloudinary.com/dpgrgsh7g/image/upload/ar_1:1,c_fill,g_auto,w_400/v1758999837/tan_car_mqpwq8.jpg',
 			competitions: [
-				{ location: 'Gorman', placement: '38th' },
-				{ location: 'Williamsport', placement: '62nd' }
+				{ location: 'Gorman', placement: '36th' },
+				{ location: 'Williamsport', placement: '65th' }
 			]
 		},
 		{
@@ -190,9 +190,7 @@
 
 	img {
 		aspect-ratio: 1;
-		/* min-width: 192px; */
 		width: 100%;
-		/* max-width: 400px; */
 		height: 400px;
 		margin: 0svh auto;
 		border-radius: 1rem;
@@ -205,12 +203,6 @@
 		}
 	}
 
-	@media only screen and (max-width: 800px) {
-		table tr td {
-			max-width: 200px;
-		}
-	}
-
 	td > div {
 		width: 100%;
 		/* width: fit-content; */
@@ -219,10 +211,10 @@
 
 	.symbol {
 		position: relative;
-		width: 10px;
+		/* width: 10px; */
 		text-align: center;
 		padding: 0svh 2svw;
-		/* min-width: 40px; */
+		min-width: 40px;
 		max-height: none;
 	}
 
@@ -236,20 +228,25 @@
 		background-color: rgb(120, 120, 120);
 		transform: translateX(-50%);
 		z-index: 0;
+		offset-anchor: 100px;
 	}
 
 	.dot {
-		display: inline-block;
+		/* display: inline-block; */
 		background-color: rgb(120, 120, 120);
 		border-radius: 50%;
+		transform: translate(-50%, -50%);
 		width: 20px;
 		height: 20px;
-		max-width: 20px;
+		/* max-width: 20px; */
 		line-height: 20px;
 		font-size: 12px;
 		font-weight: bold;
 		position: relative;
 		z-index: 2;
+		position: absolute;
+		top: 50%;
+		left: 50%;
 	}
 
 	tr:first-child .symbol::before {
@@ -272,5 +269,25 @@
 		margin-bottom: 4svh;
 		border-radius: var(--BajaRadius);
 		font-size: 19.2px;
+	}
+
+	@media only screen and (max-width: 800px) {
+		table tr td {
+			max-width: 100px;
+			max-width: fit-content;
+		}
+
+		img {
+			margin: 0px;
+		}
+
+		.symbol {
+			width: 10px;
+		}
+
+		.dot {
+			width: 10px;
+			height: 10px;
+		}
 	}
 </style>
