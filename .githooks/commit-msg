@@ -1,6 +1,7 @@
 #!/bin/bash
-# run this command on the repo to add it
+# run these commands on the repo to add it
 # git config core.hooksPath .githooks
+# chmod +x .githooks/commit-msg
 
 COMMIT_MSG_FILE=$1
 
