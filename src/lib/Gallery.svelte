@@ -279,6 +279,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		border: none;
 	}
 
 	dialog::backdrop {
