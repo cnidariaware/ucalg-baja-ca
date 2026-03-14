@@ -189,4 +189,34 @@
 		color: var(--BajaRed);
 		padding: 4px;
 	}
+
+	@media only screen and (max-width: 800px) {
+		.cart-body {
+			width: fit-content;
+		}
+
+		main {
+			padding: 0.5rem 0.5rem 2rem;
+			width: fit-content;
+		}
+
+		main > div {
+			width: min-content;
+		}
+
+		main > div > div > p {
+			width: min-content;
+		}
+
+		main > div > div:nth-of-type(2) {
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			gap: 0px;
+		}
+
+		footer {
+			padding: 1svh 1rem;
+			margin: 0px;
+		}
+	}
 </style>
