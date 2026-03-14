@@ -184,6 +184,7 @@
 			<button
 				class="close-btn"
 				onclick={(e) => {
+					e.preventDefault();
 					e.stopPropagation();
 					toggleDialog();
 				}}>✕</button
