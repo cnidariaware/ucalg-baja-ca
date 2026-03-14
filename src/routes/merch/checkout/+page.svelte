@@ -101,8 +101,8 @@
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914996/DSC_0393_inuw2z.jpg"
 />
 
-<div class="checkout-container" style="height: {cartHeightLimiter}px;">
-	<form onsubmit={handleSubmit}>
+<div class="checkout-container">
+	<form onsubmit={handleSubmit} style="height: {cartHeightLimiter}px;">
 		<div class="field-inline">
 			<label for="member">
 				Are you a registered member of UCalgary Baja?<span>*</span>
@@ -194,7 +194,7 @@
 		</button>
 	</form>
 
-	<aside>
+	<aside style="height: {cartHeightLimiter}px;">
 		<CartItemScroll />
 	</aside>
 </div>
@@ -202,6 +202,7 @@
 <style>
 	.checkout-container {
 		display: flex;
+		flex-wrap: wrap;
 		max-width: 1100px;
 		margin: 0 auto 4rem;
 		padding: 2rem 1.5rem 0;
@@ -209,6 +210,7 @@
 		color: #000000;
 		box-sizing: border-box;
 		align-items: flex-start;
+		justify-content: space-evenly;
 		column-gap: 8svw;
 	}
 
@@ -217,6 +219,9 @@
 		flex-direction: column;
 		gap: 0.4rem;
 		height: fit-content;
+		height: 100%;
+		box-sizing: content-box;
+		max-height: 100%;
 	}
 
 	aside {
@@ -342,6 +347,21 @@
 		.place-order-btn {
 			width: 100%;
 			text-align: center;
+		}
+	}
+
+	@media only screen and (max-width: 800px) {
+		aside {
+			width: min-content;
+			max-width: none;
+			min-width: 0px;
+			padding: 0px;
+			height: min-content !important;
+		}
+
+		.checkout-container {
+			flex-wrap: wrap-reverse;
+			row-gap: 2rem;
 		}
 	}
 </style>

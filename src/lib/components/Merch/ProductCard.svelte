@@ -55,7 +55,7 @@
 		}
 
 		div {
-			margin-top: 1svh;
+			margin: 1svh 0svw;
 			text-align: center;
 		}
 
@@ -71,9 +71,10 @@
 	}
 
 	/* small screens: single column */
-	@media (max-width: 700px) {
+	@media (max-width: 800px) {
 		a {
-			flex: 1 1 100%;
+			/* flex: 1 1 10%; */
+			padding: 0svh 2rem;
 			max-width: 420px;
 		}
 	}

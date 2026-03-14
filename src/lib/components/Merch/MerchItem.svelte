@@ -11,8 +11,8 @@
 	const dec = () => (qty = Math.max(1, qty - 1));
 	const inc = () => (qty = qty + 1);
 
-	let selectedColour = $state(product.colours[0] ?? '');
-	let selectedSize = $state(product.sizes_available[0] ?? '');
+	let selectedColour = $derived(product.colours[0] ?? '');
+	let selectedSize = $derived(product.sizes_available[0] ?? '');
 
 	let addToCartButton = $state(true);
 
@@ -24,6 +24,7 @@
 </script>
 
 {#await loadMerchItems()}
+	<title>UCalgary Baja - Merch - Loading</title>
 	<p>Loading...</p>
 {:then products}
 	{#if products.length !== 0}
