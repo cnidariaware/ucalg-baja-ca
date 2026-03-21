@@ -179,14 +179,16 @@
 	img {
 		border-radius: 1rem;
 		display: flex;
-		height: 400px;
-		width: 700px;
+		max-height: 400px;
+		max-width: 700px;
+		height: 100%;
+		width: 100%;
 		object-fit: initial;
 	}
 
 	div {
 		display: flex;
-		flex-wrap: wrap;
+		/* flex-wrap: wrap; */
 		column-gap: 4rem;
 		justify-content: space-evenly;
 		/* width: inherit; */
