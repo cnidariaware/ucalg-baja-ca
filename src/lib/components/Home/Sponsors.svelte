@@ -12,8 +12,8 @@
 			<h4>Schulich School of Engineering</h4>
 		</div>
 		<div>
-			<img alt="darkicewolf50 logo" src="https://darkicewolf50.dev/favicon.png" />
-			<h4>darkicewolf50</h4>
+			<img alt="Bilstein logo" src="https://bilstein-ymm.apacatapult.com/theme/assets/logo.png" />
+			<h4>Bilstein</h4>
 		</div>
 		<div>
 			<img
