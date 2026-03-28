@@ -16,7 +16,7 @@
 			<h2>Get in Touch.</h2>
 			<p>
 				Fill out the form for questions, opportunities, or if you just want to connect. You could
-				also email us at <a href="mailto:uofcbaja@gmail.com">uofcbaja@gmail.com</a>.
+				also email us at <a href="mailto:club@ucalgarybaja.ca">club@ucalgarybaja.ca</a>.
 			</p>
 		</div>
 		<Contact />
