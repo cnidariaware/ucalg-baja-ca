@@ -1,14 +1,12 @@
 <script>
 	import StdFromSide from '../StdFromSide.svelte';
-
-	import schulichLogo from '$lib/assets/schulich-logo.svg';
 </script>
 
 <StdFromSide backgroundColour="--BajaWhite" paddingTopBottom="8svh">
 	<h3>Current Sponsors</h3>
 	<div>
 		<div>
-			<img alt="Schulich logo" src={schulichLogo} />
+			<img alt="Schulich logo" src="./schulich-logo.svg" />
 			<h4>Schulich School of Engineering</h4>
 		</div>
 		<div>

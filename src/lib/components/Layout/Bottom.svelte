@@ -3,11 +3,15 @@
 	import mail from '$lib/assets/bottom/mail.svg';
 	import instagram from '$lib/assets/bottom/instagram.svg';
 	import linkedin from '$lib/assets/bottom/linkedin.svg';
+	import logo from '$lib/assets/logo.png';
 
 	const date = new Date();
 </script>
 
 <footer>
+	<div>
+		<img src={logo} alt="UCalgary Baja's logo" />
+	</div>
 	<div>
 		<p>&#169; {date.getFullYear()} UCalgary Baja</p>
 	</div>
@@ -28,6 +32,9 @@
 			<img src={facebook} alt="Facebook Logo" />
 			<!-- <img src="https://www.svgrepo.com/show/521654/facebook.svg" alt="Facebook Logo" /> -->
 		</a>
+	</div>
+	<div>
+		<a href="/contact">Contact Us</a>
 	</div>
 	<ul style="display: none;">
 		<li>Developed by:</li>
