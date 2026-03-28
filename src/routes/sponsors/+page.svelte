@@ -58,7 +58,7 @@
 
 												{#if tier == order[0] || tier == order[1]}
 													{#if item.DescriptionAboutSponsor != null}
-														<p>{item.DescriptionAboutSponsor}</p>
+														<h6>{item.DescriptionAboutSponsor}</h6>
 													{/if}
 												{/if}
 											</div>
@@ -262,12 +262,14 @@
 		flex-direction: column;
 	}
 	p {
-		text-align: left;
+		text-align: center;
 		color: var(--BajaWhite);
+		font-size: 1.5em;
 		padding-top: 10px;
 		padding-left: 10%;
 		padding-right: 10%;
 		padding-bottom: 25px;
+		min-width: 900px;
 		max-width: 900px;
 		margin: auto;
 	}
@@ -315,5 +317,15 @@
 		margin-bottom: 10px;
 		margin-left: 20px;
 		font-size: 2em;
+	}
+	h6 {
+		display: flex;
+		flex-wrap: wrap;
+		color: var(--BajaWhite);
+		justify-content: center;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 20px;
+		font-size: 1em;
 	}
 </style>
