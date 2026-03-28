@@ -30,7 +30,7 @@
 	h3 {
 		border-bottom: none;
 		font-size: 50px;
-		margin-top: 0;
+		margin-top: 0px;
 
 		text-align: center;
 	}
