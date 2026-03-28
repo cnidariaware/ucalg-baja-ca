@@ -7,7 +7,7 @@
 	/**
 	 * @param none
 	 * @return none
-	 * @description fetches sponsor information from the backend YAML fiel and stores it in sponsors variable, we then convert it to JSON format, and store it in sponsorInfo variable for later use in the page
+	 * @description fetches sponsor information from the backend YAML field and stores it in sponsors variable, we then convert it to JSON format, and store it in sponsorInfo variable for later use in the page
 	 * @author Siddharth Engineer <siddharthengineer24@gmail.com>
 	 */
 	const getSponsors = async () => {
@@ -52,12 +52,14 @@
 										<img alt="{item.SponsorName}'s Logo" src={item.LogoUrl} />
 										{#if tier == order[0] || tier == order[1] || tier == order[2]}
 											<div>
-												<h2>
+												<h5>
 													{item.SponsorName}
-												</h2>
+												</h5>
 
 												{#if tier == order[0] || tier == order[1]}
-													<p>{item.DescriptionAboutSponsor}</p>
+													{#if item.DescriptionAboutSponsor != null}
+														<p>{item.DescriptionAboutSponsor}</p>
+													{/if}
 												{/if}
 											</div>
 										{/if}
@@ -90,21 +92,21 @@
 				<!-- Logo on Website -->
 				<tr>
 					<th>Logo On<br />Website</th>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
 
 				<!-- Social Media Exposure -->
 				<tr>
 					<th>Social Media<br />Exposure</th>
 					<td></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
 
 				<!-- Shop Tour / Introduction -->
@@ -112,9 +114,9 @@
 					<th>Shop Tour /<br />Introduction</th>
 					<td></td>
 					<td></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
 
 				<!-- Social Media Feature -->
@@ -123,8 +125,8 @@
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
 
 				<!-- Logo on Vehicle -->
@@ -167,7 +169,6 @@
 		text-align: center;
 	}
 	td > img {
-		filter: invert();
 		width: 40px;
 		height: 40px;
 		object-fit: contain;
@@ -191,7 +192,7 @@
 		text-align: center;
 		display: block;
 		color: var(--BajaWhite);
-		font-size: 3em;
+		font-size: 4em;
 	}
 	a > img {
 		display: flex;
@@ -223,7 +224,7 @@
 		margin-top: 10px;
 		margin-bottom: 10px;
 		margin-left: 20px;
-		font-size: 2em;
+		font-size: 3em;
 	}
 	div > div > div {
 		display: flex;
@@ -268,7 +269,7 @@
 		padding-right: 10%;
 		padding-bottom: 25px;
 		max-width: 900px;
-		margin: 0svh auto;
+		margin: auto;
 	}
 	table {
 		margin-top: 75px;
@@ -304,5 +305,15 @@
 	.sponsor-table th:first-child {
 		text-align: left;
 		width: 30%;
+	}
+	h5 {
+		display: flex;
+		flex-wrap: wrap;
+		color: var(--BajaWhite);
+		justify-content: center;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 20px;
+		font-size: 2em;
 	}
 </style>
