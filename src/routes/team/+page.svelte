@@ -22,16 +22,29 @@
 				calculations, and welding.
 			</p>
 		</div>
-		<img
-			alt="Welding suspension arms"
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg"
-		/>
+		<figure>
+			<img
+				alt="Welding suspension arms"
+				src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg"
+			/>
+			<img
+				alt="Suspension Arms"
+				src="https://res.cloudinary.com/dj4xevuvs/image/upload/v1775092195/IMG20240425140511_m9kp0e.jpg"
+			/>
+		</figure>
 	</div>
 	<div>
-		<img
-			alt="chassis in ansys stress simulation"
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png"
-		/>
+		<figure>
+			<img
+				alt="Chassis complete ready for powder coating"
+				src="https://res.cloudinary.com/dj4xevuvs/image/upload/v1775092421/IMG_3083_q96ivi.webp"
+			/>
+
+			<img
+				alt="Chassis in ansys stress simulation"
+				src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png"
+			/>
+		</figure>
 		<div>
 			<h3>Chassis</h3>
 			<p>
@@ -176,10 +189,18 @@
 		padding: 0;
 	}
 
+	figure {
+		display: flex;
+		flex-direction: row;
+		column-gap: 1rem;
+		margin: 0;
+		height: 250px;
+		flex: 1 1 1;
+	}
+
 	img {
 		border-radius: 1rem;
-		display: flex;
-		max-height: 400px;
+		max-height: 300px;
 		max-width: 700px;
 		height: 100%;
 		width: 100%;
@@ -191,7 +212,7 @@
 		/* flex-wrap: wrap; */
 		column-gap: 4rem;
 		justify-content: space-evenly;
-		/* width: inherit; */
+		width: 100%;
 		row-gap: 1rem;
 	}
 
@@ -201,6 +222,7 @@
 		max-width: 48ch;
 		row-gap: 0;
 		padding: 0svh 25px;
+		/* padding: 0; */
 	}
 
 	div > div:nth-child(2) {

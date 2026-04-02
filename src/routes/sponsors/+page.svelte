@@ -26,7 +26,7 @@
 		})();
 	});
 
-	$inspect(sponsorPromise);
+	// $inspect(sponsorPromise);
 </script>
 
 <title>UCalgary Baja - Sponsors</title>
