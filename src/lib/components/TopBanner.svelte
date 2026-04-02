@@ -1,15 +1,19 @@
 <script>
 	let { titleText, imgUrl, subtitleText } = $props();
+	const titleLines = titleText.split(' ');
 </script>
 
 <div
-	style={"background-image: linear-gradient(to bottom, rgba(0,0,0,0) 70%, #1f1f1f 100%), url('" +
-		imgUrl +
-		"')"}
+	style={`background-image: linear-gradient(to bottom, rgba(0,0,0,0) 65%, #1f1f1f 100%), url(${imgUrl});`}
 >
 	<div>
-		<h1>{titleText}</h1>
-		{#if subtitleText !== null}
+		{#each titleLines as word, i}
+			<h1 style={'margin-right: ${i * 2}rem animation-delay: ${i * 0.1}s;'}>
+				{word}
+			</h1>
+		{/each}
+
+		{#if subtitleText}
 			<h2>{subtitleText}</h2>
 		{/if}
 	</div>
@@ -25,48 +29,61 @@
 	}
 
 	div {
-		position: relative; /* anchor for children if needed */
 		height: 100svh;
 		width: 100%;
 		display: flex;
-		justify-content: flex-end;
-		background:
-      /* top layer: the fade */
-			linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--fade-starts-at-bottom, 70%), #1f1f1f 100%),
-			/* bottom layer: the image */ no-repeat center / cover;
-		/* (equivalent to background-image + size/pos/repeat for both layers) */
+		justify-content: flex-start;
+		align-items: flex-start;
+		padding: 6svh;
+
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
 	}
 
 	/* title/subtitle wrapper */
 	div > div {
-		height: fit-content;
-		margin-top: 35svh;
-		width: fit-content;
-		margin-right: 4svw;
-		border-radius: 1rem;
-		background: initial;
-		background-color: rgba(0, 0, 0, 0.3);
+		display: flex;
 		flex-direction: column;
+		align-items: flex-end;
 	}
 
 	h1 {
 		/* font-size: 100px; */
-		font-size: 6.25rem;
-
+		font-size: 10.25rem;
 		font-weight: bolder;
-		text-align: end;
+		text-align: right;
 		color: var(--BajaWhite);
-		margin: var(--banner-text-padding);
-		border-radius: var(--banner-text-rounding);
+		margin: 0;
+		letter-spacing: -0.02em;
+		line-height: 1.05;
+
+		text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+
+		opacity: 0;
+		animation: fadeSlide 0.6s ease-out forwards;
 	}
 
 	h2 {
-		width: fit-content;
+		margin-top: 1rem;
 		font-size: xx-large;
 		font-weight: normal;
 		color: var(--BajaWhite);
-		margin: var(--banner-text-padding);
-		border-radius: var(--banner-text-rounding);
+		text-align: right;
+
+		opacity: 0.9;
+		text-shadow: 0 2px 10px rgba(0, 0, 0, 0, 4);
+	}
+
+	@keyframes fadeSlide {
+		from {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	@media only screen and (max-width: 800px) {
