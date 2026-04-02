@@ -4,6 +4,14 @@
 	import schulichLogo from '$lib/assets/schulich-logo.svg';
 </script>
 
+<div class="home-container">
+	<img
+		class="brush-overlay"
+		src="ucalg-baja-ca\src\lib\assets\transparent brush stroke.png"
+		alt=""
+	/>
+</div>
+
 <StdFromSide backgroundColour="--BajaWhite" paddingTopBottom="8svh">
 	<h3>Current Sponsors</h3>
 	<div>
@@ -91,5 +99,28 @@
 		justify-content: center;
 		padding-top: 2svh;
 		width: inherit;
+	}
+
+	.home-container {
+		position: relative;
+		background-color: black;
+		overflow: hidden;
+	}
+
+	.brush-overlay {
+		position: absolute;
+		top: 0;
+		right: 0; /* adjust based on your design */
+		width: 60%;
+		height: auto;
+		z-index: 0;
+		pointer-events: none;
+		opacity: 1; /* adjust if needed */
+	}
+
+	/* Ensure content sits above the brush */
+	.home-container > *:not(.brush-overlay) {
+		position: relative;
+		z-index: 1;
 	}
 </style>

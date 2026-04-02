@@ -1,5 +1,6 @@
 <script>
 	import logo from '$lib/assets/logo.png';
+	import { page } from '$app/stores';
 </script>
 
 <header>
@@ -7,25 +8,25 @@
 	<nav>
 		<ul>
 			<li>
-				<a href={'/'}>HOME</a>
+				<a href="/" class:active={$page.url.pathname === '/'}>HOME</a>
 			</li>
 			<li>
-				<a href={'/about'}>ABOUT</a>
+				<a href={'/about'} class:active={$page.url.pathname === '/about'}>ABOUT</a>
 			</li>
 			<li>
-				<a href={'/team'}>TEAM</a>
+				<a href={'/team'} class:active={$page.url.pathname === '/team'}>TEAM</a>
 			</li>
 			<li>
-				<a href={'/history'}>HISTORY</a>
+				<a href={'/history'} class:active={$page.url.pathname === '/history'}>HISTORY</a>
 			</li>
 			<li>
-				<a href={'/sponsors'}>SPONSORS</a>
+				<a href={'/sponsors'} class:active={$page.url.pathname === '/sponsors'}>SPONSORS</a>
 			</li>
 			<li>
-				<a href={'/contactus'}>CONTACT US</a>
+				<a href={'/contactus'} class:active={$page.url.pathname === '/contactus'}>CONTACT US</a>
 			</li>
 			<li>
-				<a href={'/merch'}>MERCH</a>
+				<a href={'/merch'} class:active={$page.url.pathname === '/merch'}>MERCH</a>
 			</li>
 		</ul>
 	</nav>
@@ -82,5 +83,10 @@
 		nav ul {
 			justify-content: space-evenly;
 		}
+	}
+
+	.active {
+		color: var(--BajaRed);
+		border-bottom: 2px solid var(--BajaRed);
 	}
 </style>
