@@ -12,7 +12,7 @@
 	<img src={logo} alt="UCalgary Baja's logo" />
 	<div>
 		<div>
-			<p>&#169; {date.getFullYear()} UCalgary Baja</p>
+			<p><span>&#169;</span> {date.getFullYear()} UCalgary Baja</p>
 		</div>
 		<div>
 			<a href="https://www.linkedin.com/company/ucalgarybaja/">
@@ -52,6 +52,7 @@
 		padding: 10px 0svw;
 		background-color: var(--BajaRed);
 		color: white;
+		font-family: 'BajaFont';
 	}
 	img {
 		height: 84px;
@@ -59,6 +60,10 @@
 	a {
 		color: inherit;
 		font-size: larger;
+		text-decoration: none;
+	}
+	a:hover {
+		color: var(--BajaBlack);
 	}
 	div {
 		display: flex;
@@ -78,5 +83,20 @@
 	}
 	a > img:hover {
 		filter: invert();
+	}
+
+	p > span {
+		font-family:
+			Ubuntu,
+			system-ui,
+			-apple-system,
+			BlinkMacSystemFont,
+			'Segoe UI',
+			Roboto,
+			Oxygen,
+			Cantarell,
+			'Open Sans',
+			'Helvetica Neue',
+			sans-serif;
 	}
 </style>

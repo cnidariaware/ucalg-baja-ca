@@ -123,6 +123,11 @@
 		text-decoration: none;
 	}
 
+	a:hover {
+		/* color: var(--BajaBlack); */
+		background-color: var(--BajaHover);
+	}
+
 	img {
 		align-self: center;
 		aspect-ratio: 1;

@@ -1,6 +1,6 @@
 <script>
 	let { titleText, imgUrl, subtitleText } = $props();
-	const titleLines = titleText.split(' ');
+	let titleLines = $derived(titleText.split(' '));
 </script>
 
 <div
