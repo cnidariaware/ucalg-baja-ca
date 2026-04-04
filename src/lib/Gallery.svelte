@@ -23,7 +23,8 @@
 			}
 		],
 		singleMode = false,
-		forcedRatio = false
+		forcedRatio = false,
+		contained = false
 	} = $props();
 
 	let current_index = $state(0);
@@ -80,6 +81,7 @@
 <div
 	role="region"
 	aria-label="Image gallery, swipe left or right to navigate images"
+	class:contained
 	ontouchstart={handleTouchStart}
 	ontouchmove={handleTouchMove}
 	ontouchend={handleTouchEnd}
@@ -139,6 +141,8 @@
 
 {#if dialogOpen}
 	<dialog open onclick={() => toggleDialog()}>
+		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			onclick={(e) => {
 				e.stopPropagation();
@@ -157,15 +161,17 @@
 {/if}
 
 <style>
+	/* ── Default (standalone) mode ── */
 	div:first-of-type {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 8px;
-		padding: 0;
+		gap: 16px;
+		padding-bottom: 32px;
+		padding-top: 32px;
 		border-radius: 20px;
 		width: 100%;
-		height: 100%;
+		box-sizing: border-box;
 	}
 
 	div:first-of-type > div:first-child {
@@ -175,8 +181,7 @@
 		gap: 16px;
 		overflow: hidden;
 		width: 100%;
-		max-width: 100%;
-		/* no fixed height — driven by aspect-ratio prop or natural image size */
+		max-width: 400px;
 	}
 
 	div:first-of-type > div:first-child.single-mode {
@@ -184,35 +189,16 @@
 	}
 
 	div:first-of-type > div:first-child.multi-mode {
-		max-width: 100%;
-	}
-
-	div:first-of-type > div:first-child > img {
-		flex: 0 0 90%;
-		max-width: 100%;
-		height: 100%;
-		border-radius: 16px;
-		object-fit: cover;
-	}
-
-	div:first-of-type > div:first-child > img.main-image {
-		flex: 0 0 90%;
-		max-width: 100%;
-	}
-
-	div:first-of-type > div:first-child > img.side-image {
-		flex: 0 0 15%;
-		max-width: 15%;
-		opacity: 0.8;
+		max-width: 400px;
 	}
 
 	@media (min-width: 950px) {
-		div:first-of-type > div:first-child.multi-mode {
-			max-width: 100%;
+		div:first-of-type > div:first-child.single-mode {
+			max-width: 1200px;
 		}
 
-		div:first-of-type > div:first-child.single-mode {
-			max-width: 100%;
+		div:first-of-type > div:first-child.multi-mode {
+			max-width: 1200px;
 		}
 
 		div:first-of-type > div:first-child.multi-mode > img.main-image {
@@ -227,6 +213,49 @@
 		}
 	}
 
+	div:first-of-type.contained {
+		padding: 0;
+		gap: 6px;
+		height: 100%;
+	}
+
+	div:first-of-type.contained > div:first-child {
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		flex: 1 1 0;
+		min-height: 0;
+	}
+	div:first-of-type.contained > div:first-child > img.main-image {
+		width: 100%;
+	}
+
+	div:first-of-type > div:first-child[style] {
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		flex: 0 0 auto;
+	}
+
+	div:first-of-type > div:first-child > img {
+		max-width: 100%;
+		height: 100%;
+		border-radius: 16px;
+		object-fit: cover;
+	}
+
+	div:first-of-type > div:first-child > img.main-image {
+		flex: 0 0 100%;
+		width: 100%;
+		max-width: 100%;
+	}
+
+	div:first-of-type > div:first-child > img.side-image {
+		flex: 0 0 15%;
+		max-width: 15%;
+		opacity: 0.8;
+	}
+
 	div:nth-child(2) {
 		display: flex;
 		gap: 12px;
@@ -235,8 +264,8 @@
 	}
 
 	div:nth-child(2) button {
-		width: 12px;
-		height: 12px;
+		width: 25px;
+		height: 25px;
 		color: rgba(0, 0, 0, 0);
 		border-radius: 50%;
 		border: 2px solid #ccc;
@@ -269,28 +298,43 @@
 	}
 
 	dialog div {
-		display: block;
-		position: fixed;
+		display: flex;
+		position: relative;
 		max-width: 80%;
-		height: 80%;
+		max-height: 80vh;
 		margin: auto;
-		margin-bottom: 5svh;
 		text-align: center;
+		align-items: center;
+		justify-content: center;
 	}
 
 	dialog > div > img {
-		max-height: 100%;
+		max-height: 80vh;
 		max-width: 100%;
 		border-radius: 10px;
 		object-fit: contain;
-		box-sizing: content-box;
-		background-repeat: no-repeat;
-		background-size: cover;
+	}
+
+	dialog button {
+		position: absolute;
+		top: -16px;
+		right: -16px;
+		width: 32px;
+		height: 32px;
+		color: rgb(0, 0, 0);
+		font-size: 16px;
+		cursor: pointer;
+		border: none;
+		background-color: rgba(240, 255, 255, 0.8);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 10;
 	}
 
 	@media (max-width: 950px) {
-		dialog button {
-			max-height: 90svw;
+		dialog div {
 			max-width: 90svw;
 		}
 
@@ -298,28 +342,5 @@
 			width: 100%;
 			height: auto;
 		}
-
-		dialog div {
-			height: revert;
-		}
-
-		dialog button {
-			top: 11%;
-			right: 11%;
-			font-size: 16px;
-		}
-	}
-
-	dialog button {
-		position: absolute;
-		top: 3%;
-		right: 2%;
-		color: rgb(0, 0, 0);
-		font-size: 18px;
-		cursor: pointer;
-		border: none;
-		justify-content: right;
-		background-color: rgb(240, 255, 255, 0.3);
-		border-radius: 50%;
 	}
 </style>

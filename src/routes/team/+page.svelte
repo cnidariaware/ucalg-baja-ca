@@ -29,10 +29,6 @@
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/18HASpcxac4zjPwWZSpbQs94v0ooAX-3hmw4emI_0zO4qfnSYTO5XBMXSH7dow2E_xkngmq.png',
 			alt: 'brakes and gas pedal CAD'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
 		}
 	];
 
@@ -40,10 +36,6 @@
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/19yTuNKZMp1QCQoaBz86d-zpvATvP6Rx1SaVjynMSV6RQFROM2d7anw3zAD4_nabmkg.png',
 			alt: 'Suspensions arms and steering'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
 		}
 	];
 
@@ -51,10 +43,6 @@
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915331/cvt_zz0rgl.png',
 			alt: 'cvt'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
 		}
 	];
 
@@ -62,10 +50,6 @@
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754168541/brakes-min_bgmnyc.jpg',
 			alt: 'top down shot of our brake system'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
 		}
 	];
 
@@ -73,10 +57,6 @@
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/12ZRS9P9XwyNLusJ59EfL98Yc_ZMpbdoYvATMAQKqnf0atoxj0ZUA2vtgQYh09a8_quphim.png',
 			alt: 'strain gauge'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
 		}
 	];
 
@@ -84,10 +64,6 @@
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915330/scale_ccg4wg.png',
 			alt: 'weight scale'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
 		}
 	];
 
@@ -95,10 +71,6 @@
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png',
 			alt: 'jsx code from our sponsors'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
 		}
 	];
 
@@ -106,10 +78,6 @@
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg',
 			alt: 'member wearing ucalgary baja t-shirt'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
 		}
 	];
 </script>
@@ -134,18 +102,12 @@
 			</p>
 		</div>
 		<figure>
-			<Gallery
-				{suspensionPhotos}
-				photos={suspensionPhotos}
-				singleMode
-				forcedRatio="16/9"
-				contained
-			/>
+			<Gallery photos={suspensionPhotos} singleMode forcedRatio="16/11" contained />
 		</figure>
 	</div>
 	<div>
 		<figure>
-			<Gallery {chassisPhotos} photos={chassisPhotos} singleMode forcedRatio="16/9" contained />
+			<Gallery photos={chassisPhotos} singleMode forcedRatio="16/11" contained />
 		</figure>
 		<div>
 			<h3>Chassis</h3>
@@ -165,10 +127,14 @@
 				pedal foot resets.
 			</p>
 		</div>
-		<Gallery {ergonomicsPhotos} photos={ergonomicsPhotos} singleMode forcedRatio="16/9" contained />
+		<figure>
+			<Gallery photos={ergonomicsPhotos} singleMode forcedRatio="16/11" contained />
+		</figure>
 	</div>
 	<div>
-		<Gallery {steeringPhotos} photos={steeringPhotos} singleMode forcedRatio="16/9" contained />
+		<figure>
+			<Gallery photos={steeringPhotos} singleMode forcedRatio="16/11" contained />
+		</figure>
 		<div>
 			<h3>Steering</h3>
 			<p>
@@ -185,10 +151,14 @@
 				CVT, propshaft, rear axles, rear brakes, and rear hubs.
 			</p>
 		</div>
-		<Gallery {powertrainPhotos} photos={powertrainPhotos} singleMode forcedRatio="16/9" contained />
+		<figure>
+			<Gallery photos={powertrainPhotos} singleMode forcedRatio="16/11" contained />
+		</figure>
 	</div>
 	<div>
-		<Gallery {finalDrivePhotos} photos={finalDrivePhotos} singleMode forcedRatio="16/9" contained />
+		<figure>
+			<Gallery photos={finalDrivePhotos} singleMode forcedRatio="16/11" contained />
+		</figure>
 		<div>
 			<h3>Final Drive</h3>
 			<p>
@@ -205,16 +175,14 @@
 				vehicle, letting the team to monitor performance and diagnose issues during testing.
 			</p>
 		</div>
-		<Gallery {telemetryPhotos} photos={telemetryPhotos} singleMode forcedRatio="16/9" contained />
+		<figure>
+			<Gallery photos={telemetryPhotos} singleMode forcedRatio="16/11" contained />
+		</figure>
 	</div>
 	<div>
-		<Gallery
-			{dataAcquisitionPhotos}
-			photos={dataAcquisitionPhotos}
-			singleMode
-			forcedRatio="16/9"
-			contained
-		/>
+		<figure>
+			<Gallery photos={dataAcquisitionPhotos} singleMode forcedRatio="16/11" contained />
+		</figure>
 		<div>
 			<h3>Data Acquisition</h3>
 			<p>
@@ -231,10 +199,14 @@
 				collection system and run our in club storage system.
 			</p>
 		</div>
-		<Gallery {softwarePhotos} photos={softwarePhotos} singleMode forcedRatio="16/9" contained />
+		<figure>
+			<Gallery photos={softwarePhotos} singleMode forcedRatio="16/11" contained />
+		</figure>
 	</div>
 	<div>
-		<Gallery {businessPhotos} photos={businessPhotos} singleMode forcedRatio="16/9" contained />
+		<figure>
+			<Gallery photos={businessPhotos} singleMode forcedRatio="16/11" contained />
+		</figure>
 		<div>
 			<h3>Business</h3>
 			<p>
@@ -281,22 +253,9 @@
 		border-radius: 1rem;
 	}
 
-	figure :global(img) {
-		width: 100% !important;
-		height: 100% !important;
-		object-fit: cover !important;
-		display: block !important;
-		background-color: transparent !important;
-	}
-
-	img {
-		border-radius: 1rem;
+	figure :global(div[role='region']) {
 		width: 100%;
 		height: 100%;
-		aspect-ratio: 16 / 9;
-		object-fit: cover;
-		display: block;
-		background-color: transparent;
 	}
 
 	div {
@@ -305,12 +264,12 @@
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-		max-width: 1100px;
+		max-width: 1200px;
 		margin: 0 auto;
 		row-gap: 1rem;
 		box-sizing: border-box;
-		padding: 0 4rem;
-		height: 300px;
+		padding: 0 2rem;
+		height: 430px;
 	}
 
 	div > div {
@@ -321,26 +280,12 @@
 		align-items: flex-start;
 		row-gap: 0;
 		padding: 0;
+		height: auto;
 	}
 
 	div > div:nth-child(2) {
 		text-align: end;
 		align-items: flex-end;
-	}
-
-	div > :global(div[role='region']) {
-		flex: 0 0 50%;
-		max-width: 50%;
-		height: 100%;
-		overflow: hidden;
-		border-radius: 1rem;
-	}
-
-	div > :global(div[role='region']) :global(img) {
-		background-color: transparent !important;
-		object-fit: cover !important;
-		width: 100% !important;
-		height: 100% !important;
 	}
 
 	@media only screen and (max-width: 800px) {
@@ -363,16 +308,6 @@
 		figure {
 			flex: 0 0 100%;
 			max-width: 100%;
-		}
-
-		div > :global(div[role='region']) {
-			flex: 0 0 100%;
-			max-width: 100%;
-		}
-
-		img {
-			max-width: 100%;
-			height: auto;
 		}
 
 		h3 {
