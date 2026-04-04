@@ -60,7 +60,7 @@
 
 												{#if tier == order[0] || tier == order[1]}
 													{#if item.DescriptionAboutSponsor != null}
-														<h6>{item.DescriptionAboutSponsor}</h6>
+														<h6 class="default-font">{item.DescriptionAboutSponsor}</h6>
 													{/if}
 												{/if}
 											</div>
@@ -211,6 +211,8 @@
 		display: block;
 		color: var(--BajaWhite);
 		font-size: 4em;
+		margin: 0px;
+		margin-top: 8svh;
 	}
 	a > img {
 		display: flex;
@@ -221,7 +223,7 @@
 		width: 250px;
 		height: 150px;
 		object-fit: contain;
-		margin-top: 20px;
+		margin-top: 10px;
 		margin-right: 10px;
 		margin-left: 10px;
 		margin-bottom: 10px;
@@ -311,7 +313,7 @@
 		margin: auto;
 	}
 	table {
-		margin-top: 75px;
+		margin-top: 50px;
 		border-collapse: collapse;
 		width: 100%;
 		max-width: 900px;
@@ -319,7 +321,7 @@
 		border-style: hidden;
 		margin-left: auto;
 		margin-right: auto;
-		margin-bottom: 75px;
+		margin-bottom: 40px;
 	}
 	.table-wrapper {
 		overflow-x: auto;
@@ -350,6 +352,8 @@
 		flex-wrap: wrap;
 		color: var(--BajaWhite);
 		justify-content: center;
+		margin: 0px;
+
 		margin-left: 20px;
 		font-size: 2em;
 	}

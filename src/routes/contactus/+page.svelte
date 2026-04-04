@@ -80,7 +80,7 @@
 		align-items: center;
 		justify-content: center;
 		row-gap: 2svh;
-		column-gap: 4svw;
+		column-gap: 2svw;
 		background: #fff;
 		padding: 8svh 0svw;
 	}
@@ -98,11 +98,11 @@
 		display: flex;
 		flex-direction: column;
 		margin: 0;
-		font-size: 30px;
+		font-size: 25px;
 	}
 	div > div:nth-child(2) > div:last-child h1 {
 		margin: 2svh 0svw;
-		font-size: 40px;
+		font-size: 30px;
 		width: inherit;
 		border-bottom: 3px solid var(--BajaBlack);
 	}
