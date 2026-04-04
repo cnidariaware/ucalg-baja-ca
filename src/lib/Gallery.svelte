@@ -200,7 +200,7 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 16px;
-		padding: 32px;
+		padding: 5px;
 		border-radius: 20px;
 	}
 

@@ -4,7 +4,9 @@
 </script>
 
 <div
-	style={`background-image: linear-gradient(to bottom, rgba(0,0,0,0) 65%, #1f1f1f 100%), url(${imgUrl});`}
+	style={"background-image: linear-gradient(to bottom, rgba(0,0,0,0) 70%, #1f1f1f 100%), url('" +
+		imgUrl +
+		"')"}
 >
 	<div>
 		{#each titleLines as word, i}
@@ -24,17 +26,22 @@
 		--fade-starts-at-bottom: 90%;
 		--fade-starts-at-top: 96%;
 		--banner-text-background: rgba(31, 31, 31, 0.8);
-		--banner-text-padding: 2svh 2svw;
+		--banner-text-padding: none;
 		--banner-text-rounding: 1rem;
 	}
 
 	div {
+		position: relative; /* anchor for children if needed */
 		height: 100svh;
 		width: 100%;
 		display: flex;
-		justify-content: flex-start;
-		align-items: flex-start;
-		padding: 6svh;
+		justify-content: flex-end;
+		/* align-items: flex-start; */
+		background:
+        /* top layer: the fade */
+			linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--fade-starts-at-bottom, 70%), #1f1f1f 100%),
+			/* bottom layer: the image */ no-repeat center / cover;
+		/* (equivalent to background-image + size/pos/repeat for both layers) */
 
 		background-position: center;
 		background-size: cover;
@@ -43,36 +50,40 @@
 
 	/* title/subtitle wrapper */
 	div > div {
-		display: flex;
+		height: fit-content;
+		margin-top: 12svh;
+		width: fit-content;
+		margin-right: 2svw;
+		border-radius: 1rem;
+		background: initial;
+		/* background-color: rgba(0, 0, 0, 0.1); */
 		flex-direction: column;
-		align-items: flex-end;
 	}
 
 	h1 {
 		/* font-size: 100px; */
-		font-size: 10.25rem;
+		font-size: 8.5rem;
 		font-weight: bolder;
-		text-align: right;
+		text-align: end;
 		color: var(--BajaWhite);
-		margin: 0;
-		letter-spacing: -0.02em;
-		line-height: 1.05;
-
-		text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+		margin: var(--banner-text-padding);
+		border-radius: var(--banner-text-rounding);
+		text-shadow:rgba(0, 0, 0, 0.8)
 
 		opacity: 0;
 		animation: fadeSlide 0.6s ease-out forwards;
 	}
 
 	h2 {
-		margin-top: 1rem;
+		width: fit-content;
 		font-size: xx-large;
 		font-weight: normal;
 		color: var(--BajaWhite);
-		text-align: right;
+		margin: var(--banner-text-padding);
+		border-radius: var(--banner-text-rounding);
 
 		opacity: 0.9;
-		text-shadow: 0 2px 10px rgba(0, 0, 0, 0, 4);
+		text-shadow: 0 2px 10px rgba(black, 3);
 	}
 
 	@keyframes fadeSlide {
