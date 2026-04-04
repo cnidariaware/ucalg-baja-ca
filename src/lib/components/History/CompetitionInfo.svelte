@@ -4,7 +4,9 @@
 
 <figure key={year + competitions}>
 	<figcaption>
-		<h2>{year}</h2>
+		<h2>
+			{year}
+		</h2>
 		<h4>Overall Competition Results</h4>
 	</figcaption>
 	<ul>

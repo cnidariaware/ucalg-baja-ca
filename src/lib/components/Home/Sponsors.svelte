@@ -2,13 +2,13 @@
 	import StdFromSide from '../StdFromSide.svelte';
 </script>
 
-<div class="home-container">
+<!-- <div class="home-container">
 	<img
 		class="brush-overlay"
 		src="ucalg-baja-ca\src\lib\assets\transparent brush stroke.png"
 		alt=""
 	/>
-</div>
+</div> -->
 
 <StdFromSide backgroundColour="--BajaWhite" paddingTopBottom="8svh">
 	<h3>Current Sponsors</h3>
