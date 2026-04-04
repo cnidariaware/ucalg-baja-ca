@@ -243,11 +243,12 @@
 		margin-bottom: 0px;
 		height: 100%;
 		border: 8px solid var(--BajaBlack);
+		min-width: 15ch;
 		font-size: 3em;
+		text-align: center;
 	}
 	.Tier {
 		padding: 0px;
-		border-radius: 1.5em;
 	}
 	div.Diamond {
 		background-color: rgba(0, 255, 213, 0.5);
