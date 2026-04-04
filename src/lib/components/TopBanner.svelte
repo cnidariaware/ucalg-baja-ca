@@ -50,7 +50,7 @@
 
 	h1 {
 		/* font-size: 100px; */
-		font-size: 10.25rem;
+		font-size: 7.5rem;
 		font-weight: bolder;
 		text-align: right;
 		color: var(--BajaWhite);
