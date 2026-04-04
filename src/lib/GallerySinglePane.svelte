@@ -36,8 +36,6 @@
 	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
 	 */
 	function changeSet(step) {
-		// changes the current index according to the direction inputted, the + photos.length
-		// makes sure its positive and the % photos.length makes sure it wraps around
 		current_index = (current_index + step + photos.length) % photos.length;
 	}
 
@@ -48,13 +46,11 @@
 	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
 	 */
 	function toggleDialog(image) {
-		// sets to not open
 		dialogOpen = !dialogOpen;
-		// if the image is opened, it will clear out the timer, making sure the images dont rotate
+
 		if (dialogOpen === true) {
 			selected = image;
 			clearTimeout(rotateTimer);
-			// similarly this will make sure that the timer starts back up when the dialog is closed
 		} else {
 			selected = 0;
 			startTimer();
@@ -70,9 +66,8 @@
 	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
 	 */
 	function startTimer() {
-		// stops any timer running prior
 		clearTimeout(rotateTimer);
-		// sets a new timer when the images are moved, and restart the timer
+
 		rotateTimer = setTimeout(() => {
 			changeSet(1);
 			startTimer();
@@ -91,7 +86,6 @@
 	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
 	 */
 	function handleTouchStart(event) {
-		// stores the starting position of the swipe
 		touchstart_horizontal = event.touches[0].clientX;
 	}
 
@@ -102,7 +96,6 @@
 	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
 	 */
 	function handleTouchMove(event) {
-		// stores the swipe distance
 		touchend_horizontal = event.touches[0].clientX;
 	}
 
@@ -114,13 +107,10 @@
 	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
 	 */
 	function handleTouchEnd() {
-		// finds the difference between the start and end positions, giving the direction
 		const horizontal_change = touchend_horizontal - touchstart_horizontal;
-		// makes sure it only works if it is a proper swipe and not an accidental swipe
+
 		if (Math.abs(horizontal_change) > 30) {
-			// using the deirection, it will move left or right
 			changeSet(horizontal_change < 0 ? 1 : -1);
-			// resets the timer
 			startTimer();
 		}
 	}
@@ -218,7 +208,6 @@
 		gap: 16px;
 		overflow: hidden;
 		width: 100%;
-		max-width: 400px;
 		height: 300px;
 	}
 
@@ -231,8 +220,6 @@
 	}
 
 	div:first-of-type > div:first-child > img {
-		flex: 0 0 90%;
-		max-width: 100%;
 		height: 100%;
 		border-radius: 16px;
 		object-fit: cover;

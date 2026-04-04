@@ -1,6 +1,7 @@
 <script>
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
+	import GallerySinglePane from '$lib/Gallery.svelte';
 </script>
 
 <title>UCalgary Baja - Sub-teams</title>
@@ -22,6 +23,7 @@
 				calculations, and welding.
 			</p>
 		</div>
+		<Gallery singleMode={false} {photos} />
 		<img
 			alt="Welding suspension arms"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg"
