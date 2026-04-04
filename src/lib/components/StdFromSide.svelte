@@ -1,39 +1,3 @@
-<!-- <script>
-	let { children, backgroundColour, rowGap, paddingTopBottom, textColour = 'revert' } = $props();
-	import BrushStroke from '$lib/assets/TransparentBrushStroke.png';
-</script>
-
-<img src={BrushStroke} alt="" />
-
-<div
-	style:background-color={`var(${backgroundColour})`}
-	style:background-image={BrushStroke}
-	style="padding: {paddingTopBottom} 0svw;"
->
-	<div style:row-gap={rowGap} style:color={textColour}>
-		{@render children?.()}
-	</div>
-</div>
-
-<style>
-	div {
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-	}
-	div > div {
-		max-width: 96svw;
-		padding: 1svb 0svw;
-	}
-
-	img {
-		background-color: var(--BajaBlack);
-		width: 95rem;
-		height: 60rem;
-		max-width: 100%;
-	}
-</style> -->
-
 <script>
 	// Accept the new backgroundImage prop
 	let {
@@ -71,7 +35,8 @@
 
 	.content {
 		max-width: 96svw;
-		padding: 1svb 0svw;
+		padding-top: 10svh;
+		padding-bottom: 2svh;
 		display: flex;
 		align-items: center;
 		flex-direction: column;

@@ -5,7 +5,7 @@
 
 <StdFromSide
 	backgroundColour="--BajaBlack"
-	textColour="--BajaWhite"
+	textColour="--BajaBlack"
 	paddingTopBottom="8svh"
 	backgroundImage={BrushStroke}
 >
@@ -31,39 +31,7 @@
 		<a href="/sponsors">See All</a><a href="/sponsors">Support Us</a>
 	</div>
 </StdFromSide>
-s
 
-<!-- <script>
-	import StdFromSide from '../StdFromSide.svelte';
-	import BrushStroke from '$lib/assets/TransparentBrushStroke.png';
-</script>
-
-<img src={BrushStroke} alt="" />
-
-<StdFromSide backgroundColour="--BajaWhite" paddingTopBottom="8svh" background-image={BrushStroke}>
-	<h3>Current Sponsors</h3>
-	<div>
-		<div>
-			<img alt="Schulich logo" src="./schulich-logo.svg" />
-			<h4>Schulich School of Engineering</h4>
-		</div>
-		<div>
-			<img alt="Bilstein logo" src="https://bilstein-ymm.apacatapult.com/theme/assets/logo.png" />
-			<h4>Bilstein</h4>
-		</div>
-		<div>
-			<img
-				alt="Solidworks logo"
-				src="https://www.3ds.com/assets/3ds-navigation/3DS_corporate-logo_solidworks.svg"
-			/>
-			<h4>Solidworks</h4>
-		</div>
-	</div>
-	<div class="HomeSponsorLinks">
-		<a href="/sponsors">See All</a><a href="/sponsors">Support Us</a>
-	</div>
-</StdFromSide>
-  -->
 <style>
 	h3 {
 		border-bottom: none;
