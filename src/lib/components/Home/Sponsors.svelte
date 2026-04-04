@@ -3,12 +3,7 @@
 	import BrushStroke from '$lib/assets/TransparentBrushStroke.png';
 </script>
 
-<StdFromSide
-	backgroundColour="--BajaBlack"
-	textColour="--BajaBlack"
-	paddingTopBottom="8svh"
-	backgroundImage={BrushStroke}
->
+<StdFromSide backgroundColour="--BajaWhite" paddingTopBottom="8svh" backgroundImage={BrushStroke}>
 	<h3>Current Sponsors</h3>
 	<div>
 		<div>
