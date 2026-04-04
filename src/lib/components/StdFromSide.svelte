@@ -1,21 +1,48 @@
 <script>
-	let { children, backgroundColour, rowGap, paddingTopBottom, textColour = 'revert' } = $props();
+	// Accept the new backgroundImage prop
+	let {
+		children,
+		backgroundColour,
+		rowGap,
+		paddingTopBottom,
+		textColour = 'revert',
+		backgroundImage
+	} = $props();
 </script>
 
-<div style:background-color={`var(${backgroundColour})`} style="padding: {paddingTopBottom} 0svw;">
-	<div style:row-gap={rowGap} style:color={textColour}>
+<div
+	class="bg-wrapper"
+	style:background-color={`var(${backgroundColour})`}
+	style:background-image={backgroundImage ? `url(${backgroundImage})` : 'none'}
+	style="padding: {paddingTopBottom} 0svw;"
+>
+	<div class="content" style:row-gap={rowGap} style:color={`var(${textColour}, ${textColour})`}>
 		{@render children?.()}
 	</div>
 </div>
 
 <style>
-	div {
+	.bg-wrapper {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+
+		/* These ensure the brush stroke acts as a proper backdrop */
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover; /* Change to 'contain' if you don't want it to stretch */
 	}
-	div > div {
+
+	.content {
 		max-width: 96svw;
-		padding: 1svb 0svw;
+		padding-top: 10svh;
+		padding-bottom: 2svh;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		/* Forces the content to sit on top of the background */
+		position: relative;
+		z-index: 1;
 	}
 </style>

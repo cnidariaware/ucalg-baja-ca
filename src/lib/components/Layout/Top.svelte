@@ -1,6 +1,9 @@
 <script>
 	import logo from '$lib/assets/logo.png';
 	import { page } from '$app/stores';
+
+	let path = $derived($page.url.pathname.split('/'));
+	$inspect(path);
 </script>
 
 <header>
@@ -8,25 +11,25 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="/" class:active={$page.url.pathname === '/'}>HOME</a>
+				<a href="/" class:active={path[1] === ''}>HOME</a>
 			</li>
 			<li>
-				<a href={'/about'} class:active={$page.url.pathname === '/about'}>ABOUT</a>
+				<a href={'/about'} class:active={path[1] === 'about'}>ABOUT</a>
 			</li>
 			<li>
-				<a href={'/team'} class:active={$page.url.pathname === '/team'}>TEAM</a>
+				<a href={'/team'} class:active={path[1] === 'team'}>TEAM</a>
 			</li>
 			<li>
-				<a href={'/history'} class:active={$page.url.pathname === '/history'}>HISTORY</a>
+				<a href={'/history'} class:active={path[1] === 'history'}>HISTORY</a>
 			</li>
 			<li>
-				<a href={'/sponsors'} class:active={$page.url.pathname === '/sponsors'}>SPONSORS</a>
+				<a href={'/sponsors'} class:active={path[1] === 'sponsors'}>SPONSORS</a>
 			</li>
 			<li>
-				<a href={'/contactus'} class:active={$page.url.pathname === '/contactus'}>CONTACT US</a>
+				<a href={'/contactus'} class:active={path[1] === 'contactus'}>CONTACT US</a>
 			</li>
 			<li>
-				<a href={'/merch'} class:active={$page.url.pathname === '/merch'}>MERCH</a>
+				<a href={'/merch'} class:active={path[1] === 'merch'}>MERCH</a>
 			</li>
 		</ul>
 	</nav>
