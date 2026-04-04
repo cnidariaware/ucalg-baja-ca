@@ -2,8 +2,7 @@
 	import logo from '$lib/assets/logo.png';
 	import { page } from '$app/stores';
 
-	let path = $derived($page.url.pathname.split('/'));
-	$inspect(path);
+	let path = $derived($page.url.pathname.split('/').at(1));
 </script>
 
 <header>
@@ -11,25 +10,25 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="/" class:active={path[1] === ''}>HOME</a>
+				<a href="/" class:active={path === ''}>HOME</a>
 			</li>
 			<li>
-				<a href={'/about'} class:active={path[1] === 'about'}>ABOUT</a>
+				<a href={'/about'} class:active={path === 'about'}>ABOUT</a>
 			</li>
 			<li>
-				<a href={'/team'} class:active={path[1] === 'team'}>TEAM</a>
+				<a href={'/team'} class:active={path === 'team'}>TEAM</a>
 			</li>
 			<li>
-				<a href={'/history'} class:active={path[1] === 'history'}>HISTORY</a>
+				<a href={'/history'} class:active={path === 'history'}>HISTORY</a>
 			</li>
 			<li>
-				<a href={'/sponsors'} class:active={path[1] === 'sponsors'}>SPONSORS</a>
+				<a href={'/sponsors'} class:active={path === 'sponsors'}>SPONSORS</a>
 			</li>
 			<li>
-				<a href={'/contactus'} class:active={path[1] === 'contactus'}>CONTACT US</a>
+				<a href={'/contactus'} class:active={path === 'contactus'}>CONTACT US</a>
 			</li>
 			<li>
-				<a href={'/merch'} class:active={path[1] === 'merch'}>MERCH</a>
+				<a href={'/merch'} class:active={path === 'merch'}>MERCH</a>
 			</li>
 		</ul>
 	</nav>
