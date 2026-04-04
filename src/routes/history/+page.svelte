@@ -75,7 +75,7 @@
 		<tbody>
 			<tr>
 				<td class="symbol" id="HistoryJoin" colSpan={3}>
-					<div>Where You Join!</div>
+					<div style="font-family: BajaFont;  color: var(--BajaWhite);">Where You Join!</div>
 				</td>
 			</tr>
 			{#each historyTimeLineInfo as yearInfo, yearIndex}
