@@ -23,11 +23,10 @@
 <title>UCalgary Baja - Home</title>
 
 <TopBanner
-	titleText="UCalgary 
-	Baja"
+	titleText="UCalgary Baja"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754170619/DSC_0766-min-2_j7sxoz.jpg"
 />
-<StdFromSide backgroundColour="--BajaBlack" rowGap="2svh" paddingTopBottom="4svh">
+<StdFromSide backgroundColour="--BajaBlack" rowGap="8svh" paddingTopBottom="6svh">
 	<div>
 		<img
 			alt="member angle grinding top of baja car"
@@ -100,6 +99,7 @@
 		border-bottom: 3px solid var(--BajaWhite);
 		font-size: 36px;
 		margin-bottom: 2svh;
+		margin-top: 0px;
 		padding-bottom: 0.5svh;
 		text-align: center;
 	}
@@ -121,6 +121,11 @@
 		padding: 10px;
 		text-align: center;
 		text-decoration: none;
+	}
+
+	a:hover {
+		/* color: var(--BajaBlack); */
+		background-color: var(--BajaHover);
 	}
 
 	img {

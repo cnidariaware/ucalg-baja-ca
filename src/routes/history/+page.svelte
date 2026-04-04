@@ -57,7 +57,7 @@
 
 <TopBanner
 	titleText="History"
-	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754760952/DSCN7263_map0j4.jpg"
+	imgUrl="https://res.cloudinary.com/dj4xevuvs/image/upload/v1774733758/IMG_20260328_150403570_pg70yi.jpg"
 />
 <title>UCalgary Baja - History</title>
 <StdFromSide backgroundColour="--BajaBlack" rowGap="2svb" paddingTopBottom="2svb">
