@@ -44,11 +44,13 @@
 			<div>
 				{#each order as tier}
 					{#if data[tier]}
-						<h2>{tier}</h2>
+						<div class={tier.split(' ')}>
+							<h2 class={tier.split(' ')}>{tier}</h2>
+						</div>
 						<div>
 							{#each data[tier] as item}
 								<div>
-									<a href={item.Url}>
+									<a href={item.Url} class={tier.split(' ')}>
 										<img alt="{item.SponsorName}'s Logo" src={item.LogoUrl} />
 										{#if tier == order[0] || tier == order[1] || tier == order[2]}
 											<div>
@@ -58,7 +60,7 @@
 
 												{#if tier == order[0] || tier == order[1]}
 													{#if item.DescriptionAboutSponsor != null}
-														<p>{item.DescriptionAboutSponsor}</p>
+														<h6>{item.DescriptionAboutSponsor}</h6>
 													{/if}
 												{/if}
 											</div>
@@ -176,10 +178,26 @@
 	a {
 		text-decoration: none;
 		color: inherit;
-
-		&:hover {
-			color: var(--BajaRed);
-		}
+		border-radius: 15px;
+	}
+	a:hover {
+		cursor: pointer;
+		scale: 1.05;
+	}
+	a.Diamond:hover {
+		box-shadow: 4px 0px 8px rgba(0, 255, 213, 0.5);
+	}
+	a.Platinum:hover {
+		box-shadow: 4px 0px 8px rgba(192, 192, 192, 0.5);
+	}
+	a.Gold:hover {
+		box-shadow: 4px 0px 8px rgba(255, 215, 0, 0.5);
+	}
+	a.Silver:hover {
+		box-shadow: 4px 0px 8px rgba(192, 192, 192, 0.5);
+	}
+	a.Bronze:hover {
+		box-shadow: 4px 0px 8px rgba(205, 127, 50, 0.5);
 	}
 
 	div {
@@ -197,7 +215,7 @@
 	a > img {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: left;
+		justify-content: center;
 		align-items: center;
 		background-color: gray;
 		width: 250px;
@@ -217,14 +235,35 @@
 		border-width: 1px;
 	}
 	h2 {
-		display: flex;
-		flex-wrap: wrap;
+		display: block;
 		color: var(--BajaWhite);
+		background-color: var(--BajaBlack);
 		justify-content: center;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		margin-left: 20px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		height: 100%;
+		border: 8px solid var(--BajaBlack);
+		min-width: 15ch;
 		font-size: 3em;
+		text-align: center;
+	}
+	.Tier {
+		padding: 0px;
+	}
+	div.Diamond {
+		background-color: rgba(0, 255, 213, 0.5);
+	}
+	div.Platinum {
+		background-color: rgb(255, 255, 255);
+	}
+	div.Gold {
+		background-color: rgba(255, 215, 0, 0.5);
+	}
+	div.Silver {
+		background-color: rgba(192, 192, 192, 0.5);
+	}
+	div.Bronze {
+		background-color: rgba(205, 127, 50, 0.5);
 	}
 	div > div > div {
 		display: flex;
@@ -262,13 +301,13 @@
 		flex-direction: column;
 	}
 	p {
-		text-align: left;
+		text-align: center;
 		color: var(--BajaWhite);
+		font-size: 1.5em;
 		padding-top: 10px;
 		padding-left: 10%;
 		padding-right: 10%;
 		padding-bottom: 25px;
-		max-width: 900px;
 		margin: auto;
 	}
 	table {
@@ -311,9 +350,17 @@
 		flex-wrap: wrap;
 		color: var(--BajaWhite);
 		justify-content: center;
+		margin-left: 20px;
+		font-size: 2em;
+	}
+	h6 {
+		display: flex;
+		flex-wrap: wrap;
+		color: var(--BajaWhite);
+		justify-content: center;
 		margin-top: 10px;
 		margin-bottom: 10px;
 		margin-left: 20px;
-		font-size: 2em;
+		font-size: 1em;
 	}
 </style>
