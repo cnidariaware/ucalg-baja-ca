@@ -53,3 +53,18 @@ h6 {
 	font-size: normal;
 	font-display: swap;
 }
+
+.default-font {
+	font-family:
+		Ubuntu,
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		'Segoe UI',
+		Roboto,
+		Oxygen,
+		Cantarell,
+		'Open Sans',
+		'Helvetica Neue',
+		sans-serif;
+}

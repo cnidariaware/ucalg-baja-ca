@@ -3,6 +3,7 @@
 	import mail from '$lib/assets/bottom/mail.svg';
 	import instagram from '$lib/assets/bottom/instagram.svg';
 	import linkedin from '$lib/assets/bottom/linkedin.svg';
+	import gitrepo from '$lib/assets/bottom/forgejo.svg';
 	import logo from '$lib/assets/logo.png';
 
 	const date = new Date();
@@ -23,6 +24,9 @@
 				<img src={instagram} alt="Intragram Logo" />
 				<!-- <img src="https://www.svgrepo.com/show/521711/instagram.svg" alt="Intragram Logo" /> -->
 			</a>
+			<a href="https://forge.ucalgarybaja/ucalgary-baja/"
+				><img src={gitrepo} alt="Code Forge's logo" /></a
+			>
 			<a href="mailto:uofcbaja@gmail.com?subject=Lets start something great">
 				<img src={mail} alt="email us logo" />
 				<!-- <img src="https://www.svgrepo.com/show/479604/mail-17.svg" alt="email us logo" /> -->
@@ -33,9 +37,10 @@
 			</a>
 		</div>
 	</div>
-
-	<a href="/contactus">Contact Us</a>
-
+	<div style="row-gap: 4svh">
+		<a href="/contactus">Contact Us</a>
+		<a href="https://forge.ucalgarybaja/ucalgary-baja/">Projects</a>
+	</div>
 	<ul style="display: none;">
 		<li>Developed by:</li>
 		<li>Brock</li>
