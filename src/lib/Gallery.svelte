@@ -341,5 +341,9 @@
 			width: 100%;
 			height: auto;
 		}
+
+		.side-image {
+			display: none;
+		}
 	}
 </style>

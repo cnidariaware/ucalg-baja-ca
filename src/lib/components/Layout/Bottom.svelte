@@ -37,7 +37,7 @@
 			</a>
 		</div>
 	</div>
-	<div style="row-gap: 4svh">
+	<div>
 		<a href="/contactus">Contact Us</a>
 		<a href="https://forge.ucalgarybaja/ucalgary-baja/">Projects</a>
 	</div>
@@ -79,6 +79,7 @@
 
 	div > div {
 		flex-direction: row;
+		text-align: center;
 	}
 
 	a > img {
@@ -103,5 +104,26 @@
 			'Open Sans',
 			'Helvetica Neue',
 			sans-serif;
+	}
+
+	footer > div:nth-of-type(2) {
+		row-gap: 4svh;
+	}
+
+	@media only screen and (max-width: 800px) {
+		footer > img {
+			display: none;
+		}
+
+		footer {
+			flex-direction: column;
+			row-gap: 4svh;
+		}
+
+		footer > div:nth-of-type(2) {
+			flex-direction: row;
+			justify-content: space-between;
+			column-gap: 8svb;
+		}
 	}
 </style>
