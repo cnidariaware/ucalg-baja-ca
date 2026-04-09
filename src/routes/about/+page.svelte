@@ -6,10 +6,7 @@
 </script>
 
 <title>UCalgary Baja - About</title>
-<TopBanner
-	titleText="About Us"
-	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914208/IMG20240517082914_vuhtt1.jpg"
-/>
+<TopBanner titleText="About Us" imgUrl="./about_us_banner.png" />
 <Stats />
 <StdFromSide backgroundColour="--BajaBlack" textColour="--BajaWhite">
 	<section>
@@ -36,10 +33,7 @@
 	</section>
 
 	<section>
-		<img
-			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914532/20240428_105011_emgwkv.jpg"
-			alt="Baja Car driving down track"
-		/>
+		<img src="./front_view_car.png" alt="Baja Car driving down track" />
 		<div class="text-content">
 			<h2>The Competition</h2>
 			<p>
@@ -75,6 +69,7 @@
 		font-size: 36px;
 		margin-bottom: 2svh;
 		border-bottom: solid 3px white;
+		color: var(--BajaWhite);
 	}
 
 	/* Section Layout */
@@ -114,6 +109,9 @@
 		section:nth-child(2) {
 			flex-wrap: wrap-reverse;
 		}
+	}
+	p {
+		color: var(--BajaWhite);
 	}
 
 	/* Responsive */
