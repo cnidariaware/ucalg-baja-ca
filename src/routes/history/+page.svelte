@@ -269,6 +269,7 @@
 		margin-bottom: 4svh;
 		border-radius: var(--BajaRadius);
 		font-size: 19.2px;
+		font-family: 'BajaFont';
 	}
 
 	@media only screen and (max-width: 800px) {
