@@ -26,7 +26,7 @@
 	titleText="UCalgary Baja"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754170619/DSC_0766-min-2_j7sxoz.jpg"
 />
-<StdFromSide backgroundColour="--BajaBlack" rowGap="8svh" paddingTopBottom="6svh">
+<StdFromSide backgroundColour="--BajaBlack" rowGap="2rem" paddingTopBottom="2rem">
 	<div>
 		<img
 			alt="member angle grinding top of baja car"
@@ -73,7 +73,7 @@
 
 <Sponsors />
 
-<StdFromSide backgroundColour="--BajaBlack" rowGap="6svh" paddingTopBottom="4svh">
+<StdFromSide backgroundColour="--BajaBlack" rowGap="2rem" paddingTopBottom="2rem">
 	<Gallery {photos} />
 	<div>
 		<div>

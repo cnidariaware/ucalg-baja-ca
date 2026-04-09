@@ -1,9 +1,16 @@
 <script>
 	import StdFromSide from '../StdFromSide.svelte';
 	import BrushStroke from '$lib/assets/TransparentBrushStroke.png';
+	let width = $state(window.innerWidth);
+
+	let paddingValue = $derived(width <= 800 ? '0svh' : '3rem');
 </script>
 
-<StdFromSide backgroundColour="--BajaBlack" paddingTopBottom="8svh" backgroundImage={BrushStroke}>
+<StdFromSide
+	backgroundColour="--BajaBlack"
+	paddingTopBottom={paddingValue}
+	backgroundImage={BrushStroke}
+>
 	<h3>Current Sponsors</h3>
 	<div>
 		<div>
@@ -31,13 +38,14 @@
 	h3 {
 		border-bottom: none;
 		font-size: 50px;
-		margin-top: 0px;
+		margin-top: 1.5rem;
 
 		text-align: center;
 	}
 
 	h4 {
 		font-size: 18.72px;
+		margin: 0.5rem 0svw;
 	}
 
 	a {
@@ -50,7 +58,7 @@
 		text-wrap: nowrap;
 		color: var(--BajaWhite);
 		margin: 0 2svw;
-		padding: 1svh 4svw;
+		padding: 0.5rem 1.5rem;
 	}
 
 	a:hover {
@@ -74,8 +82,8 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: center;
-		padding: 1svh 0svw;
-		row-gap: 4svh;
+		padding: 0.5rem 0svw;
+		row-gap: 1rem;
 		text-align: center;
 	}
 
@@ -88,7 +96,22 @@
 	.HomeSponsorLinks {
 		flex-direction: row;
 		justify-content: center;
-		padding-top: 2svh;
+		/* padding-top: 1rem; */
+		padding: 0px;
 		width: inherit;
+	}
+
+	@media only screen and (max-width: 800px) {
+		h3 {
+			margin-top: 11rem;
+		}
+
+		div {
+			margin-bottom: 4.5rem;
+		}
+
+		div > div {
+			margin-bottom: 0px;
+		}
 	}
 </style>

@@ -32,8 +32,8 @@
 
 	div > div {
 		max-width: 96svw;
-		padding-top: 10svh;
-		padding-bottom: 2svh;
+		padding-top: 2rem;
+		padding-bottom: 1rem;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
