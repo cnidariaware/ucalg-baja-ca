@@ -22,24 +22,39 @@
 				alt: 'enter description of photo 5'
 			}
 		],
-		singleMode = false,
-		forcedRatio = false,
-		contained = false
+		singleMode = false
 	} = $props();
 
 	let current_index = $state(0);
 	let dialogOpen = $state(false);
 	let selected = $state(0);
 
+	/**
+	 * @param {number} step - the number of positions to move the gallery
+	 * @returns {null} - This funcion doesn't return a value, itupdates current index
+	 * @description Updates the current index based on the provided step and wraps around if it reaches the max, positive moves right and negative is left
+	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
+	 */
 	function changeSet(step) {
+		// changes the current index according to the direction inputted, the + photos.length
+		// makes sure its positive and the % photos.length makes sure it wraps around
 		current_index = (current_index + step + photos.length) % photos.length;
 	}
 
+	/**
+	 * @param {string} image - the image URL to display when opening the image
+	 * @returns {null} - does not return anything
+	 * @description - Opens or closses the dialog, stops the timer when the dialog is open, starts it back up when its closed
+	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
+	 */
 	function toggleDialog(image) {
+		// sets to not open
 		dialogOpen = !dialogOpen;
+		// if the image is opened, it will clear out the timer, making sure the images dont rotate
 		if (dialogOpen === true) {
 			selected = image;
 			clearTimeout(rotateTimer);
+			// similarly this will make sure that the timer starts back up when the dialog is closed
 		} else {
 			selected = 0;
 			startTimer();
@@ -48,8 +63,16 @@
 
 	let rotateTimer;
 
+	/**
+	 * @param {event} event - does not take in an input
+	 * @returns {null} - This funcion doesn't return anything
+	 * @description - Starts the timer again, clearing any previous timers
+	 * @author Aarsh Trivedi <aarshtrivedi07@gmail.com>
+	 */
 	function startTimer() {
+		// stops any timer running prior
 		clearTimeout(rotateTimer);
+		// sets a new timer when the images are moved, and restart the timer
 		rotateTimer = setTimeout(() => {
 			changeSet(1);
 			startTimer();
@@ -61,70 +84,87 @@
 	let touchstart_horizontal = 0;
 	let touchend_horizontal = 0;
 
+	/**
+	 * @param {event} event - takes the starting value when the screen is touched
+	 * @returns {null} - This funcion doesn't return anything
+	 * @description - records the starting horizontal position for swipe detection
+	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
+	 */
 	function handleTouchStart(event) {
+		// stores the starting position of the swipe
 		touchstart_horizontal = event.touches[0].clientX;
 	}
 
+	/**
+	 * @param {event} event - takes the event at which the finger mves across the screen
+	 * @returns {null} - This funcion doesn't return anything
+	 * @description - tracks the finger movement during the swipe to calculate distance
+	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
+	 */
 	function handleTouchMove(event) {
+		// stores the swipe distance
 		touchend_horizontal = event.touches[0].clientX;
 	}
 
+	/**
+	 * @param {null} - This function does not take in an input
+	 * @returns {null} - This funcion doesn't return anything
+	 * @description - runs after the user lifts their finger, if the distance is greater than
+	 * the set amoutn it counts it as a swipe and moves the images left or right, then resets the timer
+	 * @author Aarsh Trivedi <aarsh.trivedi@ucalgary.ca>
+	 */
 	function handleTouchEnd() {
+		// finds the difference between the start and end positions, giving the direction
 		const horizontal_change = touchend_horizontal - touchstart_horizontal;
+		// makes sure it only works if it is a proper swipe and not an accidental swipe
 		if (Math.abs(horizontal_change) > 30) {
+			// using the deirection, it will move left or right
 			changeSet(horizontal_change < 0 ? 1 : -1);
+			// resets the timer
 			startTimer();
 		}
 	}
 </script>
 
 <div
+	id={singleMode ? 'single' : ''}
 	role="region"
 	aria-label="Image gallery, swipe left or right to navigate images"
-	class:contained
 	ontouchstart={handleTouchStart}
 	ontouchmove={handleTouchMove}
 	ontouchend={handleTouchEnd}
 >
-	<div
-		class:single-mode={singleMode}
-		class:multi-mode={!singleMode}
-		style={forcedRatio ? `aspect-ratio: ${forcedRatio}; height: auto;` : ''}
-	>
+	<div>
 		{#if !singleMode}
 			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
+
 			<img
-				class="side-image"
 				src={photos[(current_index - 1 + photos.length) % photos.length].src}
 				alt={photos[(current_index - 1 + photos.length) % photos.length].alt}
 				onclick={() =>
 					toggleDialog(photos[(current_index - 1 + photos.length) % photos.length].src)}
 			/>
 		{/if}
-
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<img
-			class="main-image"
 			src={photos[current_index].src}
 			alt={photos[current_index].alt}
 			onclick={() => toggleDialog(photos[current_index].src)}
 		/>
-
 		{#if !singleMode}
 			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<img
-				class="side-image"
 				src={photos[(current_index + 1) % photos.length].src}
 				alt={photos[(current_index + 1) % photos.length].alt}
 				onclick={() => toggleDialog(photos[(current_index + 1) % photos.length].src)}
 			/>
 		{/if}
 	</div>
-
-	{#if photos.length > 1}
+	{$inspect(photos.length)}
+	{#if photos.length >= 2}
 		<div>
 			{#each photos as _, index}
 				<button
@@ -141,37 +181,33 @@
 
 {#if dialogOpen}
 	<dialog open onclick={() => toggleDialog()}>
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div
+		<a
+			href="/"
 			onclick={(e) => {
+				e.preventDefault();
 				e.stopPropagation();
 			}}
 		>
 			<button
 				class="close-btn"
 				onclick={(e) => {
-					e.preventDefault();
 					e.stopPropagation();
 					toggleDialog();
 				}}>✕</button
 			>
 			<img src={selected} alt="Full View" class="full-image" />
-		</div>
+		</a>
 	</dialog>
 {/if}
 
 <style>
-	/* ── Default (standalone) mode ── */
 	div:first-of-type {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 16px;
-		padding: 5px;
+		padding: 32px;
 		border-radius: 20px;
-		width: 100%;
-		box-sizing: border-box;
 	}
 
 	div:first-of-type > div:first-child {
@@ -179,86 +215,60 @@
 		justify-content: center;
 		flex-direction: row;
 		gap: 16px;
+		overflow: hidden;
 		width: 100%;
 		max-width: 400px;
-	}
-
-	div:first-of-type > div:first-child.single-mode {
-		max-width: 100%;
-	}
-
-	div:first-of-type > div:first-child.multi-mode {
-		max-width: 400px;
-	}
-
-	@media (min-width: 950px) {
-		div:first-of-type > div:first-child.single-mode {
-			max-width: 1200px;
-		}
-
-		div:first-of-type > div:first-child.multi-mode {
-			max-width: 1200px;
-		}
-
-		div:first-of-type > div:first-child.multi-mode > img.main-image {
-			flex: 0 0 32%;
-			max-width: 32%;
-		}
-
-		div:first-of-type > div:first-child.multi-mode > img.side-image {
-			flex: 0 0 32%;
-			max-width: 32%;
-		}
-	}
-
-	div:first-of-type.contained {
-		padding: 0;
-		gap: 6px;
-		height: 100%;
-	}
-
-	div:first-of-type.contained > div:first-child {
-		width: 100%;
-		max-width: 100%;
-		height: auto;
-		flex: 1 1 0;
-		min-height: 0;
-	}
-	div:first-of-type.contained > div:first-child > img.main-image {
-		width: 100%;
-	}
-
-	div:first-of-type > div:first-child[style] {
-		width: 100%;
-		max-width: 100%;
-		height: auto;
-		flex: 0 0 auto;
+		height: 300px;
 	}
 
 	div:first-of-type > div:first-child > img {
+		flex: 0 0 90%;
 		max-width: 100%;
 		height: 100%;
 		border-radius: 16px;
 		object-fit: cover;
 	}
 
-	div:first-of-type > div:first-child > img.main-image {
-		flex: 0 0 100%;
-		width: 100%;
-		max-width: 100%;
-	}
-
-	div:first-of-type > div:first-child > img.side-image {
+	div:first-of-type > div:first-child > img:nth-child(odd) {
 		flex: 0 0 15%;
 		max-width: 15%;
 		opacity: 0.8;
 	}
 
+	@media (min-width: 950px) {
+		div:first-of-type > div:first-child > img {
+			flex: 0 0 33%;
+			max-width: 33%;
+		}
+
+		div:first-of-type > div:first-child > img:nth-child(odd) {
+			flex: 0 0 33%;
+			max-width: 33%;
+			opacity: 1;
+		}
+
+		div:first-of-type > div:first-child {
+			max-width: 1200px;
+		}
+	}
+
+	#single {
+		padding: 0px;
+	}
+
+	#single > div {
+		padding: 0px;
+	}
+
+	#single > div:first-child > img:nth-child(odd) {
+		flex: revert;
+		max-width: 100%;
+	}
+
 	div:nth-child(2) {
 		display: flex;
 		gap: 12px;
-		margin-top: 4px;
-		flex-shrink: 0;
+		margin-top: 16px;
 	}
 
 	div:nth-child(2) button {
@@ -289,51 +299,40 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border: none;
 	}
 
 	dialog::backdrop {
-		background: rgba(0, 0, 0, 0.6);
+		background: rgba(
+			0,
+			0,
+			0,
+			0.6
+		); /* or higher opacity like 0.7–0.8 to hide footer better visually */
 	}
 
-	dialog div {
-		display: flex;
-		position: relative;
+	dialog a {
+		display: block;
+		position: fixed;
 		max-width: 80%;
-		max-height: 80vh;
+		height: 80%;
 		margin: auto;
+		margin-bottom: 5svh;
 		text-align: center;
-		align-items: center;
-		justify-content: center;
 	}
 
-	dialog > div > img {
-		max-height: 80vh;
+	dialog > a > img {
+		max-height: 100%;
 		max-width: 100%;
 		border-radius: 10px;
 		object-fit: contain;
-	}
-
-	dialog button {
-		position: absolute;
-		top: -16px;
-		right: -16px;
-		width: 32px;
-		height: 32px;
-		color: rgb(0, 0, 0);
-		font-size: 16px;
-		cursor: pointer;
-		border: none;
-		background-color: rgba(240, 255, 255, 0.8);
-		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		z-index: 10;
+		box-sizing: content-box;
+		background-repeat: no-repeat;
+		background-size: cover;
 	}
 
 	@media (max-width: 950px) {
-		dialog div {
+		dialog button {
+			max-height: 90svw;
 			max-width: 90svw;
 		}
 
@@ -342,8 +341,27 @@
 			height: auto;
 		}
 
-		.side-image {
-			display: none;
+		dialog a {
+			height: revert;
 		}
+
+		dialog button {
+			top: 11%;
+			right: 11%;
+			font-size: 16px;
+		}
+	}
+
+	dialog button {
+		position: absolute;
+		top: 3%;
+		right: 2%;
+		color: rgb(0, 0, 0);
+		font-size: 18px;
+		cursor: pointer;
+		border: none;
+		justify-content: right;
+		background-color: rgb(240, 255, 255, 0.3);
+		border-radius: 50%;
 	}
 </style>

@@ -2,84 +2,7 @@
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
 	import Gallery from '$lib/Gallery.svelte';
-
-	let suspensionPhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
-			alt: 'Welding suspension arms'
-		},
-		{
-			src: 'https://res.cloudinary.com/dj4xevuvs/image/upload/v1775092195/IMG20240425140511_m9kp0e.jpg',
-			alt: 'Suspension Arms'
-		}
-	];
-
-	let chassisPhotos = [
-		{
-			src: 'https://res.cloudinary.com/dj4xevuvs/image/upload/v1775092421/IMG_3083_q96ivi.webp',
-			alt: 'Chassis complete ready for powder coating'
-		},
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png',
-			alt: 'Chassis in ansys stress simulation'
-		}
-	];
-
-	let ergonomicsPhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/18HASpcxac4zjPwWZSpbQs94v0ooAX-3hmw4emI_0zO4qfnSYTO5XBMXSH7dow2E_xkngmq.png',
-			alt: 'brakes and gas pedal CAD'
-		}
-	];
-
-	let steeringPhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/19yTuNKZMp1QCQoaBz86d-zpvATvP6Rx1SaVjynMSV6RQFROM2d7anw3zAD4_nabmkg.png',
-			alt: 'Suspensions arms and steering'
-		}
-	];
-
-	let powertrainPhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915331/cvt_zz0rgl.png',
-			alt: 'cvt'
-		}
-	];
-
-	let finalDrivePhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754168541/brakes-min_bgmnyc.jpg',
-			alt: 'top down shot of our brake system'
-		}
-	];
-
-	let telemetryPhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/12ZRS9P9XwyNLusJ59EfL98Yc_ZMpbdoYvATMAQKqnf0atoxj0ZUA2vtgQYh09a8_quphim.png',
-			alt: 'strain gauge'
-		}
-	];
-
-	let dataAcquisitionPhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915330/scale_ccg4wg.png',
-			alt: 'weight scale'
-		}
-	];
-
-	let softwarePhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png',
-			alt: 'jsx code from our sponsors'
-		}
-	];
-
-	let businessPhotos = [
-		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg',
-			alt: 'member wearing ucalgary baja t-shirt'
-		}
-	];
+	import SUB_TEAM_PHOTOS from './team_photos';
 </script>
 
 <title>UCalgary Baja - Sub-teams</title>
@@ -101,14 +24,18 @@
 				calculations, and welding.
 			</p>
 		</div>
-		<figure>
-			<Gallery photos={suspensionPhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<!-- <img
+			alt="Welding suspension arms"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg"
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['suspension']} singleMode /></figure>
 	</div>
 	<div>
-		<figure>
-			<Gallery photos={chassisPhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<!-- <img
+			alt="chassis in ansys stress simulation"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png"
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['chassis']} singleMode /></figure>
 		<div>
 			<h3>Chassis</h3>
 			<p>
@@ -127,14 +54,18 @@
 				pedal foot resets.
 			</p>
 		</div>
-		<figure>
-			<Gallery photos={ergonomicsPhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<!-- <img
+			alt="brakes and gas pedal CAD"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/18HASpcxac4zjPwWZSpbQs94v0ooAX-3hmw4emI_0zO4qfnSYTO5XBMXSH7dow2E_xkngmq.png"
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['ergonomics']} singleMode /></figure>
 	</div>
 	<div>
-		<figure>
-			<Gallery photos={steeringPhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<!-- <img
+			alt="Suspensions arms and steering"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/19yTuNKZMp1QCQoaBz86d-zpvATvP6Rx1SaVjynMSV6RQFROM2d7anw3zAD4_nabmkg.png"
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['steering']} singleMode /></figure>
 		<div>
 			<h3>Steering</h3>
 			<p>
@@ -151,14 +82,18 @@
 				CVT, propshaft, rear axles, rear brakes, and rear hubs.
 			</p>
 		</div>
-		<figure>
-			<Gallery photos={powertrainPhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<!-- <img
+			alt="cvt"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915331/cvt_zz0rgl.png"
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['powertrain']} singleMode /></figure>
 	</div>
 	<div>
-		<figure>
-			<Gallery photos={finalDrivePhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<!-- <img
+			alt="top down shot of our brake system"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754168541/brakes-min_bgmnyc.jpg"
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['finalDrive']} singleMode /></figure>
 		<div>
 			<h3>Final Drive</h3>
 			<p>
@@ -175,14 +110,18 @@
 				vehicle, letting the team to monitor performance and diagnose issues during testing.
 			</p>
 		</div>
-		<figure>
-			<Gallery photos={telemetryPhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['telemetry']} singleMode /></figure>
+		<!-- <img
+			alt="strain gauge"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/12ZRS9P9XwyNLusJ59EfL98Yc_ZMpbdoYvATMAQKqnf0atoxj0ZUA2vtgQYh09a8_quphim.png"
+		/> -->
 	</div>
 	<div>
-		<figure>
-			<Gallery photos={dataAcquisitionPhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<!-- <img
+			alt="weight scale"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915330/scale_ccg4wg.png"
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['dataAcquisition']} singleMode /></figure>
 		<div>
 			<h3>Data Acquisition</h3>
 			<p>
@@ -199,14 +138,18 @@
 				collection system and run our in club storage system.
 			</p>
 		</div>
-		<figure>
-			<Gallery photos={softwarePhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['software']} singleMode /></figure>
+		<!-- <img
+			alt="jsx code from our sponsors"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png"
+		/> -->
 	</div>
 	<div>
-		<figure>
-			<Gallery photos={businessPhotos} singleMode forcedRatio="16/11" contained />
-		</figure>
+		<!-- <img
+			alt="member wearing ucalgary baja t-shirt"
+			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['businesss']} singleMode /></figure>
 		<div>
 			<h3>Business</h3>
 			<p>
@@ -228,6 +171,7 @@
 		font-size: 80px;
 		text-align: center;
 		margin: 0;
+		/* border-top: 1px solid whitesmoke; */
 		padding: 66px 0svw;
 	}
 
@@ -245,17 +189,14 @@
 	}
 
 	figure {
-		display: flex;
-		flex-direction: row;
-		column-gap: 1rem;
-		margin: 0;
-		height: 250px;
-		flex: 1 1 1;
+		margin: 0px;
 	}
 
-	img {
+	img,
+	figure {
 		border-radius: 1rem;
-		max-height: 300px;
+		display: flex;
+		max-height: 400px;
 		max-width: 700px;
 		height: 100%;
 		width: 100%;
@@ -264,20 +205,10 @@
 
 	div {
 		display: flex;
-		column-gap: 4rem;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
-		max-width: 1200px;
-		margin: 0 auto;
-		row-gap: 1rem;
-		box-sizing: border-box;
-		padding: 0 2rem;
-		height: 430px;
 		/* flex-wrap: wrap; */
 		column-gap: 4rem;
 		justify-content: space-evenly;
-		width: 100%;
+		/* width: inherit; */
 		row-gap: 1rem;
 	}
 
@@ -287,33 +218,20 @@
 		max-width: 48ch;
 		row-gap: 0;
 		padding: 0svh 25px;
-		/* padding: 0; */
-
-		/* div > div {
-		flex: 0 0 calc(50% - 2rem);
-		max-width: calc(50% - 2rem);
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-start;
-		row-gap: 0;
-		padding: 0;
-		height: auto;
-		padding: 0svh 25px;
-		/* padding: 0; */
 	}
 
 	div > div:nth-child(2) {
 		text-align: end;
-		/* align-items: flex-end; */
 	}
 
 	@media only screen and (max-width: 800px) {
-		/* img {
+		img,
+		figure {
 			max-width: 700px;
 			width: 100%;
 			max-height: 400px;
 			height: auto;
-		} */
+		}
 
 		div {
 			row-gap: 2rem;
@@ -330,46 +248,4 @@
 			justify-content: center;
 		}
 	}
-
-	/* @media only screen and (max-width: 800px) {
-		img {
-			max-width: 700px;
-			width: 100%;
-			max-height: 400px;
-			height: auto;
-		}
-
-		div {
-			row-gap: 2rem;
-			justify-content: center;
-			flex-wrap: wrap;
-		}
-
-		/* div {
-			height: auto;
-			flex-wrap: wrap;
-			padding: 0 1.5rem;
-			justify-content: center;
-		} 
-
-		div:nth-child(even) {
-			flex-wrap: wrap-reverse;
-		}
-
-		div > div {
-			flex: 0 0 100%;
-			max-width: 100%;
-		}
-
-		figure {
-			flex: 0 0 100%;
-			max-width: 100%;
-		}
-
-		h3 {
-			font-size: 36px;
-			max-width: 700px;
-			justify-content: center;
-		}
-	} */
 </style>
