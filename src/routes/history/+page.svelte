@@ -2,6 +2,7 @@
 	import CompetitionInfo from '$lib/components/History/CompetitionInfo.svelte';
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
+	import { fly } from 'svelte/transition';
 
 	let historyTimeLineInfo = [
 		{
@@ -53,13 +54,42 @@
 			competitions: [{ location: 'Illinois', placement: '41th' }]
 		}
 	];
+
+	// used to keep track of the rows that are in view
+	let visibleRows = new Set();
+
+	// made a function to then observe when a specific amount of this row is in view, right now its set to 20%
+	// the node parameter takes in the tr element, and index is the row number passed in
+	function observe(node, index) {
+		// this watches the element and sends a signal back when it enters or leaves the visible screen
+		const observer = new IntersectionObserver(
+			// this fires whenever 20% of the row is visible
+			([entry]) => {
+				//is it on screen?
+				if (entry.isIntersecting) {
+					// if it is add it to the visible rows
+					visibleRows.add(index);
+					visibleRows = visibleRows;
+					// once its there, stop observing it so it doesnt constantly keep sliding in and out
+					observer.disconnect();
+				}
+			},
+			// 20% visible
+			{ threshold: 0.2 }
+		);
+		observer.observe(node);
+		//this just makes sure it doesnt carry onto another page
+		return { destroy: () => observer.disconnect() };
+	}
 </script>
+
+<title>UCalgary Baja - History</title>
 
 <TopBanner
 	titleText="History"
 	imgUrl="https://res.cloudinary.com/dj4xevuvs/image/upload/v1774733758/IMG_20260328_150403570_pg70yi.jpg"
 />
-<title>UCalgary Baja - History</title>
+
 <StdFromSide backgroundColour="--BajaBlack" rowGap="2svb" paddingTopBottom="2svb">
 	<div>
 		<h2>A look at our past vehicles and competition results.</h2>
@@ -67,43 +97,48 @@
 			Each result showcases the dedication and growth of our team, highlighting the countless hours
 			of design, testing, and collaboration that drive us forward.
 		</p>
-
 		<a href="/about"> Learn More </a>
 	</div>
 
 	<table>
 		<tbody>
-			<tr>
-				<td class="symbol" id="HistoryJoin" colSpan={3}>
-					<div>Where You Join!</div>
-				</td>
-			</tr>
 			{#each historyTimeLineInfo as yearInfo, yearIndex}
-				<tr key={yearIndex}>
+				<tr use:observe={yearIndex}>
 					{#if yearIndex % 2 === 0}
 						<td>
-							<img src={yearInfo.competitionCarImg} alt={yearInfo.year + "'s Car"} />
+							{#if visibleRows.has(yearIndex)}
+								<div in:fly={{ x: -200, duration: 600 }}>
+									<img src={yearInfo.competitionCarImg} alt={yearInfo.year + "'s Car"} />
+								</div>
+							{/if}
 						</td>
 						<td class="symbol">
-							<span class="dot">
-								<!-- {/* Star or circle spot */} -->
-							</span>
+							<span class="dot"></span>
 						</td>
 						<td>
-							<CompetitionInfo year={yearInfo.year} competitions={yearInfo.competitions} />
+							{#if visibleRows.has(yearIndex)}
+								<div in:fly={{ x: 200, duration: 600 }}>
+									<CompetitionInfo year={yearInfo.year} competitions={yearInfo.competitions} />
+								</div>
+							{/if}
 						</td>
 					{:else}
 						<td>
-							<CompetitionInfo year={yearInfo.year} competitions={yearInfo.competitions} />
+							{#if visibleRows.has(yearIndex)}
+								<div in:fly={{ x: -200, duration: 600 }}>
+									<CompetitionInfo year={yearInfo.year} competitions={yearInfo.competitions} />
+								</div>
+							{/if}
 						</td>
-
 						<td class="symbol">
-							<span class="dot">
-								<!-- {/* Star or circle spot */} -->
-							</span>
+							<span class="dot"></span>
 						</td>
 						<td>
-							<img src={yearInfo.competitionCarImg} alt={yearInfo.year + "'s Car"} />
+							{#if visibleRows.has(yearIndex)}
+								<div in:fly={{ x: 200, duration: 600 }}>
+									<img src={yearInfo.competitionCarImg} alt={yearInfo.year + "'s Car"} />
+								</div>
+							{/if}
 						</td>
 					{/if}
 				</tr>
@@ -123,7 +158,6 @@
 		flex-direction: column;
 		align-items: center;
 		align-self: center;
-		/* border-radius: 1rem; */
 		padding: 2svh 2svw;
 		row-gap: 2svh;
 		text-align: center;
@@ -157,16 +191,6 @@
 		background-color: var(--BajaHover);
 	}
 
-	/* #History {
-		display: flex;
-		flex-direction: column;
-		padding: 4svh 4svw;
-		row-gap: 4svh;
-		background-color: var(--BajaBlack);
-		color: white;
-		font-size: larger;
-	} */
-
 	table {
 		border-collapse: collapse;
 		width: auto;
@@ -183,8 +207,8 @@
 	}
 
 	tr td {
-		max-width: 400px;
-		max-height: 400px;
+		max-width: 500px;
+		height: 400px; /* <--- CRUCIAL FIX: Changed from max-height to height so empty rows still take up space */
 		vertical-align: middle;
 	}
 
@@ -205,13 +229,11 @@
 
 	td > div {
 		width: 100%;
-		/* width: fit-content; */
 		box-sizing: border-box;
 	}
 
 	.symbol {
 		position: relative;
-		/* width: 10px; */
 		text-align: center;
 		padding: 0svh 2svw;
 		min-width: 40px;
@@ -232,17 +254,14 @@
 	}
 
 	.dot {
-		/* display: inline-block; */
 		background-color: rgb(120, 120, 120);
 		border-radius: 50%;
 		transform: translate(-50%, -50%);
 		width: 20px;
 		height: 20px;
-		/* max-width: 20px; */
 		line-height: 20px;
 		font-size: 12px;
 		font-weight: bold;
-		position: relative;
 		z-index: 2;
 		position: absolute;
 		top: 50%;
@@ -263,7 +282,7 @@
 		text-wrap: nowrap;
 		position: relative;
 		background-color: black;
-		z-index: 2; /* above line */
+		z-index: 2;
 		width: fit-content;
 		margin: 0svh auto;
 		margin-bottom: 4svh;
@@ -274,18 +293,14 @@
 
 	@media only screen and (max-width: 800px) {
 		table tr td {
-			max-width: 100px;
 			max-width: fit-content;
 		}
-
 		img {
 			margin: 0px;
 		}
-
 		.symbol {
 			width: 10px;
 		}
-
 		.dot {
 			width: 10px;
 			height: 10px;
