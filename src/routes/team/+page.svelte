@@ -192,7 +192,6 @@
 		margin: 0px;
 	}
 
-	img,
 	figure {
 		border-radius: 1rem;
 		display: flex;
@@ -208,7 +207,7 @@
 		/* flex-wrap: wrap; */
 		column-gap: 4rem;
 		justify-content: space-evenly;
-		/* width: inherit; */
+		width: 100%;
 		row-gap: 1rem;
 	}
 
@@ -225,7 +224,6 @@
 	}
 
 	@media only screen and (max-width: 800px) {
-		img,
 		figure {
 			max-width: 700px;
 			width: 100%;
