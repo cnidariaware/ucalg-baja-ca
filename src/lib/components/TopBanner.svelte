@@ -68,7 +68,8 @@
 		color: var(--BajaWhite);
 		margin: var(--banner-text-padding);
 		border-radius: var(--banner-text-rounding);
-		text-shadow:rgba(0, 0, 0, 0.8)
+		text-shadow: rgba(0, 0, 0, 0.8);
+		max-width: 100%;
 
 		opacity: 0;
 		animation: fadeSlide 0.6s ease-out forwards;
@@ -99,7 +100,7 @@
 
 	@media only screen and (max-width: 800px) {
 		h1 {
-			font-size: 3.5rem;
+			font-size: 3.25rem;
 		}
 
 		div > div {
