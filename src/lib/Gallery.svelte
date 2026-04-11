@@ -254,6 +254,9 @@
 
 	#single {
 		padding: 0px;
+		margin: 0svh auto;
+		width: 100%;
+		height: 100%;
 	}
 
 	#single > div {
