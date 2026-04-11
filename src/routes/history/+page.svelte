@@ -284,6 +284,7 @@
 
 		.symbol {
 			width: 10px;
+			padding: 0px;
 		}
 
 		.dot {

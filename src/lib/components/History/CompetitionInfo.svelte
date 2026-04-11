@@ -56,6 +56,7 @@
 		grid-template-columns: 1fr 1fr;
 		margin: 0 auto;
 		align-items: center;
+		justify-content: center;
 		margin: 0px;
 		box-sizing: content-box;
 		padding: 0px 1%;
@@ -73,13 +74,17 @@
 	}
 
 	@media only screen and (max-width: 800px) {
+		figure {
+			padding: 1svh 0svw;
+		}
+
 		h2 {
-			font-size: 28px;
+			font-size: 20px;
 		}
 
 		h4 {
 			line-break: loose;
-			font-size: 20px;
+			font-size: 14px;
 		}
 
 		h2,
