@@ -135,7 +135,7 @@
 	ontouchend={handleTouchEnd}
 >
 	<div>
-		{#if !singleMode}
+		{#if !singleMode && photos.length >= 2}
 			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 
@@ -153,7 +153,7 @@
 			alt={photos[current_index].alt}
 			onclick={() => toggleDialog(photos[current_index].src)}
 		/>
-		{#if !singleMode}
+		{#if !singleMode && photos.length >= 2}
 			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 			<!-- svelte-ignore a11y_click_events_have_key_events -->
 			<img
@@ -163,7 +163,6 @@
 			/>
 		{/if}
 	</div>
-	{$inspect(photos.length)}
 	{#if photos.length >= 2}
 		<div>
 			{#each photos as _, index}
