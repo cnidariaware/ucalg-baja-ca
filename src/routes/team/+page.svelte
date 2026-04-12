@@ -14,7 +14,7 @@
 
 <h2>SUBTEAMS</h2>
 
-<StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="8svh">
+<StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="2rem">
 	<div>
 		<div>
 			<h3>Suspension</h3>
@@ -186,6 +186,7 @@
 		font-size: 22px;
 		margin: 0;
 		padding: 0;
+		max-width: 100%;
 	}
 
 	figure {
@@ -235,6 +236,7 @@
 			row-gap: 2rem;
 			justify-content: center;
 			flex-wrap: wrap;
+			padding: 0px;
 		}
 
 		div:nth-child(even) {
@@ -242,8 +244,22 @@
 		}
 
 		div > div {
-			max-width: 700px;
+			/* max-width: 700px; */
+			max-width: 100%;
 			justify-content: center;
+			padding: 0svh 0.25rem;
+			box-sizing: border-box;
+		}
+
+		h2 {
+			font-size: 3.25rem;
+			max-width: 100%;
+			padding: 1rem 0svw;
+		}
+
+		h3 {
+			font-size: 2.75rem;
+			text-align: center;
 		}
 	}
 </style>
