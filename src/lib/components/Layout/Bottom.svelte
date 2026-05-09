@@ -24,7 +24,7 @@
 				<img src={instagram} alt="Intragram Logo" />
 				<!-- <img src="https://www.svgrepo.com/show/521711/instagram.svg" alt="Intragram Logo" /> -->
 			</a>
-			<a href="https://forge.ucalgarybaja/ucalgary-baja/"
+			<a href="https://forge.ucalgarybaja.ca/ucalgary-baja/"
 				><img src={gitrepo} alt="Code Forge's logo" /></a
 			>
 			<a href="mailto:uofcbaja@gmail.com?subject=Lets start something great">
