@@ -1,26 +1,22 @@
 <script>
 	import StdFromSide from '../StdFromSide.svelte';
 	import BrushStroke from '$lib/assets/TransparentBrushStroke.png';
-	let width = $state(window.innerWidth);
-
-	let paddingValue = $derived(width <= 800 ? '0svh' : '3rem');
 </script>
 
-<StdFromSide
-	backgroundColour="--BajaBlack"
-	paddingTopBottom={paddingValue}
-	backgroundImage={BrushStroke}
->
+<StdFromSide backgroundColour="--BajaBlack" paddingTopBottom="3rem" backgroundImage={BrushStroke}>
 	<h3>Current Sponsors</h3>
+
 	<div>
 		<div>
 			<img alt="Schulich logo" src="./schulich-logo.svg" />
 			<h4>Schulich School of Engineering</h4>
 		</div>
+
 		<div>
 			<img alt="Bilstein logo" src="https://bilstein-ymm.apacatapult.com/theme/assets/logo.png" />
 			<h4>Bilstein</h4>
 		</div>
+
 		<div>
 			<img
 				alt="Solidworks logo"
@@ -29,17 +25,23 @@
 			<h4>Solidworks</h4>
 		</div>
 	</div>
+
 	<div class="HomeSponsorLinks">
-		<a href="/sponsors">See All</a><a href="/sponsors">Support Us</a>
+		<a href="/sponsors">See All</a>
+		<a href="/sponsors">Support Us</a>
 	</div>
 </StdFromSide>
 
 <style>
+	:global(section) {
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+	}
+
 	h3 {
 		border-bottom: none;
 		font-size: 50px;
 		margin-top: 1.5rem;
-
 		text-align: center;
 	}
 
@@ -51,14 +53,13 @@
 	a {
 		background-color: var(--BajaRed);
 		border-radius: 1rem;
-		color: inherit;
+		color: var(--BajaWhite);
 		font-size: large;
+		margin: 0 2svw;
+		padding: 0.5rem 1.5rem;
 		text-align: center;
 		text-decoration: none;
 		text-wrap: nowrap;
-		color: var(--BajaWhite);
-		margin: 0 2svw;
-		padding: 0.5rem 1.5rem;
 	}
 
 	a:hover {
@@ -70,8 +71,6 @@
 		align-self: center;
 		border-radius: 1rem;
 		max-height: 80px;
-		max-width: inherit;
-		min-height: 0;
 		min-width: 200px;
 		object-fit: contain;
 		width: auto;
@@ -96,12 +95,16 @@
 	.HomeSponsorLinks {
 		flex-direction: row;
 		justify-content: center;
-		/* padding-top: 1rem; */
-		padding: 0px;
+		padding: 0;
 		width: inherit;
 	}
 
 	@media only screen and (max-width: 800px) {
+		:global(section) {
+			padding-top: 0svh;
+			padding-bottom: 0svh;
+		}
+
 		h3 {
 			margin-top: 11rem;
 		}
@@ -111,7 +114,7 @@
 		}
 
 		div > div {
-			margin-bottom: 0px;
+			margin-bottom: 0;
 		}
 	}
 </style>
