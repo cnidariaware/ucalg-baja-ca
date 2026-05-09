@@ -1,6 +1,11 @@
 <script>
 	import TopBanner from '$lib/components/TopBanner.svelte';
 	import Contact from '$lib/components/Contact.svelte';
+	import bronze from '$lib/assets/sponsor_backgrounds/bronze.jpg';
+	import diamond from '$lib/assets/sponsor_backgrounds/diamond.avif';
+	import platinum from '$lib/assets/sponsor_backgrounds/platinum.jpg';
+	import silver from '$lib/assets/sponsor_backgrounds/silver.jpg';
+	import gold from '$lib/assets/sponsor_backgrounds/gold.jpg';
 	// let sponsorInfo = $state('');
 	let sponsorPromise = $state(null);
 	const order = ['Diamond Tier', 'Platinum Tier', 'Gold Tier', 'Silver Tier', 'Bronze Tier'];
@@ -194,7 +199,7 @@
 		box-shadow: 4px 0px 8px rgba(255, 215, 0, 0.5);
 	}
 	a.Silver:hover {
-		box-shadow: 4px 0px 8px rgba(192, 192, 192, 0.5);
+		box-shadow: 4px 0px 8px rgba(213, 212, 212, 0.5);
 	}
 	a.Bronze:hover {
 		box-shadow: 4px 0px 8px rgba(205, 127, 50, 0.5);
@@ -252,21 +257,59 @@
 	.Tier {
 		padding: 0px;
 	}
-	div.Diamond {
-		background-color: rgba(0, 255, 213, 0.5);
+	/* div.Diamond {
+		background-color: rgba(185, 242, 255);
 	}
 	div.Platinum {
-		background-color: rgb(255, 255, 255);
+		background-color: #d9d9d9;
 	}
 	div.Gold {
-		background-color: rgba(255, 215, 0, 0.5);
+		background-color: rgba(245, 189, 2);
 	}
 	div.Silver {
-		background-color: rgba(192, 192, 192, 0.5);
+		background-color: rgba(192, 192, 192);
 	}
 	div.Bronze {
-		background-color: rgba(205, 127, 50, 0.5);
+		background-color: rgba(205, 127, 50);
+	} */
+
+	div.Diamond,
+	div.Platinum,
+	div.Gold,
+	div.Silver,
+	div.Bronze {
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
 	}
+
+	div.Diamond {
+		background-color: rgba(185, 242, 255);
+		background-image: url('{diamond}');
+	}
+
+	div.Platinum {
+		background-color: #d9d9d9;
+		background-image: url('{platinum}');
+	}
+
+	div.Gold {
+		background-color: rgba(245, 189, 2);
+		background-image: url('{gold}');
+	}
+
+	div.Silver {
+		background-color: rgba(192, 192, 192);
+		background-image: url('{silver}');
+	}
+
+	div.Bronze {
+		background-color: rgba(205, 127, 50);
+		background-image: url('{bronze}');
+	}
+
 	div > div > div {
 		display: flex;
 		justify-content: center;
