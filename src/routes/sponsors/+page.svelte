@@ -4,8 +4,8 @@
 	import bronze from '$lib/assets/sponsor_backgrounds/bronze.jpg';
 	import diamond from '$lib/assets/sponsor_backgrounds/diamond.avif';
 	import platinum from '$lib/assets/sponsor_backgrounds/platinum.webp';
-	// import platinum from '$lib/assets/sponsor_backgrounds/emerald.jpg'; Emerald tier
-	// import platinum from '$lib/assets/sponsor_backgrounds/ruby.jpg'; Ruby tier
+	// import platinum from '$lib/assets/sponsor_backgrounds/emerald.jpg'; New Emerald tier
+	// import platinum from '$lib/assets/sponsor_backgrounds/ruby.jpg'; New Ruby tier
 	import silver from '$lib/assets/sponsor_backgrounds/silver.avif';
 	import gold from '$lib/assets/sponsor_backgrounds/gold.jpg';
 
