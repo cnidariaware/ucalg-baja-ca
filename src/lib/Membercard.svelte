@@ -11,14 +11,14 @@
 	<div class="photo-wrap">
 		<img {src} alt={name} />
 		{#if linkedin}
-			<a href={linkedin} target="_blank" rel="noopener noreferrer" class="overlay">
-				<img src={linkedin_img} alt="LinkedIn" class="linkedin-icon" />
+			<a href={linkedin} target="_blank" rel="noopener noreferrer">
+				<img src={linkedin_img} alt="LinkedIn" />
 			</a>
 		{/if}
 	</div>
-	<p class="name">{name}</p>
-	<p class="role">{role}</p>
-	<p class="bio">{bio}</p>
+	<p>{name}</p>
+	<p>{role}</p>
+	<p>{bio}</p>
 </div>
 
 <style>
@@ -49,7 +49,7 @@
 		background: transparent;
 	}
 
-	.overlay {
+	a {
 		position: absolute;
 		inset: 0;
 		background: rgba(0, 0, 0, 0.6);
@@ -61,20 +61,11 @@
 		text-decoration: none;
 	}
 
-	.overlay:hover {
+	a:hover {
 		opacity: 1;
 	}
 
-	.overlay-text {
-		color: white;
-		font-size: 14px;
-		font-weight: 500;
-		letter-spacing: 0.03em;
-		text-align: center;
-		background: transparent;
-	}
-
-	.name {
+	p:first-of-type {
 		font-size: 22px;
 		font-weight: 500;
 		margin: 0;
@@ -83,7 +74,7 @@
 		background: transparent;
 	}
 
-	.role {
+	p:nth-of-type(2) {
 		font-size: 20px;
 		margin: 0 0 0.5rem 0;
 		text-align: center;
@@ -91,7 +82,7 @@
 		background: transparent;
 	}
 
-	.bio {
+	p:nth-of-type(3) {
 		font-size: 16px;
 		color: rgba(255, 255, 255, 0.6);
 		text-align: center;
@@ -99,9 +90,10 @@
 		background: transparent;
 	}
 
-	.linkedin-icon {
+	a > img {
 		width: 32px;
 		height: 32px;
 		object-fit: contain;
+		background: transparent;
 	}
 </style>
