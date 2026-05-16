@@ -3,18 +3,23 @@
 	import Contact from '$lib/components/Contact.svelte';
 	import bronze from '$lib/assets/sponsor_backgrounds/bronze.jpg';
 	import diamond from '$lib/assets/sponsor_backgrounds/diamond.avif';
-	import platinum from '$lib/assets/sponsor_backgrounds/platinum.jpg';
-	import silver from '$lib/assets/sponsor_backgrounds/silver.jpg';
+	import platinum from '$lib/assets/sponsor_backgrounds/platinum.webp';
+	// import platinum from '$lib/assets/sponsor_backgrounds/emerald.jpg'; Emerald tier
+	// import platinum from '$lib/assets/sponsor_backgrounds/ruby.jpg'; Ruby tier
+	import silver from '$lib/assets/sponsor_backgrounds/silver.avif';
 	import gold from '$lib/assets/sponsor_backgrounds/gold.jpg';
-	// let sponsorInfo = $state('');
+
 	let sponsorPromise = $state(null);
 	const order = ['Diamond Tier', 'Platinum Tier', 'Gold Tier', 'Silver Tier', 'Bronze Tier'];
-	/**
-	 * @param none
-	 * @return none
-	 * @description fetches sponsor information from the backend YAML field and stores it in sponsors variable, we then convert it to JSON format, and store it in sponsorInfo variable for later use in the page
-	 * @author Siddharth Engineer <siddharthengineer24@gmail.com>
-	 */
+
+	const backgrounds = {
+		'Diamond Tier': diamond,
+		'Platinum Tier': platinum,
+		'Gold Tier': gold,
+		'Silver Tier': silver,
+		'Bronze Tier': bronze
+	};
+
 	const getSponsors = async () => {
 		let sponsors = await fetch('https://api.ucalgarybaja.ca/sponsors');
 		return sponsors;
@@ -26,12 +31,9 @@
 			if (!res.ok) {
 				return null;
 			}
-
 			return await res.json();
 		})();
 	});
-
-	// $inspect(sponsorPromise);
 </script>
 
 <title>UCalgary Baja - Sponsors</title>
@@ -49,7 +51,7 @@
 			<div>
 				{#each order as tier}
 					{#if data[tier]}
-						<div class={tier.split(' ')}>
+						<div class={tier.split(' ')} style="background-image: url({backgrounds[tier]})">
 							<h2 class={tier.split(' ')}>{tier}</h2>
 						</div>
 						<div>
@@ -62,7 +64,6 @@
 												<h5>
 													{item.SponsorName}
 												</h5>
-
 												{#if tier == order[0] || tier == order[1]}
 													{#if item.DescriptionAboutSponsor != null}
 														<h6 class="default-font">{item.DescriptionAboutSponsor}</h6>
@@ -96,7 +97,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- Logo on Website -->
 				<tr>
 					<th>Logo On<br />Website</th>
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
@@ -105,8 +105,6 @@
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
-
-				<!-- Social Media Exposure -->
 				<tr>
 					<th>Social Media<br />Exposure</th>
 					<td></td>
@@ -115,8 +113,6 @@
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
-
-				<!-- Shop Tour / Introduction -->
 				<tr>
 					<th>Shop Tour /<br />Introduction</th>
 					<td></td>
@@ -125,8 +121,6 @@
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
-
-				<!-- Social Media Feature -->
 				<tr>
 					<th>Social Media<br />Feature</th>
 					<td></td>
@@ -135,8 +129,6 @@
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
-
-				<!-- Logo on Vehicle -->
 				<tr>
 					<th>Logo On<br />Vehicle</th>
 					<td>Small</td>
@@ -190,19 +182,19 @@
 		scale: 1.05;
 	}
 	a.Diamond:hover {
-		box-shadow: 4px 0px 8px rgba(0, 255, 213, 0.5);
+		box-shadow: 4px 1px 14px rgb(73, 200, 255);
 	}
 	a.Platinum:hover {
-		box-shadow: 4px 0px 8px rgba(192, 192, 192, 0.5);
+		box-shadow: 4px 1px 14px #d9d9d9;
 	}
 	a.Gold:hover {
-		box-shadow: 4px 0px 8px rgba(255, 215, 0, 0.5);
+		box-shadow: 4px 1px 14px #f5bd02;
 	}
 	a.Silver:hover {
-		box-shadow: 4px 0px 8px rgba(213, 212, 212, 0.5);
+		box-shadow: 4px 1px 14px rgba(192, 192, 192);
 	}
 	a.Bronze:hover {
-		box-shadow: 4px 0px 8px rgba(205, 127, 50, 0.5);
+		box-shadow: 4px 1px 14px rgba(205, 127, 50);
 	}
 
 	div {
@@ -257,27 +249,9 @@
 	.Tier {
 		padding: 0px;
 	}
-	/* div.Diamond {
-		background-color: rgba(185, 242, 255);
-	}
-	div.Platinum {
-		background-color: #d9d9d9;
-	}
-	div.Gold {
-		background-color: rgba(245, 189, 2);
-	}
-	div.Silver {
-		background-color: rgba(192, 192, 192);
-	}
-	div.Bronze {
-		background-color: rgba(205, 127, 50);
-	} */
 
-	div.Diamond,
-	div.Platinum,
-	div.Gold,
-	div.Silver,
-	div.Bronze {
+	div.Diamond {
+		background-color: rgba(185, 242, 255);
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -285,29 +259,40 @@
 		overflow: hidden;
 	}
 
-	div.Diamond {
-		background-color: rgba(185, 242, 255);
-		background-image: url('{diamond}');
-	}
-
 	div.Platinum {
 		background-color: #d9d9d9;
-		background-image: url('{platinum}');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
 	}
 
 	div.Gold {
-		background-color: rgba(245, 189, 2);
-		background-image: url('{gold}');
+		background-color: #f5bd02;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
 	}
 
 	div.Silver {
 		background-color: rgba(192, 192, 192);
-		background-image: url('{silver}');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
 	}
 
 	div.Bronze {
 		background-color: rgba(205, 127, 50);
-		background-image: url('{bronze}');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
 	}
 
 	div > div > div {
@@ -396,7 +381,6 @@
 		color: var(--BajaWhite);
 		justify-content: center;
 		margin: 0px;
-
 		margin-left: 20px;
 		font-size: 2em;
 	}
