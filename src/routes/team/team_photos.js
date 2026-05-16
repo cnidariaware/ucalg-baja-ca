@@ -1,0 +1,81 @@
+const SUB_TEAM_PHOTOS = {
+	suspension: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg',
+			alt: 'Welding suspension arms'
+		},
+		{
+			src: 'https://res.cloudinary.com/dj4xevuvs/image/upload/v1775092195/IMG20240425140511_m9kp0e.jpg',
+			alt: 'Suspension Arms'
+		}
+	],
+
+	chassis: [
+		{
+			src: 'https://res.cloudinary.com/dj4xevuvs/image/upload/v1775092421/IMG_3083_q96ivi.webp',
+			alt: 'Chassis complete ready for powder coating'
+		},
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png',
+			alt: 'Chassis in ansys stress simulation'
+		}
+	],
+
+	ergonomics: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/18HASpcxac4zjPwWZSpbQs94v0ooAX-3hmw4emI_0zO4qfnSYTO5XBMXSH7dow2E_xkngmq.png',
+			alt: 'brakes and gas pedal CAD'
+		}
+	],
+
+	steering: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/19yTuNKZMp1QCQoaBz86d-zpvATvP6Rx1SaVjynMSV6RQFROM2d7anw3zAD4_nabmkg.png',
+			alt: 'Suspensions arms and steering'
+		}
+	],
+
+	powertrain: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915331/cvt_zz0rgl.png',
+			alt: 'cvt'
+		}
+	],
+
+	finalDrive: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754168541/brakes-min_bgmnyc.jpg',
+			alt: 'top down shot of our brake system'
+		}
+	],
+
+	telemetry: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/12ZRS9P9XwyNLusJ59EfL98Yc_ZMpbdoYvATMAQKqnf0atoxj0ZUA2vtgQYh09a8_quphim.png',
+			alt: 'strain gauge'
+		}
+	],
+
+	dataAcquisition: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915330/scale_ccg4wg.png',
+			alt: 'weight scale'
+		}
+	],
+
+	software: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png',
+			alt: 'jsx code from our sponsors'
+		}
+	],
+
+	business: [
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg',
+			alt: 'member wearing ucalgary baja t-shirt'
+		}
+	]
+};
+
+export default SUB_TEAM_PHOTOS;

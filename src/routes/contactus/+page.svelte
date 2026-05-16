@@ -120,6 +120,9 @@
 
 	/* RESPONSIVE STYLES */
 	@media (max-width: 800px) {
+		h1 {
+			text-align: center;
+		}
 		div > div:nth-child(2) > div:first-child {
 			display: flex;
 			flex-direction: column;
@@ -127,6 +130,9 @@
 		}
 		div > div:nth-child(2) > div:first-child img {
 			margin: 1svh 0svw;
+		}
+		div > div:nth-child(2) > div:nth-child(1) {
+			display: none;
 		}
 	}
 	@media (max-width: 1025px) {

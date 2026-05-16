@@ -1,7 +1,13 @@
 <script>
 	import StdFromSide from '../StdFromSide.svelte';
 	import BrushStroke from '$lib/assets/TransparentBrushStroke.png';
-	let width = $state(window.innerWidth);
+	import { browser } from '$app/environment';
+
+	let width = $state(0);
+
+	$effect(() => {
+		width = typeof window !== 'undefined' ? window.innerWidth : 800;
+	});
 
 	let paddingValue = $derived(width <= 800 ? '0svh' : '3rem');
 </script>
