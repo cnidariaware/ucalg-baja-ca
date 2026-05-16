@@ -83,7 +83,7 @@
 		<p>Error loading sponsors: {error.message}</p>
 	{/await}
 
-	<h4>Sponsorship Benefits</h4>
+	<h3>Sponsorship Benefits</h3>
 	<div class="table-wrapper">
 		<table class="sponsor-table">
 			<thead>
@@ -203,14 +203,16 @@
 		padding-bottom: 3em;
 		overflow-x: hidden;
 	}
+	h3,
 	h4 {
 		text-align: center;
 		display: block;
 		color: var(--BajaWhite);
-		font-size: 4em;
+		font-size: 4rem;
 		margin: 0px;
 		margin-top: 8svh;
 	}
+
 	a > img {
 		display: flex;
 		flex-wrap: wrap;
@@ -393,5 +395,31 @@
 		margin-bottom: 10px;
 		margin-left: 20px;
 		font-size: 1em;
+	}
+
+	@media only screen and (max-width: 800px) {
+		h4 {
+			font-size: 3.25rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			box-sizing: border-box;
+		}
+
+		h5 {
+			font-size: 1.5rem;
+			margin: 0px;
+		}
+
+		h3 {
+			font-size: 2.5rem;
+			margin-top: 4svh;
+		}
+
+		div > div {
+			row-gap: 1svh;
+			padding: 4px;
+		}
 	}
 </style>
