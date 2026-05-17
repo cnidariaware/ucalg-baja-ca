@@ -25,11 +25,11 @@
 				<a href={'/sponsors'} class:active={path === 'sponsors'}>SPONSORS</a>
 			</li>
 			<li>
-				<a href={'/contactus'} class:active={path === 'contactus'}>CONTACT US</a>
+				<a href={'/contact'} class:active={path === 'contactus'}>CONTACT US</a>
 			</li>
-			<li>
+			<!-- <li>
 				<a href={'/merch'} class:active={path === 'merch'}>MERCH</a>
-			</li>
+			</li> -->
 		</ul>
 	</nav>
 	<div></div>
