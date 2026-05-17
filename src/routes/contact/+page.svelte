@@ -104,7 +104,7 @@
 		margin: 2svh 0svw;
 		font-size: 30px;
 		width: inherit;
-		border-bottom: 3px solid var(--BajaBlack);
+		/* border-bottom: 3px solid var(--BajaBlack); */
 	}
 
 	/* Email hover styles */
