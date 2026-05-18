@@ -149,7 +149,7 @@
 			alt="member wearing ucalgary baja t-shirt"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
 		/> -->
-		<figure><Gallery photos={SUB_TEAM_PHOTOS['businesss']} singleMode /></figure>
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['business']} singleMode /></figure>
 		<div>
 			<h3>Business</h3>
 			<p>
