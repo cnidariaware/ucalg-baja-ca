@@ -7,6 +7,9 @@
 
 <title>UCalgary Baja - Sub-teams</title>
 
+<!-- This is the last thing to do for the site other than photos -->
+<!-- <meta name="description" content=""> -->
+
 <TopBanner
 	titleText="Our Team"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1771713184/_MG_5269_ub2hjh.jpg"
@@ -197,7 +200,7 @@
 		border-radius: 1rem;
 		display: flex;
 		max-height: 400px;
-		max-width: 700px;
+		max-width: 500px;
 		height: 100%;
 		width: 100%;
 		object-fit: initial;

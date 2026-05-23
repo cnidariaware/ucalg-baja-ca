@@ -6,6 +6,10 @@
 </script>
 
 <title>UCalgary Baja - About</title>
+
+<!-- This is the last thing to do for the site other than photos -->
+<!-- <meta name="description" content=""> -->
+
 <TopBanner titleText="About Us" imgUrl="./about_us_banner.png" />
 <!-- <Stats /> -->
 <StdFromSide backgroundColour="--BajaBlack" textColour="--BajaWhite">

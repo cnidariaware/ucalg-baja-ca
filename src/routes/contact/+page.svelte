@@ -5,6 +5,9 @@
 
 <title>UCalgary Baja - Contact</title>
 
+<!-- This is the last thing to do for the site other than photos -->
+<!-- <meta name="description" content=""> -->
+
 <TopBanner
 	titleText="Contact Us"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914996/DSC_0393_inuw2z.jpg"

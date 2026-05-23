@@ -67,6 +67,10 @@ const SUB_TEAM_PHOTOS = {
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png',
 			alt: 'jsx code from our sponsors'
+		},
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1779572781/Software_w_Brock_zpysst.jpg',
+			alt: 'The software lead ai placed into the iron man scene'
 		}
 	],
 

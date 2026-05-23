@@ -48,6 +48,10 @@ h6 {
 	font-family: 'BajaFont';
 }
 
+/* a {
+	font-family: 'BajaFont';
+} */
+
 @font-face {
 	font-family: 'BajaFont';
 	src: url('$lib/assets/nexa_rust_sans_black_web/NexaRustSans-Black.woff') format('woff');

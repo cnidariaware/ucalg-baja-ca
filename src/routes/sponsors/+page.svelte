@@ -38,6 +38,9 @@
 
 <title>UCalgary Baja - Sponsors</title>
 
+<!-- This is the last thing to do for the site other than photos -->
+<!-- <meta name="description" content=""> -->
+
 <TopBanner
 	titleText="Sponsors"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914692/IMG_6671_daaeeq.jpg"
@@ -173,14 +176,23 @@
 		object-fit: contain;
 	}
 	a {
-		text-decoration: none;
 		color: inherit;
+		text-decoration: none;
 		border-radius: 15px;
 	}
 	a:hover {
 		cursor: pointer;
 		scale: 1.05;
 	}
+
+	p > a {
+		text-decoration: underline;
+	}
+
+	p > a:hover {
+		color: var(--BajaRed);
+	}
+
 	a.Diamond:hover {
 		box-shadow: 4px 1px 14px rgb(73, 200, 255);
 	}
