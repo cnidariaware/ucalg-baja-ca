@@ -50,7 +50,7 @@ h6 {
 
 @font-face {
 	font-family: 'BajaFont';
-	src: url('$lib/assets/nexa-rust.sans-black.otf') format('opentype');
+	src: url('$lib/assets/nexa_rust_sans_black_web/NexaRustSans-Black.woff') format('woff');
 	font-weight: normal;
 	font-size: normal;
 	font-display: swap;
