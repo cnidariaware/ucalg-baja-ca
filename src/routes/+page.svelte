@@ -21,6 +21,8 @@
 </script>
 
 <title>UCalgary Baja - Home</title>
+<!-- This is the last thing to do for the site other than photos -->
+<!-- <meta name="description" content=""> -->
 
 <TopBanner
 	titleText="UCalgary Baja"

@@ -85,6 +85,9 @@
 
 <title>UCalgary Baja - History</title>
 
+<!-- This is the last thing to do for the site other than photos -->
+<!-- <meta name="description" content=""> -->
+
 <TopBanner
 	titleText="History"
 	imgUrl="https://res.cloudinary.com/dj4xevuvs/image/upload/v1774733758/IMG_20260328_150403570_pg70yi.jpg"
@@ -185,6 +188,7 @@
 		padding: 2svb 14svw;
 		text-decoration: none;
 		color: inherit;
+		/* font-family: 'BajaFont'; */
 	}
 
 	a:hover {
