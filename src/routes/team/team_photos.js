@@ -71,6 +71,10 @@ const SUB_TEAM_PHOTOS = {
 		{
 			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1779572781/Software_w_Brock_zpysst.jpg',
 			alt: 'The software lead ai placed into the iron man scene'
+		},
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1779655313/Baja_Software_2025-2026_pvl1y3.jpg',
+			alt: 'The softweare subteam of 2025-2026'
 		}
 	],
 
