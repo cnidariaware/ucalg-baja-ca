@@ -22,7 +22,13 @@
 
 <title>UCalgary Baja - Home</title>
 <!-- This is the last thing to do for the site other than photos -->
-<!-- <meta name="description" content=""> -->
+<meta
+	name="description"
+	content="
+			UCalgary Baja is a student organization which designs, builds, and races an off-road vehicle
+			in the Baja SAE competition organized by the Society of Automotive Engineers (SAE) every
+			year."
+/>
 
 <TopBanner
 	titleText="UCalgary Baja"

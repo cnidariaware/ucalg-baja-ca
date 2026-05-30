@@ -7,8 +7,12 @@
 
 <title>UCalgary Baja - About</title>
 
-<!-- This is the last thing to do for the site other than photos -->
-<!-- <meta name="description" content=""> -->
+<meta
+	name="description"
+	content="
+	UCalgary Baja builds, drives and competes at BAJA SAE Events where we give students to participate in every part. 
+	At competition events are split into two categories, dynamic and static events"
+/>
 
 <TopBanner titleText="About Us" imgUrl="./about_us_banner.png" />
 <!-- <Stats /> -->

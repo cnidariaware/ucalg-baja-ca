@@ -38,15 +38,18 @@
 
 <title>UCalgary Baja - Sponsors</title>
 
-<!-- This is the last thing to do for the site other than photos -->
-<!-- <meta name="description" content=""> -->
+<meta
+	name="description"
+	content="UCalgary Baja primatily operates due to the help of our wonderful sponsors, they are sperated out by tier, 
+	here is are all of our sponsors and the benefits they recieve."
+/>
 
 <TopBanner
 	titleText="Sponsors"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914692/IMG_6671_daaeeq.jpg"
 />
 <div>
-	<h4>Current sponsors</h4>
+	<h4>Active sponsors</h4>
 	{#await sponsorPromise}
 		<p>Loading sponsors...</p>
 	{:then data}

@@ -7,8 +7,10 @@
 
 <title>UCalgary Baja - Sub-teams</title>
 
-<!-- This is the last thing to do for the site other than photos -->
-<!-- <meta name="description" content=""> -->
+<meta
+	name="description"
+	content="UCalgary Baja is made up of multiple teams who specialize in certain functions nessary for both team and vehicle operation"
+/>
 
 <TopBanner
 	titleText="Our Team"
