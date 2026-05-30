@@ -85,8 +85,10 @@
 
 <title>UCalgary Baja - History</title>
 
-<!-- This is the last thing to do for the site other than photos -->
-<!-- <meta name="description" content=""> -->
+<meta
+	name="description"
+	content="UCalgary Baja has been around for a very long time, here are some the achievements we did"
+/>
 
 <TopBanner
 	titleText="History"

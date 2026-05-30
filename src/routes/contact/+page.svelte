@@ -5,8 +5,10 @@
 
 <title>UCalgary Baja - Contact</title>
 
-<!-- This is the last thing to do for the site other than photos -->
-<!-- <meta name="description" content=""> -->
+<meta
+	name="description"
+	content="Please feel free to ask questions or use this form to get into direct contact with us"
+/>
 
 <TopBanner
 	titleText="Contact Us"
