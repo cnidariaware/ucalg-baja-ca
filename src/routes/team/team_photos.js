@@ -11,14 +11,14 @@ const SUB_TEAM_PHOTOS = {
 	],
 
 	chassis: [
-		{
-			src: 'https://res.cloudinary.com/dj4xevuvs/image/upload/v1775092421/IMG_3083_q96ivi.webp',
-			alt: 'Chassis complete ready for powder coating'
-		}
 		// {
-		// 	src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png',
-		// 	alt: 'Chassis in ansys stress simulation'
+		// 	src: 'https://res.cloudinary.com/dj4xevuvs/image/upload/v1775092421/IMG_3083_q96ivi.webp',
+		// 	alt: 'Chassis complete ready for powder coating'
 		// }
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png',
+			alt: 'Chassis in ansys stress simulation'
+		}
 	],
 
 	ergonomics: [
