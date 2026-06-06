@@ -1,5 +1,5 @@
 import buisness_subteam from '$lib/assets/subteam_photos/buisness subteam.jpg';
-import chasis_subteam from '$lib/assets/subteam_photos/chasis subteam.jpg';
+import chassis_subteam from '$lib/assets/subteam_photos/chassis subteam.jpg';
 import telemetry_subteam from '$lib/assets/subteam_photos/telemetry subteam.jpg';
 import finaldrive_subteam from '$lib/assets/subteam_photos/finaldrive subteam.jpg';
 import powertrain_subteam from '$lib/assets/subteam_photos/powertrain subteam.jpg';
@@ -7,6 +7,7 @@ import steering_subteam from '$lib/assets/subteam_photos/steering subteam.jpg';
 import suspension_subteam from '$lib/assets/subteam_photos/suspension subteam.jpg';
 import ergonomics_subteam from '$lib/assets/subteam_photos/ergonomics subteam.jpg';
 import dataacquisition_subteam from '$lib/assets/subteam_photos/data acquisition.jpg';
+import software_reveal_day from '$lib/assets/subteam_photos/software reveal day.JPG';
 
 const SUB_TEAM_PHOTOS = {
 	suspension: [
@@ -34,8 +35,8 @@ const SUB_TEAM_PHOTOS = {
 			alt: 'Chassis in ansys stress simulation'
 		},
 		{
-			src: chasis_subteam,
-			alt: 'The chasis subteam of 2025-2026'
+			src: chassis_subteam,
+			alt: 'The chassis subteam of 2025-2026'
 		}
 	],
 
@@ -111,12 +112,16 @@ const SUB_TEAM_PHOTOS = {
 			alt: 'jsx code from our sponsors'
 		},
 		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1779572781/Software_w_Brock_zpysst.jpg',
-			alt: 'The software lead ai placed into the iron man scene'
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1779655313/Baja_Software_2025-2026_pvl1y3.jpg',
+			alt: 'The software subteam of 2025-2026'
 		},
 		{
-			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1779655313/Baja_Software_2025-2026_pvl1y3.jpg',
-			alt: 'The softweare subteam of 2025-2026'
+			src: software_reveal_day,
+			alt: 'The software team on reveal day'
+		},
+		{
+			src: 'https://res.cloudinary.com/dpgrgsh7g/image/upload/v1779572781/Software_w_Brock_zpysst.jpg',
+			alt: 'The software lead ai placed into the iron man scene'
 		}
 	],
 
