@@ -38,12 +38,18 @@
 
 <title>UCalgary Baja - Sponsors</title>
 
+<meta
+	name="description"
+	content="UCalgary Baja primatily operates due to the help of our wonderful sponsors, they are sperated out by tier, 
+	here is are all of our sponsors and the benefits they recieve."
+/>
+
 <TopBanner
 	titleText="Sponsors"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914692/IMG_6671_daaeeq.jpg"
 />
 <div>
-	<h4>Current sponsors</h4>
+	<h4>Active sponsors</h4>
 	{#await sponsorPromise}
 		<p>Loading sponsors...</p>
 	{:then data}
@@ -173,14 +179,23 @@
 		object-fit: contain;
 	}
 	a {
-		text-decoration: none;
 		color: inherit;
+		text-decoration: none;
 		border-radius: 15px;
 	}
 	a:hover {
 		cursor: pointer;
 		scale: 1.05;
 	}
+
+	p > a {
+		text-decoration: underline;
+	}
+
+	p > a:hover {
+		color: var(--BajaRed);
+	}
+
 	a.Diamond:hover {
 		box-shadow: 4px 1px 14px rgb(73, 200, 255);
 	}

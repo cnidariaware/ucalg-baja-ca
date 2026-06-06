@@ -5,6 +5,11 @@
 
 <title>UCalgary Baja - Contact</title>
 
+<meta
+	name="description"
+	content="Please feel free to ask questions or use this form to get into direct contact with us"
+/>
+
 <TopBanner
 	titleText="Contact Us"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914996/DSC_0393_inuw2z.jpg"
@@ -104,7 +109,7 @@
 		margin: 2svh 0svw;
 		font-size: 30px;
 		width: inherit;
-		border-bottom: 3px solid var(--BajaBlack);
+		/* border-bottom: 3px solid var(--BajaBlack); */
 	}
 
 	/* Email hover styles */

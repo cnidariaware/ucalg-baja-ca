@@ -23,10 +23,14 @@
 
 <style>
 	h2 {
-		padding-bottom: 0.5svh;
+		/* padding-bottom: 0.5svh; */
 		font-size: 36px;
-		margin-bottom: 2svh;
-		border-bottom: solid 3px white;
+		width: 14ch;
+		/* margin-bottom: 2svh; */
+		margin-top: 0.5svh;
+		margin-bottom: 0px;
+		font-size: var(--BajaTitleFontSize);
+		/* border-bottom: solid 3px var(--BajaWhite); */
 		text-align: center;
 	}
 	/* Competitions */
@@ -40,7 +44,7 @@
 		justify-content: space-evenly;
 	}
 	section > div {
-		width: 30em;
+		width: min-content;
 		max-width: 1000px;
 	}
 </style>

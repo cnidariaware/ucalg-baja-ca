@@ -43,7 +43,8 @@
 <style>
 	h3 {
 		border-bottom: none;
-		font-size: 50px;
+		/* font-size: 50px; */
+		font-size: var(--BajaTitleFontSize);
 		margin-top: 1.5rem;
 
 		text-align: center;

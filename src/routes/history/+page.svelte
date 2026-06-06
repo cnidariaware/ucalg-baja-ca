@@ -85,6 +85,11 @@
 
 <title>UCalgary Baja - History</title>
 
+<meta
+	name="description"
+	content="UCalgary Baja has been around for a very long time, here are some the achievements we did"
+/>
+
 <TopBanner
 	titleText="History"
 	imgUrl="https://res.cloudinary.com/dj4xevuvs/image/upload/v1774733758/IMG_20260328_150403570_pg70yi.jpg"
@@ -185,6 +190,7 @@
 		padding: 2svb 14svw;
 		text-decoration: none;
 		color: inherit;
+		/* font-family: 'BajaFont'; */
 	}
 
 	a:hover {
@@ -270,25 +276,6 @@
 
 	tr:first-child .symbol::before {
 		top: 50%;
-	}
-
-	#HistoryJoin {
-		position: relative;
-		padding: 0;
-		text-align: center;
-	}
-
-	#HistoryJoin div {
-		text-wrap: nowrap;
-		position: relative;
-		background-color: black;
-		z-index: 2;
-		width: fit-content;
-		margin: 0svh auto;
-		margin-bottom: 4svh;
-		border-radius: var(--BajaRadius);
-		font-size: 19.2px;
-		font-family: 'BajaFont';
 	}
 
 	@media only screen and (max-width: 800px) {

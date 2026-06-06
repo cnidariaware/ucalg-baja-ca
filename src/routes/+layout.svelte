@@ -6,6 +6,13 @@
 	let { children } = $props();
 </script>
 
+<meta
+	name="keywords"
+	content="university calgary baja car uofc off-road car sae ucalgary offroad club"
+/>
+<!-- Please add your own if you worked on this site -->
+<meta name="author" content="Brock Moffat" />
+
 <Top />
 {@render children?.()}
 <Bottom />

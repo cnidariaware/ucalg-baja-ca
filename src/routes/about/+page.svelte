@@ -6,8 +6,16 @@
 </script>
 
 <title>UCalgary Baja - About</title>
+
+<meta
+	name="description"
+	content="
+	UCalgary Baja builds, drives and competes at BAJA SAE Events where we give students to participate in every part. 
+	At competition events are split into two categories, dynamic and static events"
+/>
+
 <TopBanner titleText="About Us" imgUrl="./about_us_banner.png" />
-<Stats />
+<!-- <Stats /> -->
 <StdFromSide backgroundColour="--BajaBlack" textColour="--BajaWhite">
 	<section>
 		<div>
@@ -65,10 +73,13 @@
 		margin: 1.5svh 0;
 	} */
 	h2 {
-		padding-bottom: 0.5svh;
+		/* padding-bottom: 0.5svh; */
 		font-size: 36px;
-		margin-bottom: 2svh;
-		border-bottom: solid 3px white;
+		font-size: var(--BajaTitleFontSize);
+		/* margin-bottom: 2svh; */
+		margin-top: calc(41.5px / 2);
+		margin-bottom: 0px;
+		/* border-bottom: solid 3px var(--BajaWhite); */
 		color: var(--BajaWhite);
 	}
 
@@ -82,7 +93,7 @@
 	}
 	/* .section-block */
 	section > img {
-		width: 400px;
+		width: 300px;
 		aspect-ratio: 1;
 		border-radius: 1rem;
 		object-fit: cover;

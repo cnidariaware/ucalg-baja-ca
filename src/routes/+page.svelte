@@ -21,6 +21,14 @@
 </script>
 
 <title>UCalgary Baja - Home</title>
+<!-- This is the last thing to do for the site other than photos -->
+<meta
+	name="description"
+	content="
+			UCalgary Baja is a student organization which designs, builds, and races an off-road vehicle
+			in the Baja SAE competition organized by the Society of Automotive Engineers (SAE) every
+			year."
+/>
 
 <TopBanner
 	titleText="UCalgary Baja"
@@ -96,11 +104,14 @@
 	}
 
 	h3 {
-		border-bottom: 3px solid var(--BajaWhite);
-		font-size: 36px;
-		margin-bottom: 2svh;
+		/*
+			border-bottom: 3px solid var(--BajaWhite);
+		*/
+		font-size: var(--BajaTitleFontSize);
+		/* margin-bottom: 2svh; */
+		margin-bottom: 0px;
 		margin-top: 0px;
-		padding-bottom: 0.5svh;
+		/* padding-bottom: 0.5svh; */
 		text-align: center;
 	}
 
@@ -132,7 +143,7 @@
 		align-self: center;
 		aspect-ratio: 1;
 		border-radius: 1rem;
-		max-height: 400px;
+		max-height: 300px;
 		max-width: 400px;
 		box-sizing: border-box;
 	}

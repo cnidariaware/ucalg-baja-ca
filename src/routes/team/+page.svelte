@@ -7,6 +7,11 @@
 
 <title>UCalgary Baja - Sub-teams</title>
 
+<meta
+	name="description"
+	content="UCalgary Baja is made up of multiple teams who specialize in certain functions nessary for both team and vehicle operation"
+/>
+
 <TopBanner
 	titleText="Our Team"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1771713184/_MG_5269_ub2hjh.jpg"
@@ -149,7 +154,7 @@
 			alt="member wearing ucalgary baja t-shirt"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
 		/> -->
-		<figure><Gallery photos={SUB_TEAM_PHOTOS['businesss']} singleMode /></figure>
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['business']} singleMode /></figure>
 		<div>
 			<h3>Business</h3>
 			<p>
@@ -197,7 +202,7 @@
 		border-radius: 1rem;
 		display: flex;
 		max-height: 400px;
-		max-width: 700px;
+		max-width: 500px;
 		height: 100%;
 		width: 100%;
 		object-fit: initial;
