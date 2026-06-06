@@ -20,14 +20,22 @@
 	];
 </script>
 
-<title>UCalgary Baja - Home</title>
+<svelte:head>
+	<title>UCalgary Baja - Home</title>
+	<meta
+		name="description"
+		content="
+			UCalgary Baja is a student organization which designs, builds, and races an off-road vehicle
+			in the Baja SAE competition organized by the Society of Automotive Engineers (SAE) every
+			year."
+	/>
+</svelte:head>
 
 <TopBanner
-	titleText="UCalgary 
-	Baja"
+	titleText="UCalgary Baja"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754170619/DSC_0766-min-2_j7sxoz.jpg"
 />
-<StdFromSide backgroundColour="--BajaBlack" rowGap="2svh" paddingTopBottom="4svh">
+<StdFromSide backgroundColour="--BajaBlack" rowGap="2rem" paddingTopBottom="2rem">
 	<div>
 		<img
 			alt="member angle grinding top of baja car"
@@ -74,10 +82,8 @@
 
 <Sponsors />
 
-<StdFromSide backgroundColour="--BajaBlack" rowGap="6svh" paddingTopBottom="4svh">
-	<div id="HomeBottomGallery">
-		<Gallery {photos} />
-	</div>
+<StdFromSide backgroundColour="--BajaBlack" rowGap="2rem" paddingTopBottom="2rem">
+	<Gallery {photos} />
 	<div>
 		<div>
 			<h3>Sponsor Us</h3>
@@ -99,10 +105,14 @@
 	}
 
 	h3 {
-		border-bottom: 3px solid var(--BajaWhite);
-		font-size: 36px;
-		margin-bottom: 2svh;
-		padding-bottom: 0.5svh;
+		/*
+			border-bottom: 3px solid var(--BajaWhite);
+		*/
+		font-size: var(--BajaTitleFontSize);
+		/* margin-bottom: 2svh; */
+		margin-bottom: 0px;
+		margin-top: 0px;
+		/* padding-bottom: 0.5svh; */
 		text-align: center;
 	}
 
@@ -119,29 +129,43 @@
 		border-radius: 1rem;
 		color: inherit;
 		font-size: large;
-		margin: 2svh 8svw 0svh;
+		margin: 2rem 8svw 0svh;
 		padding: 10px;
 		text-align: center;
 		text-decoration: none;
+	}
+
+	a:hover {
+		/* color: var(--BajaBlack); */
+		background-color: var(--BajaHover);
 	}
 
 	img {
 		align-self: center;
 		aspect-ratio: 1;
 		border-radius: 1rem;
-		height: 400px;
-		width: 400px;
+		max-height: 300px;
+		max-width: 400px;
+		box-sizing: border-box;
 	}
 
 	div {
 		display: flex;
+		flex-wrap: wrap-reverse;
+		justify-content: space-evenly;
 		column-gap: 2svw;
+		row-gap: 2rem;
+	}
+
+	div:nth-child(2) {
+		flex-wrap: wrap;
 	}
 
 	div > div {
 		flex-direction: column;
 		max-width: 700px;
 		padding: 0 1svw;
+		row-gap: 0px;
 	}
 
 	@media only screen and (max-width: 800px) {
@@ -149,9 +173,11 @@
 			padding: 0svh 4svw;
 		}
 
-		#HomeBottomGallery {
-			width: 80svw;
-			height: 60svh;
+		img {
+			max-width: 700px;
+			width: 100%;
+			max-height: 400px;
+			height: auto;
 		}
 	}
 </style>

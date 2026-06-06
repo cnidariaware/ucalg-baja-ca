@@ -1,15 +1,25 @@
 <script>
 	import TopBanner from '$lib/components/TopBanner.svelte';
-	import Contact from '$lib/components/contact.svelte';
-	// let sponsorInfo = $state('');
+	import Contact from '$lib/components/Contact.svelte';
+	import bronze from '$lib/assets/sponsor_backgrounds/bronze.jpg';
+	import diamond from '$lib/assets/sponsor_backgrounds/diamond.avif';
+	import platinum from '$lib/assets/sponsor_backgrounds/platinum.webp';
+	// import platinum from '$lib/assets/sponsor_backgrounds/emerald.jpg'; New Emerald tier
+	// import platinum from '$lib/assets/sponsor_backgrounds/ruby.jpg'; New Ruby tier
+	import silver from '$lib/assets/sponsor_backgrounds/silver.avif';
+	import gold from '$lib/assets/sponsor_backgrounds/gold.jpg';
+
 	let sponsorPromise = $state(null);
 	const order = ['Diamond Tier', 'Platinum Tier', 'Gold Tier', 'Silver Tier', 'Bronze Tier'];
-	/**
-	 * @param none
-	 * @return none
-	 * @description fetches sponsor information from the backend YAML fiel and stores it in sponsors variable, we then convert it to JSON format, and store it in sponsorInfo variable for later use in the page
-	 * @author Siddharth Engineer <siddharthengineer24@gmail.com>
-	 */
+
+	const backgrounds = {
+		'Diamond Tier': diamond,
+		'Platinum Tier': platinum,
+		'Gold Tier': gold,
+		'Silver Tier': silver,
+		'Bronze Tier': bronze
+	};
+
 	const getSponsors = async () => {
 		let sponsors = await fetch('https://api.ucalgarybaja.ca/sponsors');
 		return sponsors;
@@ -21,22 +31,25 @@
 			if (!res.ok) {
 				return null;
 			}
-
 			return await res.json();
 		})();
 	});
-
-	$inspect(sponsorPromise);
 </script>
 
 <title>UCalgary Baja - Sponsors</title>
+
+<meta
+	name="description"
+	content="UCalgary Baja primatily operates due to the help of our wonderful sponsors, they are sperated out by tier, 
+	here is are all of our sponsors and the benefits they recieve."
+/>
 
 <TopBanner
 	titleText="Sponsors"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755914692/IMG_6671_daaeeq.jpg"
 />
 <div>
-	<h4>Current sponsors</h4>
+	<h4>Active sponsors</h4>
 	{#await sponsorPromise}
 		<p>Loading sponsors...</p>
 	{:then data}
@@ -44,20 +57,24 @@
 			<div>
 				{#each order as tier}
 					{#if data[tier]}
-						<h2>{tier}</h2>
+						<div class={tier.split(' ')}>
+							<!-- style="background-image: url({backgrounds[tier]})" -->
+							<h2 class={tier.split(' ')}>{tier}</h2>
+						</div>
 						<div>
 							{#each data[tier] as item}
 								<div>
-									<a href={item.Url}>
+									<a href={item.Url} class={tier.split(' ')}>
 										<img alt="{item.SponsorName}'s Logo" src={item.LogoUrl} />
 										{#if tier == order[0] || tier == order[1] || tier == order[2]}
 											<div>
-												<h2>
+												<h5>
 													{item.SponsorName}
-												</h2>
-
+												</h5>
 												{#if tier == order[0] || tier == order[1]}
-													<p>{item.DescriptionAboutSponsor}</p>
+													{#if item.DescriptionAboutSponsor != null}
+														<h6 class="default-font">{item.DescriptionAboutSponsor}</h6>
+													{/if}
 												{/if}
 											</div>
 										{/if}
@@ -73,7 +90,7 @@
 		<p>Error loading sponsors: {error.message}</p>
 	{/await}
 
-	<h4>Sponsorship Benefits</h4>
+	<h3>Sponsorship Benefits</h3>
 	<div class="table-wrapper">
 		<table class="sponsor-table">
 			<thead>
@@ -87,47 +104,38 @@
 				</tr>
 			</thead>
 			<tbody>
-				<!-- Logo on Website -->
 				<tr>
 					<th>Logo On<br />Website</th>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
-
-				<!-- Social Media Exposure -->
 				<tr>
 					<th>Social Media<br />Exposure</th>
 					<td></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
-
-				<!-- Shop Tour / Introduction -->
 				<tr>
 					<th>Shop Tour /<br />Introduction</th>
 					<td></td>
 					<td></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
-
-				<!-- Social Media Feature -->
 				<tr>
 					<th>Social Media<br />Feature</th>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
-					<td><img src="https://www.svgrepo.com/show/491212/cross.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
+					<td><img src="./gold_checkmark.svg" alt="Included Perk" /></td>
 				</tr>
-
-				<!-- Logo on Vehicle -->
 				<tr>
 					<th>Logo On<br />Vehicle</th>
 					<td>Small</td>
@@ -167,18 +175,42 @@
 		text-align: center;
 	}
 	td > img {
-		filter: invert();
 		width: 40px;
 		height: 40px;
 		object-fit: contain;
 	}
 	a {
-		text-decoration: none;
 		color: inherit;
+		text-decoration: none;
+		border-radius: 15px;
+	}
+	a:hover {
+		cursor: pointer;
+		scale: 1.05;
+	}
 
-		&:hover {
-			color: var(--BajaRed);
-		}
+	p > a {
+		text-decoration: underline;
+	}
+
+	p > a:hover {
+		color: var(--BajaRed);
+	}
+
+	a.Diamond:hover {
+		box-shadow: 4px 1px 14px rgb(73, 200, 255);
+	}
+	a.Platinum:hover {
+		box-shadow: 4px 1px 14px #d9d9d9;
+	}
+	a.Gold:hover {
+		box-shadow: 4px 1px 14px #f5bd02;
+	}
+	a.Silver:hover {
+		box-shadow: 4px 1px 14px rgba(192, 192, 192);
+	}
+	a.Bronze:hover {
+		box-shadow: 4px 1px 14px rgba(205, 127, 50);
 	}
 
 	div {
@@ -187,22 +219,26 @@
 		padding-bottom: 3em;
 		overflow-x: hidden;
 	}
+	h3,
 	h4 {
 		text-align: center;
 		display: block;
 		color: var(--BajaWhite);
-		font-size: 3em;
+		font-size: 4rem;
+		margin: 0px;
+		margin-top: 8svh;
 	}
+
 	a > img {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: left;
+		justify-content: center;
 		align-items: center;
 		background-color: gray;
 		width: 250px;
 		height: 150px;
 		object-fit: contain;
-		margin-top: 20px;
+		margin-top: 10px;
 		margin-right: 10px;
 		margin-left: 10px;
 		margin-bottom: 10px;
@@ -216,15 +252,67 @@
 		border-width: 1px;
 	}
 	h2 {
-		display: flex;
-		flex-wrap: wrap;
+		display: block;
 		color: var(--BajaWhite);
+		background-color: var(--BajaBlack);
 		justify-content: center;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		margin-left: 20px;
-		font-size: 2em;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		height: 100%;
+		border: 8px solid var(--BajaBlack);
+		min-width: 15ch;
+		font-size: 3em;
+		text-align: center;
 	}
+	.Tier {
+		padding: 0px;
+	}
+
+	div.Diamond {
+		background-color: rgba(185, 242, 255);
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
+	}
+
+	div.Platinum {
+		background-color: #d9d9d9;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
+	}
+
+	div.Gold {
+		background-color: #f5bd02;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
+	}
+
+	div.Silver {
+		background-color: rgba(192, 192, 192);
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
+	}
+
+	div.Bronze {
+		background-color: rgba(205, 127, 50);
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		position: relative;
+		overflow: hidden;
+	}
+
 	div > div > div {
 		display: flex;
 		justify-content: center;
@@ -261,17 +349,17 @@
 		flex-direction: column;
 	}
 	p {
-		text-align: left;
+		text-align: center;
 		color: var(--BajaWhite);
+		font-size: 1.5em;
 		padding-top: 10px;
 		padding-left: 10%;
 		padding-right: 10%;
 		padding-bottom: 25px;
-		max-width: 900px;
-		margin: 0svh auto;
+		margin: auto;
 	}
 	table {
-		margin-top: 75px;
+		margin-top: 50px;
 		border-collapse: collapse;
 		width: 100%;
 		max-width: 900px;
@@ -279,7 +367,7 @@
 		border-style: hidden;
 		margin-left: auto;
 		margin-right: auto;
-		margin-bottom: 75px;
+		margin-bottom: 40px;
 	}
 	.table-wrapper {
 		overflow-x: auto;
@@ -304,5 +392,50 @@
 	.sponsor-table th:first-child {
 		text-align: left;
 		width: 30%;
+	}
+	h5 {
+		display: flex;
+		flex-wrap: wrap;
+		color: var(--BajaWhite);
+		justify-content: center;
+		margin: 0px;
+		margin-left: 20px;
+		font-size: 2em;
+	}
+	h6 {
+		display: flex;
+		flex-wrap: wrap;
+		color: var(--BajaWhite);
+		justify-content: center;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		margin-left: 20px;
+		font-size: 1em;
+	}
+
+	@media only screen and (max-width: 800px) {
+		h4 {
+			font-size: 3.25rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			box-sizing: border-box;
+		}
+
+		h5 {
+			font-size: 1.5rem;
+			margin: 0px;
+		}
+
+		h3 {
+			font-size: 2.5rem;
+			margin-top: 4svh;
+		}
+
+		div > div {
+			row-gap: 1svh;
+			padding: 4px;
+		}
 	}
 </style>
