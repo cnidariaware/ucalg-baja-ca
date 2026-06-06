@@ -57,7 +57,8 @@
 			<div>
 				{#each order as tier}
 					{#if data[tier]}
-						<div class={tier.split(' ')} style="background-image: url({backgrounds[tier]})">
+						<div class={tier.split(' ')}>
+							<!-- style="background-image: url({backgrounds[tier]})" -->
 							<h2 class={tier.split(' ')}>{tier}</h2>
 						</div>
 						<div>
