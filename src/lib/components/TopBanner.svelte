@@ -1,16 +1,15 @@
 <script>
+	import { fly } from 'svelte/transition';
 	let { titleText, imgUrl, subtitleText } = $props();
 	let titleLines = $derived(titleText.split(' '));
 </script>
 
 <div
-	style={"background-image: linear-gradient(to bottom, rgba(0,0,0,0) 70%, #1f1f1f 100%), url('" +
-		imgUrl +
-		"')"}
+	style={`background-image: linear-gradient(to bottom, rgba(0,0,0,0) 70%, #1f1f1f 100%), url('${imgUrl}')`}
 >
 	<div>
 		{#each titleLines as word, i}
-			<h1 style={'margin-right: ${i * 2}rem animation-delay: ${i * 0.1}s;'}>
+			<h1 style={`margin-right: ${i * 2}rem;`} in:fly={{ y: -10, duration: 100, delay: i * 100 }}>
 				{word}
 			</h1>
 		{/each}
@@ -72,7 +71,7 @@
 		max-width: 100%;
 
 		opacity: 0;
-		animation: fadeSlide 0.6s ease-out forwards;
+		animation: fadeSlide 0.6s ease-out 0.3s forwards;
 	}
 
 	h2 {

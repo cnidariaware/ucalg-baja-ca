@@ -2,6 +2,8 @@
 	import logo from '$lib/assets/logo.png';
 	import { page } from '$app/stores';
 
+	let { routes } = $props();
+
 	let path = $derived($page.url.pathname.split('/').at(1));
 </script>
 
@@ -9,7 +11,14 @@
 	<a href="/"> <img src={logo} alt="UCalgary Baja's Logo" /></a>
 	<nav>
 		<ul>
-			<li>
+			{#each routes as route}
+				<li>
+					<a href={route.href} class:active={path === route.href.replace(/^\/|\/$/g, '')}
+						>{route.name.toUpperCase()}</a
+					>
+				</li>
+			{/each}
+			<!-- <li>
 				<a href="/" class:active={path === ''}>HOME</a>
 			</li>
 			<li>
@@ -26,7 +35,7 @@
 			</li>
 			<li>
 				<a href={'/contact'} class:active={path === 'contactus'}>CONTACT US</a>
-			</li>
+			</li> -->
 			<!-- <li>
 				<a href={'/merch'} class:active={path === 'merch'}>MERCH</a>
 			</li> -->
