@@ -17,7 +17,7 @@
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1771713184/_MG_5269_ub2hjh.jpg"
 />
 
-<h2>SUBTEAMS</h2>
+<h2>OUR SUB-TEAMS</h2>
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="2rem">
 	<div>
@@ -201,10 +201,10 @@
 	figure {
 		border-radius: 1rem;
 		display: flex;
-		max-height: 400px;
-		max-width: 500px;
-		height: 100%;
-		width: 100%;
+		max-height: 440px;
+		max-width: 440px;
+		height: 120%;
+		width: 120%;
 		object-fit: initial;
 	}
 
