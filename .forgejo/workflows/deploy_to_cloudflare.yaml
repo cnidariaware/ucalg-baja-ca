@@ -1,0 +1,138 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+      - '**'
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-*
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 26
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build SvelteKit
+        run: npm run build
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Deploy to Cloudflare Pages
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BRANCH_NAME="pr-${{ github.event.number }}"
+          else
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          fi
+
+          echo "Deploying branch: $BRANCH_NAME"
+
+          wrangler pages deploy .svelte-kit/cloudflare \
+            --project-name ucalg-baja-ca \
+            --branch "$BRANCH_NAME" \
+            --commit-hash "${GITHUB_SHA}" \
+            --commit-message "${GITHUB_COMMIT_MESSAGE}" \
+            --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+
+      - name: Cleanup artifacts
+        if: always()
+        run: |
+          echo "Cleaning up local build artifacts and dependencies..."
+          # Uninstall global wrangler package
+          npm uninstall -g wrangler
+
+          # Remove local node_modules, SvelteKit build output, and cached files
+          rm -rf node_modules
+          rm -rf .svelte-kit
+          rm -rf .npm
+
+          echo "Cleanup complete."
+
+# this doesnt work
+# - name: Send formatted webhook
+#   if: always()
+#   run: |
+#     short_sha=$(echo "$GITHUB_SHA" | cut -c1-7)
+#     short_sha_preview=$(echo "$GITHUB_SHA" | cut -c1-8)
+#     branch="$GITHUB_REF_NAME"
+#     repo="$GITHUB_REPOSITORY"
+#     actor="$GITHUB_ACTOR"
+
+#     commit_message=$(printf '%s' "$GITHUB_COMMIT_MESSAGE" | tr '\n' ' ' | sed -E 's/\\/\\\\/g; s/"/\\"/g' | cut -c1-200)
+
+#     commit_url="https://forge.ucalgarybaja.ca/${repo}/commit/${GITHUB_SHA}"
+#     sha_preview_url="https://${short_sha_preview}.ucalg-baja-ca.pages.dev"
+#     branch_preview_url="https://${branch}.ucalg-baja-ca.pages.dev"
+
+#     if [ "${PREV_STEP_EXIT_CODE:-0}" -eq 0 ]; then
+#       color=3066993
+#       status_emoji="✅"
+#       status_text="Deploy successful!"
+#     else
+#       color=15158332
+#       status_emoji="❌"
+#       status_text="Deploy failed!"
+#     fi
+
+#     payload=$(jq -n \
+#       --arg title "[$repo:$branch] Deployment status" \
+#       --arg title_url "$commit_url" \
+#       --arg latest_commit "$short_sha" \
+#       --arg sha_preview_url "$sha_preview_url" \
+#       --arg branch_preview_url "$branch_preview_url" \
+#       --arg status_emoji "$status_emoji" \
+#       --arg status_text "$status_text" \
+#       --arg footer "$actor • $commit_message" \
+#       --argjson color "$color" \
+#       '{
+#         embeds: [
+#           {
+#             title: $title,
+#             url: $title_url,
+#             color: $color,
+#             description: ("Latest commit: [\($latest_commit)](\($title_url))\n\($status_emoji) \($status_text)\nSHA preview URL: <\($sha_preview_url)>\nBranch preview URL: <\($branch_preview_url)>"),
+#             footer: { text: $footer }
+#           }
+#         ]
+#       }'
+#     )
+
+#     # --- send to webhooks safely ---
+#     IFS=$'\n'
+#     for url in $WEBHOOK_URLS; do
+#       url_trimmed=$(echo "$url" | xargs)
+#       if [ -n "$url_trimmed" ]; then
+#         echo "→ Sending formatted embed to Discord: $url_trimmed"
+#         curl -s -o /dev/null -w "%{http_code}\n" \
+#              -H "Content-Type: application/json" \
+#              -d "$payload" "$url_trimmed"
+#       fi
+#     done
+#   env:
+#     WEBHOOK_URLS: |
+#       ${{ secrets.DARKICEWOLF50_WEBHOOK }}
+#       ${{ secrets.BAJA_WEBHOOK }}
+#     GITHUB_REF_NAME: ${{ github.ref_name }}
+#     GITHUB_REPOSITORY: ${{ github.repository }}
+#     GITHUB_SHA: ${{ github.sha }}
+#     GITHUB_ACTOR: ${{ github.actor }}
+#     GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
