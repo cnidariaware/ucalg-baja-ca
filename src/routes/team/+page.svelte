@@ -1,18 +1,25 @@
 <script>
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
+	import Gallery from '$lib/Gallery.svelte';
+	import SUB_TEAM_PHOTOS from './team_photos';
 </script>
 
 <title>UCalgary Baja - Sub-teams</title>
 
-<TopBanner
-	titleText="Our Team"
-	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754767548/DSC05631-min_rxx8km.jpg"
+<meta
+	name="description"
+	content="UCalgary Baja is made up of multiple teams who specialize in certain functions nessary for both team and vehicle operation"
 />
 
-<h2>SUBTEAMS</h2>
+<TopBanner
+	titleText=" "
+	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1771713184/_MG_5269_ub2hjh.jpg"
+/>
 
-<StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="8svh">
+<h2>OUR SUB-TEAMS</h2>
+
+<StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="2rem">
 	<div>
 		<div>
 			<h3>Suspension</h3>
@@ -22,16 +29,18 @@
 				calculations, and welding.
 			</p>
 		</div>
-		<img
+		<!-- <img
 			alt="Welding suspension arms"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/c_fill,w_700,h_400/v1754169379/IMG_3532_c6mnwf_asokvg.jpg"
-		/>
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['suspension']} singleMode /></figure>
 	</div>
 	<div>
-		<img
+		<!-- <img
 			alt="chassis in ansys stress simulation"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754167885/chassis2_gct4iq.png"
-		/>
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['chassis']} singleMode /></figure>
 		<div>
 			<h3>Chassis</h3>
 			<p>
@@ -50,16 +59,18 @@
 				pedal foot resets.
 			</p>
 		</div>
-		<img
+		<!-- <img
 			alt="brakes and gas pedal CAD"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/18HASpcxac4zjPwWZSpbQs94v0ooAX-3hmw4emI_0zO4qfnSYTO5XBMXSH7dow2E_xkngmq.png"
-		/>
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['ergonomics']} singleMode /></figure>
 	</div>
 	<div>
-		<img
+		<!-- <img
 			alt="Suspensions arms and steering"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/19yTuNKZMp1QCQoaBz86d-zpvATvP6Rx1SaVjynMSV6RQFROM2d7anw3zAD4_nabmkg.png"
-		/>
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['steering']} singleMode /></figure>
 		<div>
 			<h3>Steering</h3>
 			<p>
@@ -76,16 +87,18 @@
 				CVT, propshaft, rear axles, rear brakes, and rear hubs.
 			</p>
 		</div>
-		<img
+		<!-- <img
 			alt="cvt"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915331/cvt_zz0rgl.png"
-		/>
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['powertrain']} singleMode /></figure>
 	</div>
 	<div>
-		<img
+		<!-- <img
 			alt="top down shot of our brake system"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1754168541/brakes-min_bgmnyc.jpg"
-		/>
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['finalDrive']} singleMode /></figure>
 		<div>
 			<h3>Final Drive</h3>
 			<p>
@@ -102,16 +115,18 @@
 				vehicle, letting the team to monitor performance and diagnose issues during testing.
 			</p>
 		</div>
-		<img
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['telemetry']} singleMode /></figure>
+		<!-- <img
 			alt="strain gauge"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915328/12ZRS9P9XwyNLusJ59EfL98Yc_ZMpbdoYvATMAQKqnf0atoxj0ZUA2vtgQYh09a8_quphim.png"
-		/>
+		/> -->
 	</div>
 	<div>
-		<img
+		<!-- <img
 			alt="weight scale"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915330/scale_ccg4wg.png"
-		/>
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['dataAcquisition']} singleMode /></figure>
 		<div>
 			<h3>Data Acquisition</h3>
 			<p>
@@ -128,16 +143,18 @@
 				collection system and run our in club storage system.
 			</p>
 		</div>
-		<img
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['software']} singleMode /></figure>
+		<!-- <img
 			alt="jsx code from our sponsors"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1756590700/code-min_uqjr6m_c_fill_w_700_h_400_fftttm.png"
-		/>
+		/> -->
 	</div>
 	<div>
-		<img
+		<!-- <img
 			alt="member wearing ucalgary baja t-shirt"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
-		/>
+		/> -->
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['business']} singleMode /></figure>
 		<div>
 			<h3>Business</h3>
 			<p>
@@ -174,22 +191,30 @@
 		font-size: 22px;
 		margin: 0;
 		padding: 0;
+		max-width: 100%;
 	}
 
-	img {
+	figure {
+		margin: 0px;
+	}
+
+	figure {
 		border-radius: 1rem;
 		display: flex;
-		height: 400px;
-		width: 700px;
+		max-height: 440px;
+		max-width: 440px;
+		height: 120%;
+		width: 120%;
 		object-fit: initial;
 	}
 
 	div {
 		display: flex;
-		flex-wrap: wrap;
-		column-gap: 4svw;
-		justify-content: space-between;
+		/* flex-wrap: wrap; */
+		column-gap: 4rem;
+		justify-content: space-evenly;
 		width: 100%;
+		row-gap: 1rem;
 	}
 
 	div > div {
@@ -202,5 +227,44 @@
 
 	div > div:nth-child(2) {
 		text-align: end;
+	}
+
+	@media only screen and (max-width: 800px) {
+		figure {
+			max-width: 700px;
+			width: 100%;
+			max-height: 400px;
+			height: auto;
+		}
+
+		div {
+			row-gap: 2rem;
+			justify-content: center;
+			flex-wrap: wrap;
+			padding: 0px;
+		}
+
+		div:nth-child(even) {
+			flex-wrap: wrap-reverse;
+		}
+
+		div > div {
+			/* max-width: 700px; */
+			max-width: 100%;
+			justify-content: center;
+			padding: 0svh 0.25rem;
+			box-sizing: border-box;
+		}
+
+		h2 {
+			font-size: 3.25rem;
+			max-width: 100%;
+			padding: 1rem 0svw;
+		}
+
+		h3 {
+			font-size: 2.75rem;
+			text-align: center;
+		}
 	}
 </style>

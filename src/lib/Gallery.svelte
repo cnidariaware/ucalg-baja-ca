@@ -21,7 +21,8 @@
 				src: 'https://pictures.altai-travel.com/1920x1040/mount-everest-aerial-view-himalayas-istock-3745.jpg',
 				alt: 'enter description of photo 5'
 			}
-		]
+		],
+		singleMode = false
 	} = $props();
 
 	let current_index = $state(0);
@@ -125,17 +126,26 @@
 	}
 </script>
 
-<div ontouchstart={handleTouchStart} ontouchmove={handleTouchMove} ontouchend={handleTouchEnd}>
+<div
+	id={singleMode ? 'single' : ''}
+	role="region"
+	aria-label="Image gallery, swipe left or right to navigate images"
+	ontouchstart={handleTouchStart}
+	ontouchmove={handleTouchMove}
+	ontouchend={handleTouchEnd}
+>
 	<div>
-		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
+		{#if !singleMode && photos.length >= 2}
+			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
 
-		<img
-			src={photos[(current_index - 1 + photos.length) % photos.length].src}
-			alt={photos[(current_index - 1 + photos.length) % photos.length].alt}
-			onclick={() => toggleDialog(photos[(current_index - 1 + photos.length) % photos.length].src)}
-		/>
-
+			<img
+				src={photos[(current_index - 1 + photos.length) % photos.length].src}
+				alt={photos[(current_index - 1 + photos.length) % photos.length].alt}
+				onclick={() =>
+					toggleDialog(photos[(current_index - 1 + photos.length) % photos.length].src)}
+			/>
+		{/if}
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<img
@@ -143,32 +153,40 @@
 			alt={photos[current_index].alt}
 			onclick={() => toggleDialog(photos[current_index].src)}
 		/>
-
-		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-		<!-- svelte-ignore a11y_click_events_have_key_events -->
-		<img
-			src={photos[(current_index + 1) % photos.length].src}
-			alt={photos[(current_index + 1) % photos.length].alt}
-			onclick={() => toggleDialog(photos[(current_index + 1) % photos.length].src)}
-		/>
+		{#if !singleMode && photos.length >= 2}
+			<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<img
+				src={photos[(current_index + 1) % photos.length].src}
+				alt={photos[(current_index + 1) % photos.length].alt}
+				onclick={() => toggleDialog(photos[(current_index + 1) % photos.length].src)}
+			/>
+		{/if}
 	</div>
-
-	<div>
-		{#each photos as _, index}
-			<button
-				class:selected={index === current_index}
-				onclick={() => {
-					current_index = index;
-					startTimer();
-				}}>x</button
-			>
-		{/each}
-	</div>
+	{#if photos.length >= 2}
+		<div>
+			{#each photos as _, index}
+				<button
+					class:selected={index === current_index}
+					onclick={() => {
+						current_index = index;
+						startTimer();
+					}}>x</button
+				>
+			{/each}
+		</div>
+	{/if}
 </div>
 
 {#if dialogOpen}
 	<dialog open onclick={() => toggleDialog()}>
-		<div onclick={(e) => e.stopPropagation()}>
+		<a
+			href="/"
+			onclick={(e) => {
+				e.preventDefault();
+				e.stopPropagation();
+			}}
+		>
 			<button
 				class="close-btn"
 				onclick={(e) => {
@@ -176,8 +194,8 @@
 					toggleDialog();
 				}}>✕</button
 			>
-			<img id="window-image" src={selected} alt="Full View" class="full-image" />
-		</div>
+			<img src={selected} alt="Full View" class="full-image" />
+		</a>
 	</dialog>
 {/if}
 
@@ -233,6 +251,22 @@
 		}
 	}
 
+	#single {
+		padding: 0px;
+		margin: 0svh auto;
+		width: 100%;
+		height: 100%;
+	}
+
+	#single > div {
+		padding: 0px;
+	}
+
+	#single > div:first-child > img:nth-child(odd) {
+		flex: revert;
+		max-width: 100%;
+	}
+
 	div:nth-child(2) {
 		display: flex;
 		gap: 12px;
@@ -269,32 +303,51 @@
 		justify-content: center;
 	}
 
-	dialog div {
-		position: fixed;
-		max-width: 80%;
-		max-height: 80%;
-		margin-bottom: 5svh;
+	dialog::backdrop {
+		background: rgba(
+			0,
+			0,
+			0,
+			0.6
+		); /* or higher opacity like 0.7–0.8 to hide footer better visually */
 	}
 
-	dialog #window-image {
-		max-height: 90%;
-		max-width: 90%;
+	dialog a {
+		display: block;
+		position: fixed;
+		max-width: 80%;
+		height: 80%;
+		margin: auto;
+		margin-bottom: 5svh;
+		text-align: center;
+	}
+
+	dialog > a > img {
+		max-height: 100%;
+		max-width: 100%;
 		border-radius: 10px;
 		object-fit: contain;
+		box-sizing: content-box;
+		background-repeat: no-repeat;
+		background-size: cover;
 	}
 
 	@media (max-width: 950px) {
-		dialog div {
+		dialog button {
 			max-height: 90svw;
 			max-width: 90svw;
 		}
 
-		dialog #window-image {
+		dialog img {
 			width: 100%;
 			height: auto;
 		}
 
-		dialog div button {
+		dialog a {
+			height: revert;
+		}
+
+		dialog button {
 			top: 11%;
 			right: 11%;
 			font-size: 16px;
@@ -303,8 +356,8 @@
 
 	dialog button {
 		position: absolute;
-		top: 5%;
-		right: 7.5%;
+		top: 3%;
+		right: 2%;
 		color: rgb(0, 0, 0);
 		font-size: 18px;
 		cursor: pointer;
