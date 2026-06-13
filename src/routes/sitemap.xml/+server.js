@@ -1,6 +1,12 @@
 import { format } from 'date-fns';
 import { routes } from '../routes';
 
+/**
+ * @param {null} None - This requires nothing in the parameters
+ * @returns {Promise<XMLDocument>} Returns an xml for google bot and other seo engines
+ * @description Creates a xml with all of the pages based on the navigation js file
+ * @author Name <brock@cnidariaware.ca>
+ */
 export const GET = async () => {
 	const baseUrl = 'https://ucalgarybaja.ca';
 
