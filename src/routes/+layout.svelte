@@ -7,16 +7,9 @@
 	import { page } from '$app/stores';
 	import { beforeNavigate } from '$app/navigation';
 
-	let { children } = $props();
+	import { routes } from './routes';
 
-	export const routes = [
-		{ name: 'home', href: '/' },
-		{ name: 'about', href: '/about' },
-		{ name: 'team', href: '/team' },
-		{ name: 'history', href: '/history' },
-		{ name: 'sponsors', href: '/sponsors' },
-		{ name: 'contact us', href: '/contact' }
-	];
+	let { children } = $props();
 
 	let slideDirection = $state(100); // 100 means sliding from right, -100 from left
 

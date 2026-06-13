@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { routes } from '../+layout.svelte';
+import { routes } from '../routes';
 
 export const GET = async () => {
 	const baseUrl = 'https://ucalgarybaja.ca';
@@ -11,12 +11,12 @@ export const GET = async () => {
 			const path = route.href === '/' ? '' : route.href.replace(/^\//, '');
 
 			return `
-      <url>
-        <loc>${baseUrl}/${path ? `/${path}` : ''}</loc>
-        <lastmod>${format(new Date(), 'yyyy-MM-dd')}</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>${route.href === '/' ? '1.0' : '0.8'}</priority>
-      </url>`;
+	  <url>
+	    <loc>${baseUrl}/${path ? `${path}` : ''}</loc>
+	    <lastmod>${format(new Date(), 'yyyy-MM-dd')}</lastmod>
+	    <changefreq>monthly</changefreq>
+	    <priority>${route.href === '/' ? '1.0' : '0.8'}</priority>
+	  </url>`;
 		})
 		.join('');
 

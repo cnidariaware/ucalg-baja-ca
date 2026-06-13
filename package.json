@@ -37,6 +37,7 @@
 		"wrangler": "^4.94.0"
 	},
 	"dependencies": {
+		"date-fns": "^4.4.0",
 		"modern-normalize": "^3.0.1"
 	}
 }
