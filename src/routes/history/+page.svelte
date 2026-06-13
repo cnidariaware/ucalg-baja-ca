@@ -51,7 +51,7 @@
 			year: '2017',
 			competitionCarImg:
 				'https://static.wixstatic.com/media/5824fc_7ee01b6e4cdf416c8affff42cc19637e~mv2.jpg/v1/fill/w_732,h_675,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_0430.jpg',
-			competitions: [{ location: 'Illinois', placement: '41th' }]
+			competitions: [{ location: 'Illinois', placement: '41st' }]
 		}
 	];
 
