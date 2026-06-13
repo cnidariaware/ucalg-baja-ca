@@ -24,12 +24,12 @@
 			]
 		},
 		{
-			year: '2020-2022',
+			year: '2020-2023',
 			competitionCarImg:
 				'https://static.wixstatic.com/media/5824fc_128f7d18ed2f44c6883cc5b86cc1b2c2~mv2.jpg/v1/fill/w_732,h_675,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_20230504_084347041.jpg',
 			competitions: [
-				{ location: 'California', placement: '26th' },
-				{ location: 'Williamsport', placement: '65th' }
+				{ location: 'Oshkosh', placement: '23rd' },
+				{ location: 'Oregon', placement: '26th' }
 			]
 		},
 		{

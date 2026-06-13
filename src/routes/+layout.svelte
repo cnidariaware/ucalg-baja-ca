@@ -9,7 +9,7 @@
 
 	let { children } = $props();
 
-	const routes = [
+	export const routes = [
 		{ name: 'home', href: '/' },
 		{ name: 'about', href: '/about' },
 		{ name: 'team', href: '/team' },
