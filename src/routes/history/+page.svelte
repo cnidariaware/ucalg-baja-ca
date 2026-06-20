@@ -6,6 +6,15 @@
 
 	let historyTimeLineInfo = [
 		{
+			year: '2025-2026',
+			competitionCarImg:
+				'https://res.cloudinary.com/dj4xevuvs/image/upload/ar_1:1,c_fill,g_auto,w_400/v1781989985/DSC_0367_fwgqag.jpg',
+			competitions: [
+				{ location: 'Oregon', placement: '26th' },
+				{ location: 'New York', placement: '49th' }
+			]
+		},
+		{
 			year: '2024-2025',
 			competitionCarImg:
 				'https://res.cloudinary.com/dpgrgsh7g/image/upload/ar_1:1,c_fill,g_auto,w_400/v1754759943/DSCN7262_ithpcq.jpg',
