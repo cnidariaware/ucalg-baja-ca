@@ -27,7 +27,7 @@
 			<a href="https://forge.ucalgarybaja.ca/ucalgary-baja/"
 				><img src={gitrepo} alt="Code Forge's logo" /></a
 			>
-			<a href="mailto:uofcbaja@gmail.com?subject=Lets start something great">
+			<a href="mailto:club@ucalgarybaja.ca?subject=Lets start something great">
 				<img src={mail} alt="email us logo" />
 				<!-- <img src="https://www.svgrepo.com/show/479604/mail-17.svg" alt="email us logo" /> -->
 			</a>
@@ -38,8 +38,8 @@
 		</div>
 	</div>
 	<div>
-		<a href="/contactus">Contact Us</a>
-		<a href="https://forge.ucalgarybaja/ucalgary-baja/">Projects</a>
+		<a href="/contact">Contact Us</a>
+		<a href="https://forge.ucalgarybaja.ca/ucalgary-baja/">Projects</a>
 	</div>
 	<ul style="display: none;">
 		<li>Developed by:</li>
