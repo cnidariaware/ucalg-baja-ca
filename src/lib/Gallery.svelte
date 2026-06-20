@@ -190,6 +190,7 @@
 			<button
 				class="close-btn"
 				onclick={(e) => {
+					e.preventDefault();
 					e.stopPropagation();
 					toggleDialog();
 				}}>✕</button
@@ -315,18 +316,20 @@
 	dialog a {
 		display: block;
 		position: fixed;
-		max-width: 80%;
-		height: 80%;
+		max-width: 900px;
+		height: 600px;
 		margin: auto;
 		margin-bottom: 5svh;
 		text-align: center;
 	}
 
 	dialog > a > img {
-		max-height: 100%;
-		max-width: 100%;
+		height: 100%;
+		width: 100%;
+		max-width: 80vw;
+		max-height: 80vh;
 		border-radius: 10px;
-		object-fit: contain;
+		object-fit: cover;
 		box-sizing: content-box;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -344,7 +347,8 @@
 		}
 
 		dialog a {
-			height: revert;
+			width: 90vw;
+			height: 70vh;
 		}
 
 		dialog button {

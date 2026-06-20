@@ -10,11 +10,43 @@
 <title>UCalgary Baja - Sub-teams</title>
 
 <TopBanner
-	titleText="Our Team"
+	titleText=""
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1771713184/_MG_5269_ub2hjh.jpg"
 />
 
-<h2>SUBTEAMS</h2>
+<section class="people-section">
+	{#if TEAM_DATA.captains.length > 0}
+		<h2>Captains</h2>
+		<div class="members-row centered">
+			{#each TEAM_DATA.captains as member}
+				<MemberCard
+					name={member.name}
+					role={member.role}
+					bio={member.bio}
+					src={member.src}
+					linkedin={member.linkedin}
+				/>
+			{/each}
+		</div>
+	{/if}
+
+	{#if TEAM_DATA.subTeamLeads.length > 0}
+		<h2>Sub Team Leads</h2>
+		<div class="members-grid">
+			{#each TEAM_DATA.subTeamLeads as member}
+				<MemberCard
+					name={member.name}
+					role={member.role}
+					bio={member.bio}
+					src={member.src}
+					linkedin={member.linkedin}
+				/>
+			{/each}
+		</div>
+	{/if}
+</section>
+
+<h2>OUR SUBTEAMS</h2>
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="2rem">
 	<div>
@@ -163,38 +195,6 @@
 	</div>
 </StdFromSide>
 
-<section class="people-section">
-	{#if TEAM_DATA.captains.length > 0}
-		<h2>Captain</h2>
-		<div class="members-row centered">
-			{#each TEAM_DATA.captains as member}
-				<MemberCard
-					name={member.name}
-					role={member.role}
-					bio={member.bio}
-					src={member.src}
-					linkedin={member.linkedin}
-				/>
-			{/each}
-		</div>
-	{/if}
-
-	{#if TEAM_DATA.subTeamLeads.length > 0}
-		<h2>Sub Team Leads</h2>
-		<div class="members-grid">
-			{#each TEAM_DATA.subTeamLeads as member}
-				<MemberCard
-					name={member.name}
-					role={member.role}
-					bio={member.bio}
-					src={member.src}
-					linkedin={member.linkedin}
-				/>
-			{/each}
-		</div>
-	{/if}
-</section>
-
 <style>
 	* {
 		background-color: var(--BajaBlack);
@@ -202,7 +202,7 @@
 	}
 
 	h2 {
-		font-size: 80px;
+		font-size: 60px;
 		text-align: center;
 		margin: 0;
 		/* border-top: 1px solid whitesmoke; */
@@ -217,7 +217,7 @@
 
 	p {
 		color: inherit;
-		font-size: 22px;
+		font-size: 28px;
 		margin: 0;
 		padding: 0;
 		max-width: 100%;
@@ -249,9 +249,9 @@
 	div > div {
 		flex-direction: column;
 		justify-content: flex-start;
-		max-width: 48ch;
+		max-width: 65ch;
 		row-gap: 0;
-		padding: 0svh 25px;
+		padding: 5svh 25px;
 	}
 
 	div > div:nth-child(2) {
