@@ -2,22 +2,19 @@
 	import StdFromSide from '$lib/components/StdFromSide.svelte';
 	import TopBanner from '$lib/components/TopBanner.svelte';
 	import Gallery from '$lib/Gallery.svelte';
+	import MemberCard from '$lib/components/memberCard.svelte';
 	import SUB_TEAM_PHOTOS from './team_photos';
+	import TEAM_DATA from './team_data';
 </script>
 
 <title>UCalgary Baja - Sub-teams</title>
 
-<meta
-	name="description"
-	content="UCalgary Baja is made up of multiple teams who specialize in certain functions nessary for both team and vehicle operation"
-/>
-
 <TopBanner
-	titleText=" "
+	titleText="Our Team"
 	imgUrl="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1771713184/_MG_5269_ub2hjh.jpg"
 />
 
-<h2>OUR SUB-TEAMS</h2>
+<h2>SUBTEAMS</h2>
 
 <StdFromSide backgroundColour="--BajaBlack" rowGap="10svh" paddingTopBottom="2rem">
 	<div>
@@ -154,7 +151,7 @@
 			alt="member wearing ucalgary baja t-shirt"
 			src="https://res.cloudinary.com/dpgrgsh7g/image/upload/v1755915387/DSC_0432_e1pfjn.jpg"
 		/> -->
-		<figure><Gallery photos={SUB_TEAM_PHOTOS['business']} singleMode /></figure>
+		<figure><Gallery photos={SUB_TEAM_PHOTOS['businesss']} singleMode /></figure>
 		<div>
 			<h3>Business</h3>
 			<p>
@@ -165,6 +162,38 @@
 		</div>
 	</div>
 </StdFromSide>
+
+<section class="people-section">
+	{#if TEAM_DATA.captains.length > 0}
+		<h2>Captain</h2>
+		<div class="members-row centered">
+			{#each TEAM_DATA.captains as member}
+				<MemberCard
+					name={member.name}
+					role={member.role}
+					bio={member.bio}
+					src={member.src}
+					linkedin={member.linkedin}
+				/>
+			{/each}
+		</div>
+	{/if}
+
+	{#if TEAM_DATA.subTeamLeads.length > 0}
+		<h2>Sub Team Leads</h2>
+		<div class="members-grid">
+			{#each TEAM_DATA.subTeamLeads as member}
+				<MemberCard
+					name={member.name}
+					role={member.role}
+					bio={member.bio}
+					src={member.src}
+					linkedin={member.linkedin}
+				/>
+			{/each}
+		</div>
+	{/if}
+</section>
 
 <style>
 	* {
@@ -201,10 +230,10 @@
 	figure {
 		border-radius: 1rem;
 		display: flex;
-		max-height: 440px;
-		max-width: 440px;
-		height: 120%;
-		width: 120%;
+		max-height: 400px;
+		max-width: 400px;
+		height: 100%;
+		width: 100%;
 		object-fit: initial;
 	}
 
@@ -227,6 +256,35 @@
 
 	div > div:nth-child(2) {
 		text-align: end;
+	}
+
+	/* ── People sections ── */
+	section.people-section {
+		display: block;
+		width: 100%;
+		padding: 4svh 4svw;
+		box-sizing: border-box;
+	}
+
+	.members-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4rem;
+		width: 100%;
+	}
+
+	.members-row.centered {
+		justify-content: center;
+	}
+
+	.members-grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6rem 4rem;
+		width: 100%;
+		max-width: 1000px;
+		justify-content: center;
+		margin: 0 auto;
 	}
 
 	@media only screen and (max-width: 800px) {
@@ -265,6 +323,20 @@
 		h3 {
 			font-size: 2.75rem;
 			text-align: center;
+		}
+
+		.members-grid {
+			max-width: 600px;
+		}
+
+		.members-row {
+			justify-content: center;
+		}
+	}
+
+	@media only screen and (max-width: 500px) {
+		.members-grid {
+			max-width: 280px;
 		}
 	}
 </style>
