@@ -15,7 +15,7 @@
 		"test": "npm run test:unit -- --run && npm run test:e2e",
 		"deploy": "npm run build && wrangler pages deploy",
 		"test:e2e": "playwright install && playwright test",
-		"test:e2e:ui": "playwright test --ui --project=Desktop\\ Chrome",
+		"test-ui": "playwright test --ui --project=Desktop\\ Chrome",
 		"test:e2e:chrome": "playwright test --project='Desktop Chrome'",
 		"test:e2e:firefox": "playwright test --project='Desktop Firefox'",
 		"test:e2e:mobile-chrome": "playwright test --project='Mobile Chrome 360'",
