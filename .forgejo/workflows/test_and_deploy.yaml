@@ -1,11 +1,7 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  push:
-    branches:
-      - master
-      - dev
-      - '**'
+  pull_request:
 
 jobs:
   deploy:
@@ -40,6 +36,30 @@ jobs:
           echo "✅ Production / Preview URL: ${{ steps.deploy.outputs.deployment-url }}"
           echo "🔗 Branch Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}"
           echo "🌐 Full deployment details available in Cloudflare dashboard."
+
+  test:
+    needs: deploy
+    runs-on: ubuntu-*
+    # if: always() # Run even if deploy fails (optional)
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Install Playwright + dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps
+
+      - name: Run Playwright Tests
+        env:
+          BASE_URL: ${{ needs.deploy.outputs.alias_url }}
+        run: npm run test
 
       # - name: Send formatted webhook
       #   if: always()
