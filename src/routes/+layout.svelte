@@ -2,6 +2,7 @@
 	import '$lib/assets/global.css';
 	import Top from '$lib/components/Layout/Top.svelte';
 	import Bottom from '$lib/components/Layout/Bottom.svelte';
+	import 'modern-normalize/modern-normalize.css';
 
 	let { children } = $props();
 </script>
