@@ -9,6 +9,7 @@ on:
 
 jobs:
   deploy:
+    if: github.event_name == 'push' && github.event.pull_request == null
     runs-on: ubuntu-*
 
     steps:
