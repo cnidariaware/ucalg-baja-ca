@@ -9,9 +9,10 @@ on:
 
 jobs:
   deploy:
-    if: github.event_name == 'push' && github.event.pull_request == null
+    if: >-
+      github.event_name == 'push' && 
+      !github.event.pull_request
     runs-on: ubuntu-*
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
